@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JPK/D211nbg=",
+  "dgSpecHash": "2Uhsze4Kme0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\marti\\source\\repos\\GamebookTest1\\GamebookTest1.Server\\GamebookTest1.Server.csproj",
+  "projectFilePath": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\GamebookTest1.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marti\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.11\\microsoft.aspnetcore.spaproxy.8.0.11.nupkg.sha512",
     "C:\\Users\\marti\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

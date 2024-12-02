@@ -1,1 +1,0 @@
-C:\Users\marti\source\repos\2024-p3a-web-gamebook-holydeimling\gamebook\gamebook.client\obj\Debug\gamebook.client.esproj.CoreCompileInputs.cache
