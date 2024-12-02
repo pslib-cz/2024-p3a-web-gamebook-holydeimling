@@ -9,5 +9,5 @@
   <li>Hra bude obsahovat dobové předměty a atmosféru.</li>
   <li>Vzhledem k zasazení hry, budou ve hře různé reference na postavy, kauzy a zločiny českých devadesátek.</li>
   <li>Mise budou mít dvě části: jedna ve stylu gamebooku, kde průběh mise bude ovlivňovat rozhodování hráče a druhou částí budou mise, které hráč musí splnit pro postup v příběhu.</li>
-  <li>•	Hra bude mít několik možných konců.</li>
+  <li>Hra bude mít několik možných konců.</li>
 </ul>
