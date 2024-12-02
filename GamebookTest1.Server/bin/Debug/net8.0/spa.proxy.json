@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:5173",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\Users\\marti\\source\\repos\\GamebookTest1\\GamebookTest1.Server\\..\\gamebooktest1.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}
