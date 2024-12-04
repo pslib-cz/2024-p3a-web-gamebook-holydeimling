@@ -11,3 +11,5 @@
   <li>Mise budou mít dvě části: jedna ve stylu gamebooku, kde průběh mise bude ovlivňovat rozhodování hráče a druhou částí budou mise, které hráč musí splnit pro postup v příběhu.</li>
   <li>Hra bude mít několik možných konců.</li>
 </ul>
+<h3>Odkaz na <a href="https://www.figma.com/design/86v5jwnYfLvH4T9D3x3dl4/Martinek%2BHarry?node-id=275-1657&t=WYpPTtjsanMISBYq-1">Figmu</a></h3>
+<h3>Odkaz na <a href="https://pslib-my.sharepoint.com/:w:/g/personal/martin_holy_022_pslib_cz/EWcdt9JGd0hMuIX4D4iDviABYN_rggF8S9fMGRp3yiVwyA?e=UBEAZl">Word dokument</a></h3>
