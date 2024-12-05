@@ -1,0 +1,52 @@
+:root{
+  --logoWidth: 800px;
+}
+
+.logo {
+  text-align: center;
+  font-family: "RussoOne-Regular";
+  position: relative;
+  color: white;
+  width: var(--logoWidth);
+}
+
+.top-line{
+  height: 5px;
+  background-color: var(--borderColor);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.text {
+   width: var(--logoWidth);
+}
+
+.main-text {
+  font-size: 150px;
+  letter-spacing: 2px;
+}
+
+.bottom-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: var(--logoWidth);
+}
+
+.subtitle {
+  display: block;
+  font-size: 24px;
+  letter-spacing: 1px;
+  margin: 0 4px;
+  position: relative;
+  top: -13px;
+}
+
+.bottom-line{
+  height: 5px;
+  background-color: var(--borderColor);
+  width: 100%;
+  position: relative;
+  top: -13px;
+}

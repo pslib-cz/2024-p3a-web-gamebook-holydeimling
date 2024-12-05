@@ -1,0 +1,20 @@
+.inventory__item{
+  width: 128px;
+  height: 128px;
+  background-color: var(--backgroudColor);
+  border: 2px solid var(--borderColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+
+.icon__image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.inventory__item--highlight{
+  border: green 2px solid;
+}

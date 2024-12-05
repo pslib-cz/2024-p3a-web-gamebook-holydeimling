@@ -1,0 +1,110 @@
+import "./Inventory.css";
+import { useState } from "react";
+import { HomeScreenButton } from "../Home/HomeScreenButton";
+import { DraggableInventoryItem } from "./DraggableInventoryItem";
+import { DroppableInventorySlot } from "./DroppableInventorySlot";
+import "./InventoryItem.css";
+import { DiscardArea } from "./DiscardArea";
+import { ConfirmationPopup } from "../ConfirmationPopup";
+import debilek from "../../assets/testMainCharacter.png";
+
+export const Inventory = () => {
+  const [showInventory, setShowInventory] = useState<boolean>(false);
+  const [inventoryItemsData, setInventoryItemsData] = useState<
+    (string | null)[]
+  >([
+    null,
+    null,
+    "https://as1.ftcdn.net/v2/jpg/00/46/83/66/1000_F_46836607_dezz1BvZ9PpitfdJAkSa1bpcl6FnEish.jpg",
+    null,
+    null,
+    null,
+    "https://as1.ftcdn.net/v2/jpg/00/46/83/66/1000_F_46836607_dezz1BvZ9PpitfdJAkSa1bpcl6FnEish.jpg",
+    "https://as1.ftcdn.net/v2/jpg/00/46/83/66/1000_F_46836607_dezz1BvZ9PpitfdJAkSa1bpcl6FnEish.jpg",
+    "https://as1.ftcdn.net/v2/jpg/00/46/83/66/1000_F_46836607_dezz1BvZ9PpitfdJAkSa1bpcl6FnEish.jpg",
+  ]);
+
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [itemToDiscard, setItemToDiscard] = useState<number | null>(null);
+
+  const moveItem = (fromIndex: number, toIndex: number | "discard") => {
+    if (toIndex === "discard") {
+      setItemToDiscard(fromIndex);
+      setShowPopup(true);
+    } else {
+      setInventoryItemsData((prevItems) => {
+        const updatedItems = [...prevItems];
+        const temp = updatedItems[toIndex];
+        updatedItems[toIndex] = updatedItems[fromIndex];
+        updatedItems[fromIndex] = temp;
+        return updatedItems;
+      });
+    }
+  };
+
+  const confirmDiscard = () => {
+    if (itemToDiscard !== null) {
+      setInventoryItemsData((prevItems) => {
+        const updatedItems = [...prevItems];
+        updatedItems[itemToDiscard] = null;
+        return updatedItems;
+      });
+      setItemToDiscard(null);
+    }
+    setShowPopup(false);
+  };
+
+  const cancelDiscard = () => {
+    setItemToDiscard(null);
+    setShowPopup(false);
+  };
+
+  return (
+    <>
+      {!showInventory && (
+        <div className="inventory__button">
+          <HomeScreenButton
+            text="Inventář"
+            onClick={() => setShowInventory(true)}
+          />
+        </div>
+      )}
+      {showInventory && (
+        <div className="inventory__container">
+          <div className="inventory__button">
+            <HomeScreenButton
+              text="Zpět"
+              onClick={() => setShowInventory(false)}
+            />
+          </div>
+          <div className="inventory-item__container">
+            {inventoryItemsData.map((item, index) => (
+              <DroppableInventorySlot
+                key={`slot-${index}`}
+                index={index}
+                moveItem={moveItem}
+              >
+                <DraggableInventoryItem imageUrl={item} index={index} />
+              </DroppableInventorySlot>
+            ))}
+          </div>
+          <div className="discard-area__container">
+            <DiscardArea moveItem={moveItem} />
+          </div>
+        </div>
+      )}
+      {showInventory && (
+        <div className="inventory-character__container">
+          <img src={debilek} alt="kys" />
+        </div>
+      )}
+      {showPopup && (
+        <ConfirmationPopup
+          message="Are you sure you want to discard this item?"
+          onConfirm={confirmDiscard}
+          onCancel={cancelDiscard}
+        />
+      )}
+    </>
+  );
+};

@@ -1,0 +1,62 @@
+.homescreen-form__container{
+  display: flex;
+  flex-direction: column;
+  font-family: "Joan";
+  color: var(--textColor);
+  background-color: var(--backgroudColor);
+  border: 3px solid var(--borderColor);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.homescreen-form__container h2{
+  font-size: 48px;
+  margin: 0;
+  font-weight: 400;
+}
+
+.homescreen-form__container form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homescreen-form__container input{
+  width: 100%;
+  padding: 2rem 0 0 0;
+  font-size: 24px;
+  background-color: var(--backgroudColor);
+  border-bottom: var(--borderColor) 3px solid;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  color: var(--textColor);
+}
+
+.homescreen-form__container input::placeholder{
+  color: var(--textColor);
+  font-family: "Joan";
+}
+
+.homescreen-form__container input:focus{
+  outline: none;
+}
+
+.homescreen-form__container button{
+  background-color: var(--borderColor);
+  color: var(--backgroudColor);
+  padding: .5rem 1rem;
+  font-size: 24px;
+  border-radius: 8px;
+  border: 2px solid var(--backgroudColor);
+  cursor: pointer;
+  margin-top: 2rem;
+  align-self: flex-end;
+  font-family: "Joan";
+}
+
+.homescreen-form__container button:hover{
+  background-color: var(--backgroudColor);
+  color: var(--borderColor);
+  border: 2px solid var(--borderColor);
+}

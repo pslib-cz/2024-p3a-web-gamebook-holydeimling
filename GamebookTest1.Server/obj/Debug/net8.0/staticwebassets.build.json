@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "kgv4CZuTb+2/v5aveouYE01jVL5R5VPcEpN33SOQEws=",
+  "Hash": "bNwfyUg8G6cNTIYMrxx4kQ2VAGvvTlEWUEbU3HShxmg=",
   "Source": "GamebookTest1.Server",
   "BasePath": "_content/GamebookTest1.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\marti\\source\\repos\\GamebookTest1\\gamebooktest1.client\\gamebooktest1.client.esproj",
+      "Identity": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.client\\gamebooktest1.client.esproj",
       "Version": 2,
       "Source": "gamebooktest1.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",

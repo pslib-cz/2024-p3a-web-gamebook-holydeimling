@@ -1,0 +1,45 @@
+.popup__container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: var(--backgroudColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    color: var(--textColor);
+    font-size: xx-large;
+    padding: 1rem;
+    border-radius: 10px;
+    border: var(--borderColor) solid 2px;
+    z-index: 1000;
+}
+
+.popup__container p{
+  margin: 0;
+}
+
+.popup__buttons{
+  display: flex;
+  gap: 1rem;
+}
+
+.popup__container button{
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--buttonColor);
+  color: var(--textColor);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup__confirm{
+  border:red 2px solid ;
+}
+
+.popup__cancel{
+  border: green 2px solid;
+}

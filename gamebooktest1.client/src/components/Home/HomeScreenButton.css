@@ -1,0 +1,20 @@
+.button__container {
+  width: 300px;
+  font-family: "Joan";
+  font-size: 48px;
+  background-color: var(--backgroudColor);
+  color: var(--textColor);
+  border: 2px solid var(--borderColor);
+  border-radius: 12px;
+  filter: drop-shadow(0px 4px 4px var(--borderColor));
+  cursor: pointer;
+  transition: .2s ease-in-out;
+}
+
+.button__container:hover {
+  transition: .2 ease-in-out;
+  background-color: var(--borderColor);
+  color: var(--backgroudColor);
+  border: 2px solid var(--backgroudColor);
+  filter: drop-shadow(0px 4px 4px var(--backgroudColor));
+}
