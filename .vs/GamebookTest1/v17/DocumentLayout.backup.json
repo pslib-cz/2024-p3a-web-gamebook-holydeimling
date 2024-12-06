@@ -34,8 +34,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 196,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
@@ -56,7 +60,7 @@
               "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\Scene.cs",
               "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Scene.cs",
               "RelativeToolTip": "GamebookTest1.Server\\Models\\Scene.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T15:54:27.627Z",
               "EditorCaption": ""
@@ -71,8 +75,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Models\\Character.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T15:54:24.214Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-04T15:54:24.214Z"
             },
             {
               "$type": "Document",
