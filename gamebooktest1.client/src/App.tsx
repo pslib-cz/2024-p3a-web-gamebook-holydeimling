@@ -7,6 +7,8 @@ import { HomePage } from "./pages/HomePage";
 import { GameTest } from "./pages/GameTest";
 import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
+import { ImageUpload } from "./pages/ImageUpload";
+import { FetchingDataTest } from "./pages/FetchingDataTest";
 
 /* interface Forecast {
   date: string;
@@ -72,6 +74,14 @@ function App() {
     {
       path: "/register",
       element: <RegisterPage />,
+    },
+    {
+      path: "/image-upload",
+      element: <ImageUpload />,
+    },
+    {
+      path: "dataTest",
+      element: <FetchingDataTest />,
     },
   ]);
   return (

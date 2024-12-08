@@ -6,8 +6,8 @@ namespace GamebookTest1.Server.Models
     {
         [Key]
         public int UserId { get; set; }
-        public required string Username { get; set; }
+        public required string UserName { get; set; }
         public required string UserEmail { get; set; }
-        public required string Password { get; set; }
+        public required string UserPassword { get; set; }
     }
 }

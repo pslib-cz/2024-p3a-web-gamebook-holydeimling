@@ -16,27 +16,447 @@ namespace GamebookTest1.Server.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
 
+            modelBuilder.Entity("GameStateQuest", b =>
+                {
+                    b.Property<int>("GameStatesGameStateId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("QuestsQuestId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("GameStatesGameStateId", "QuestsQuestId");
+
+                    b.HasIndex("QuestsQuestId");
+
+                    b.ToTable("GameStateQuest");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Character", b =>
+                {
+                    b.Property<int>("CharacterId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("BackStory")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nickname")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CharacterId");
+
+                    b.ToTable("Characters");
+
+                    b.HasData(
+                        new
+                        {
+                            CharacterId = 1,
+                            BackStory = "Alice is a brave adventurer who loves to explore the world.",
+                            FirstName = "Alice",
+                            LastName = "Adventurer",
+                            Nickname = "Idk"
+                        });
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Dialog", b =>
+                {
+                    b.Property<int>("DialogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DialogCharacterId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("SceneId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("DialogId");
+
+                    b.HasIndex("SceneId");
+
+                    b.ToTable("Dialog");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.GameState", b =>
+                {
+                    b.Property<int>("GameStateId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("InventoryId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("GameStateId");
+
+                    b.HasIndex("InventoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("GameState");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Image", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("CharacterId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("ImageData")
+                        .IsRequired()
+                        .HasColumnType("BLOB");
+
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("MimeType")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("SceneId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ImageId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("ItemId")
+                        .IsUnique();
+
+                    b.HasIndex("SceneId")
+                        .IsUnique();
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Inventory", b =>
+                {
+                    b.Property<int>("InventoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("InventoryId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.ToTable("Inventory");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Item", b =>
+                {
+                    b.Property<int>("ItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("InventoryId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ItemDescription")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("ItemImageId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ItemName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ItemId");
+
+                    b.HasIndex("InventoryId");
+
+                    b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Quest", b =>
+                {
+                    b.Property<int>("QuestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsStoryQuest")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("QuestContent")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("QuestHeading")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("QuestId");
+
+                    b.ToTable("Quest");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Scene", b =>
+                {
+                    b.Property<int>("SceneId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SceneName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("SceneId");
+
+                    b.ToTable("Scenes");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.SceneCharacter", b =>
+                {
+                    b.Property<int>("SceneCharacterId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("SceneId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("SceneCharacterId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("SceneId");
+
+                    b.ToTable("SceneCharacters");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.SceneItem", b =>
+                {
+                    b.Property<int>("SceneItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("SceneId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("SceneItemId");
+
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("SceneId");
+
+                    b.ToTable("SceneItems");
+                });
+
             modelBuilder.Entity("GamebookTest1.Server.Models.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("UserEmail")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Username")
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserPassword")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("UserId");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("GameStateQuest", b =>
+                {
+                    b.HasOne("GamebookTest1.Server.Models.GameState", null)
+                        .WithMany()
+                        .HasForeignKey("GameStatesGameStateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GamebookTest1.Server.Models.Quest", null)
+                        .WithMany()
+                        .HasForeignKey("QuestsQuestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Dialog", b =>
+                {
+                    b.HasOne("GamebookTest1.Server.Models.Scene", null)
+                        .WithMany("SceneDialogs")
+                        .HasForeignKey("SceneId");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.GameState", b =>
+                {
+                    b.HasOne("GamebookTest1.Server.Models.Inventory", "Inventory")
+                        .WithMany()
+                        .HasForeignKey("InventoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GamebookTest1.Server.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Inventory");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Image", b =>
+                {
+                    b.HasOne("GamebookTest1.Server.Models.Character", "Character")
+                        .WithMany("CharacterImages")
+                        .HasForeignKey("CharacterId");
+
+                    b.HasOne("GamebookTest1.Server.Models.Item", "Item")
+                        .WithOne("ItemImage")
+                        .HasForeignKey("GamebookTest1.Server.Models.Image", "ItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("GamebookTest1.Server.Models.Scene", "Scene")
+                        .WithOne("BackgroundImage")
+                        .HasForeignKey("GamebookTest1.Server.Models.Image", "SceneId");
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Item");
+
+                    b.Navigation("Scene");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Inventory", b =>
+                {
+                    b.HasOne("GamebookTest1.Server.Models.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Item", b =>
+                {
+                    b.HasOne("GamebookTest1.Server.Models.Inventory", null)
+                        .WithMany("Items")
+                        .HasForeignKey("InventoryId");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.SceneCharacter", b =>
+                {
+                    b.HasOne("GamebookTest1.Server.Models.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GamebookTest1.Server.Models.Scene", "Scene")
+                        .WithMany("SceneCharacters")
+                        .HasForeignKey("SceneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Scene");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.SceneItem", b =>
+                {
+                    b.HasOne("GamebookTest1.Server.Models.Item", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GamebookTest1.Server.Models.Scene", "Scene")
+                        .WithMany("SceneItems")
+                        .HasForeignKey("SceneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+
+                    b.Navigation("Scene");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Character", b =>
+                {
+                    b.Navigation("CharacterImages");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Inventory", b =>
+                {
+                    b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Item", b =>
+                {
+                    b.Navigation("ItemImage")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Scene", b =>
+                {
+                    b.Navigation("BackgroundImage")
+                        .IsRequired();
+
+                    b.Navigation("SceneCharacters");
+
+                    b.Navigation("SceneDialogs");
+
+                    b.Navigation("SceneItems");
                 });
 #pragma warning restore 612, 618
         }

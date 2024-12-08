@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "xbPNVk2SPD2KRHZWjCEvYesny4ZOgGUcGImuXjUGA+0=",
+  "Hash": "Sw9cXE4tRCTUIepwjR5gB/QLqrwnGzBp6em+kXJXQU4=",
   "Source": "GamebookTest1.Server",
   "BasePath": "_content/GamebookTest1.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.client\\gamebooktest1.client.esproj",
+      "Identity": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.client\\gamebooktest1.client.esproj",
       "Version": 2,
       "Source": "gamebooktest1.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
@@ -21,10 +21,10 @@
   "DiscoveryPatterns": [],
   "Assets": [
     {
-      "Identity": "C:\\Users\\harry\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css",
+      "Identity": "C:\\Users\\marti\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css",
       "SourceId": "Microsoft.AspNetCore.Components.QuickGrid",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\harry\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\marti\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\",
       "BasePath": "_content/Microsoft.AspNetCore.Components.QuickGrid",
       "RelativePath": "Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css",
       "AssetKind": "All",
@@ -37,13 +37,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\harry\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\marti\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\Microsoft.AspNetCore.Components.QuickGrid.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\harry\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\QuickGrid.razor.js",
+      "Identity": "C:\\Users\\marti\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\QuickGrid.razor.js",
       "SourceId": "Microsoft.AspNetCore.Components.QuickGrid",
       "SourceType": "Package",
-      "ContentRoot": "C:\\Users\\harry\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\",
+      "ContentRoot": "C:\\Users\\marti\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\",
       "BasePath": "_content/Microsoft.AspNetCore.Components.QuickGrid",
       "RelativePath": "QuickGrid.razor.js",
       "AssetKind": "All",
@@ -56,13 +56,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\harry\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\QuickGrid.razor.js"
+      "OriginalItemSpec": "C:\\Users\\marti\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.11\\staticwebassets\\QuickGrid.razor.js"
     },
     {
-      "Identity": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\GamebookTest1.Server.styles.css",
+      "Identity": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\GamebookTest1.Server.styles.css",
       "SourceId": "GamebookTest1.Server",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/GamebookTest1.Server",
       "RelativePath": "GamebookTest1.Server.styles.css",
       "AssetKind": "All",
@@ -75,7 +75,7 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\GamebookTest1.Server.styles.css"
+      "OriginalItemSpec": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\GamebookTest1.Server.styles.css"
     }
   ]
 }
