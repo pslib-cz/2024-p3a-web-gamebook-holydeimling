@@ -6,8 +6,20 @@ namespace GamebookTest1.Server.Models
     {
         [Key]
         public int UserId { get; set; }
-        public required string UserName { get; set; }
-        public required string UserEmail { get; set; }
-        public required string UserPassword { get; set; }
+
+        [Required]
+        public string UserName { get; set; } = null!;
+
+        [Required]
+        public string UserEmail { get; set; } = null!;
+
+        [Required]
+        public string UserPassword { get; set; } = null!;
+
+        [Required]
+        public string UserRole { get; set; } = "player"; // Default to player
+
+        // Navigation property for player role
+        public GameState? GameState { get; set; }
     }
 }

@@ -15,6 +15,8 @@ namespace GamebookTest1.Server.Data
         public DbSet<SceneCharacter> SceneCharacters { get; set; }
         public DbSet<SceneItem> SceneItems { get; set; }
         public DbSet<Image> Images { get; set; } // Add DbSet for Images
+        public DbSet<User> Users { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

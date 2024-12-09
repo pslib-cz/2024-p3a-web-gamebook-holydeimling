@@ -1,3 +1,4 @@
 C:\Users\marti\source\repos\GamebookTest1\gamebooktest1.client\obj\Debug\gamebooktest1.client.esproj.CoreCompileInputs.cache
 C:\Users\marti\Downloads\2024-p3a-web-gamebook-holydeimling\gamebooktest1.client\obj\Debug\gamebooktest1.client.esproj.CoreCompileInputs.cache
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\gamebooktest1.client\obj\Debug\gamebooktest1.client.esproj.CoreCompileInputs.cache
+C:\Users\Harry Deimling\source\repos\2024-p3a-web-gamebook-holydeimling\gamebooktest1.client\obj\Debug\gamebooktest1.client.esproj.CoreCompileInputs.cache
