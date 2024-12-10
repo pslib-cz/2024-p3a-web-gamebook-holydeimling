@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using GamebookTest1.Server.Models;
+﻿using GamebookTest1.Server.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GamebookTest1.Server.Data
@@ -14,7 +13,7 @@ namespace GamebookTest1.Server.Data
         public DbSet<Item> Items { get; set; }
         public DbSet<SceneCharacter> SceneCharacters { get; set; }
         public DbSet<SceneItem> SceneItems { get; set; }
-        public DbSet<Image> Images { get; set; } // Add DbSet for Images
+        public DbSet<Image> Images { get; set; }
         public DbSet<Dialog> Dialogs { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
@@ -24,49 +23,20 @@ namespace GamebookTest1.Server.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // One-to-many relationship between Scene and SceneCharacter
-            modelBuilder
-                .Entity<SceneCharacter>()
-                .HasOne(sc => sc.Scene)
-                .WithMany(s => s.SceneCharacters)
-                .HasForeignKey(sc => sc.SceneId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder
-                .Entity<SceneCharacter>()
-                .HasOne(sc => sc.Character)
-                .WithMany()
-                .HasForeignKey(sc => sc.CharacterId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            // One-to-many relationship between Scene and SceneItem
-            modelBuilder
-                .Entity<SceneItem>()
-                .HasOne(si => si.Scene)
-                .WithMany(s => s.SceneItems)
-                .HasForeignKey(si => si.SceneId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder
-                .Entity<SceneItem>()
-                .HasOne(si => si.Item)
-                .WithMany()
-                .HasForeignKey(si => si.ItemId)
-                .OnDelete(DeleteBehavior.Restrict);
-
+            // One-to-One relationship between Item and Image
             modelBuilder
                 .Entity<Item>()
-                .HasOne(i => i.ItemImage)
-                .WithOne() // Or WithMany if it's a one-to-many relationship
-                .HasForeignKey<Item>(i => i.ItemImageId);
+                .HasMany(i => i.ItemImages)
+                .WithOne()
+                .HasForeignKey(i => i.ItemId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder
-                .Entity<GameState>()
-                .HasOne(gs => gs.User)
-                .WithMany()
-                .HasForeignKey(gs => gs.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .Entity<Character>()
+                .HasMany(c => c.CharacterImages)
+                .WithOne()
+                .HasForeignKey(i => i.CharacterId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

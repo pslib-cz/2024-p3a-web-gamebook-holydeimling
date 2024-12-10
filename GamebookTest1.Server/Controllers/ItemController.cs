@@ -11,52 +11,32 @@ namespace GamebookTest1.Server.Controllers
     public class ItemController : ControllerBase
     {
         private readonly AppDbContext _context;
-        private readonly ILogger<ItemController> _logger;
+        private readonly IWebHostEnvironment _environment;
 
-        public ItemController(AppDbContext context, ILogger<ItemController> logger)
+        public ItemController(AppDbContext context, IWebHostEnvironment environment)
         {
             _context = context;
-            _logger = logger;
+            _environment = environment;
         }
 
         // GET: api/Item
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Item>>> GetItems()
+        public async Task<IActionResult> GetAllItems()
         {
-            try
-            {
-                var items = await _context.Items.Include(i => i.ItemImage).ToListAsync();
-                return Ok(items);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error occurred while getting items.");
-                return StatusCode(500, "Internal server error");
-            }
+            var items = await _context.Items.Include(i => i.ItemImages).ToListAsync();
+            return Ok(items);
         }
 
         // GET: api/Item/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Item>> GetItem(int id)
+        public async Task<IActionResult> GetItemById(int id)
         {
-            try
+            var item = await _context.Items.FindAsync(id);
+            if (item == null)
             {
-                var item = await _context
-                    .Items.Include(i => i.ItemImage)
-                    .FirstOrDefaultAsync(i => i.ItemId == id);
-
-                if (item == null)
-                {
-                    return NotFound();
-                }
-
-                return Ok(item);
+                return NotFound();
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error occurred while getting item with ID {id}.");
-                return StatusCode(500, "Internal server error");
-            }
+            return Ok(item);
         }
 
         // POST: api/Item/create-item-with-image
@@ -64,7 +44,7 @@ namespace GamebookTest1.Server.Controllers
         public async Task<IActionResult> CreateItemWithImage(
             [FromForm] string itemName,
             [FromForm] string? itemDescription,
-            [FromForm] int? imageId // The ImageId that is already saved
+            [FromForm] List<int> imageIds // The ImageId that is already saved
         )
         {
             // Validate that the item name is provided
@@ -73,50 +53,51 @@ namespace GamebookTest1.Server.Controllers
                 return BadRequest("Item Name is required.");
             }
 
-            // Fetch the image from the database using ImageId
-            var image = _context.Images.FirstOrDefault(i => i.ImageId == imageId);
-            if (image == null)
+            // Fetch images from database based on provided IDs
+            var images = new List<Image>();
+            if (imageIds != null && imageIds.Any())
             {
-                return BadRequest("Image not found.");
+                images = await _context
+                    .Images.Where(img => imageIds.Contains(img.ImageId))
+                    .ToListAsync();
+
+                if (images.Count != imageIds.Count)
+                {
+                    return BadRequest("One or more Image IDs are invalid.");
+                }
             }
 
-            // Create new Item entity and associate the image with it
             var newItem = new Item
             {
                 ItemName = itemName,
                 ItemDescription = itemDescription,
-                ItemImage = image,
+                ItemImages = images,
             };
 
-            // Save the new item to the database
+            foreach (var image in images)
+            {
+                image.ItemId = newItem.ItemId;
+            }
+
             _context.Items.Add(newItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetItem), new { id = newItem.ItemId }, newItem);
+            return CreatedAtAction(nameof(GetItemById), new { id = newItem.ItemId }, newItem);
         }
 
         // DELETE: api/Item/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem(int id)
         {
-            try
+            var item = await _context.Items.FindAsync(id);
+            if (item == null)
             {
-                var item = await _context.Items.FindAsync(id);
-
-                if (item == null)
-                {
-                    return NotFound();
-                }
-
-                _context.Items.Remove(item);
-                await _context.SaveChangesAsync();
-                return NoContent();
+                return NotFound();
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error occurred while deleting item with ID {id}.");
-                return StatusCode(500, "Internal server error");
-            }
+
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 }

@@ -28,7 +28,9 @@ namespace GamebookTest1.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllCharacters()
         {
-            var characters = await _context.Characters.ToListAsync();
+            var characters = await _context
+                .Characters.Include(c => c.CharacterImages)
+                .ToListAsync();
             return Ok(characters);
         }
 
@@ -43,76 +45,13 @@ namespace GamebookTest1.Server.Controllers
             return Ok(character);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateCharacter([FromBody] Character character)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            // Check if any nested objects need to be added or linked
-            if (character.CharacterImages != null && character.CharacterImages.Any())
-            {
-                foreach (var image in character.CharacterImages)
-                {
-                    if (image.Item != null)
-                    {
-                        _context.Items.Add(image.Item); // Add associated Item if provided
-                    }
-
-                    if (image.Scene != null)
-                    {
-                        // Add associated Scene, including nested SceneCharacters, SceneItems, and SceneDialogs
-                        if (image.Scene.SceneCharacters != null)
-                        {
-                            foreach (var sceneCharacter in image.Scene.SceneCharacters)
-                            {
-                                _context.SceneCharacters.Add(sceneCharacter);
-                            }
-                        }
-
-                        if (image.Scene.SceneItems != null)
-                        {
-                            foreach (var sceneItem in image.Scene.SceneItems)
-                            {
-                                _context.SceneItems.Add(sceneItem);
-                            }
-                        }
-
-                        if (image.Scene.SceneDialogs != null)
-                        {
-                            foreach (var dialog in image.Scene.SceneDialogs)
-                            {
-                                _context.Dialogs.Add(dialog);
-                            }
-                        }
-
-                        _context.Scenes.Add(image.Scene);
-                    }
-
-                    _context.Images.Add(image); // Add the Image itself
-                }
-            }
-
-            _context.Characters.Add(character);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(
-                nameof(GetCharacterById),
-                new { id = character.CharacterId },
-                character
-            );
-        }
-
-        [HttpPost]
-        [Route("create-character-with-image")]
-        public async Task<IActionResult> CreateCharacterWithImage(
+        [HttpPost("create-character-with-images")]
+        public async Task<IActionResult> CreateCharacterWithImages(
             [FromForm] string firstName,
             [FromForm] string lastName,
             [FromForm] string? nickname,
             [FromForm] string? backStory,
-            [FromForm] int? imageId // The ImageId that is already saved
+            [FromForm] List<int>? imageIds // List of Image IDs to associate
         )
         {
             if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
@@ -120,28 +59,36 @@ namespace GamebookTest1.Server.Controllers
                 return BadRequest("First Name and Last Name are required.");
             }
 
-            // Fetch the image from the database using ImageId
-            var image = _context.Images.FirstOrDefault(i => i.ImageId == imageId);
-            if (image == null)
+            // Fetch images from database based on provided IDs
+            var images = new List<Image>();
+            if (imageIds != null && imageIds.Any())
             {
-                return BadRequest("Image not found.");
+                images = await _context
+                    .Images.Where(img => imageIds.Contains(img.ImageId))
+                    .ToListAsync();
+
+                if (images.Count != imageIds.Count)
+                {
+                    return BadRequest("One or more Image IDs are invalid.");
+                }
             }
 
-            // Create new Character entity
+            // Create the new Character
             var newCharacter = new Character
             {
                 FirstName = firstName,
                 LastName = lastName,
                 Nickname = nickname,
                 BackStory = backStory,
-                CharacterImages = new List<Image>
-                {
-                    image,
-                } // Add the image to the character's collection
-                ,
+                CharacterImages = images,
             };
 
-            // Save the new character to the database
+            // Update CharacterId in the images
+            foreach (var image in images)
+            {
+                image.CharacterId = newCharacter.CharacterId;
+            }
+
             _context.Characters.Add(newCharacter);
             await _context.SaveChangesAsync();
 

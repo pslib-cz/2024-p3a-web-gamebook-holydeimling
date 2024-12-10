@@ -5,7 +5,7 @@
 namespace GamebookTest1.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class ItemImageConectionfix : Migration
+    public partial class plsworkkjjiophio : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -110,6 +110,39 @@ namespace GamebookTest1.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    ImageId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FilePath = table.Column<string>(type: "TEXT", nullable: false),
+                    CharacterId = table.Column<int>(type: "INTEGER", nullable: true),
+                    CharacterId1 = table.Column<int>(type: "INTEGER", nullable: true),
+                    ItemId = table.Column<int>(type: "INTEGER", nullable: true),
+                    SceneId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.ImageId);
+                    table.ForeignKey(
+                        name: "FK_Images_Characters_CharacterId",
+                        column: x => x.CharacterId,
+                        principalTable: "Characters",
+                        principalColumn: "CharacterId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Images_Characters_CharacterId1",
+                        column: x => x.CharacterId1,
+                        principalTable: "Characters",
+                        principalColumn: "CharacterId");
+                    table.ForeignKey(
+                        name: "FK_Images_Scenes_SceneId",
+                        column: x => x.SceneId,
+                        principalTable: "Scenes",
+                        principalColumn: "SceneId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SceneCharacters",
                 columns: table => new
                 {
@@ -128,7 +161,7 @@ namespace GamebookTest1.Server.Migrations
                         column: x => x.CharacterId,
                         principalTable: "Characters",
                         principalColumn: "CharacterId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SceneCharacters_Scenes_SceneId",
                         column: x => x.SceneId,
@@ -178,6 +211,12 @@ namespace GamebookTest1.Server.Migrations
                 {
                     table.PrimaryKey("PK_Items", x => x.ItemId);
                     table.ForeignKey(
+                        name: "FK_Items_Images_ItemImageId",
+                        column: x => x.ItemImageId,
+                        principalTable: "Images",
+                        principalColumn: "ImageId",
+                        onDelete: ReferentialAction.SetNull);
+                    table.ForeignKey(
                         name: "FK_Items_Inventories_InventoryId",
                         column: x => x.InventoryId,
                         principalTable: "Inventories",
@@ -209,38 +248,6 @@ namespace GamebookTest1.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    ImageId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    FilePath = table.Column<string>(type: "TEXT", nullable: false),
-                    CharacterId = table.Column<int>(type: "INTEGER", nullable: true),
-                    ItemId = table.Column<int>(type: "INTEGER", nullable: true),
-                    SceneId = table.Column<int>(type: "INTEGER", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.ImageId);
-                    table.ForeignKey(
-                        name: "FK_Images_Characters_CharacterId",
-                        column: x => x.CharacterId,
-                        principalTable: "Characters",
-                        principalColumn: "CharacterId");
-                    table.ForeignKey(
-                        name: "FK_Images_Items_ItemId",
-                        column: x => x.ItemId,
-                        principalTable: "Items",
-                        principalColumn: "ItemId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Images_Scenes_SceneId",
-                        column: x => x.SceneId,
-                        principalTable: "Scenes",
-                        principalColumn: "SceneId");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SceneItems",
                 columns: table => new
                 {
@@ -259,7 +266,7 @@ namespace GamebookTest1.Server.Migrations
                         column: x => x.ItemId,
                         principalTable: "Items",
                         principalColumn: "ItemId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SceneItems_Scenes_SceneId",
                         column: x => x.SceneId,
@@ -294,10 +301,9 @@ namespace GamebookTest1.Server.Migrations
                 column: "CharacterId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Images_ItemId",
+                name: "IX_Images_CharacterId1",
                 table: "Images",
-                column: "ItemId",
-                unique: true);
+                column: "CharacterId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Images_SceneId",
@@ -314,6 +320,12 @@ namespace GamebookTest1.Server.Migrations
                 name: "IX_Items_InventoryId",
                 table: "Items",
                 column: "InventoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Items_ItemImageId",
+                table: "Items",
+                column: "ItemImageId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_SceneCharacters_CharacterId",
@@ -346,9 +358,6 @@ namespace GamebookTest1.Server.Migrations
                 name: "GameStateQuest");
 
             migrationBuilder.DropTable(
-                name: "Images");
-
-            migrationBuilder.DropTable(
                 name: "SceneCharacters");
 
             migrationBuilder.DropTable(
@@ -364,13 +373,16 @@ namespace GamebookTest1.Server.Migrations
                 name: "Items");
 
             migrationBuilder.DropTable(
-                name: "Scenes");
-
-            migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
+                name: "Images");
+
+            migrationBuilder.DropTable(
                 name: "Inventories");
+
+            migrationBuilder.DropTable(
+                name: "Scenes");
 
             migrationBuilder.DropTable(
                 name: "Characters");
