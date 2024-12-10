@@ -8,12 +8,7 @@ namespace GamebookTest1.Server.Models
         public int ImageId { get; set; } // Primary key
 
         [Required]
-        public byte[] ImageData { get; set; } // Binary data for the image
-
-        [Required]
-        public string MimeType { get; set; } // e.g., "image/png"
-
-        public string? Description { get; set; } // Optional description for the image
+        public required string FilePath { get; set; }
 
         // Foreign Keys
         public int? CharacterId { get; set; }

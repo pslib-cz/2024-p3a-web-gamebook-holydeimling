@@ -15,6 +15,11 @@ namespace GamebookTest1.Server.Data
         public DbSet<SceneCharacter> SceneCharacters { get; set; }
         public DbSet<SceneItem> SceneItems { get; set; }
         public DbSet<Image> Images { get; set; } // Add DbSet for Images
+        public DbSet<Dialog> Dialogs { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<GameState> GameStates { get; set; }
+        public DbSet<Quest> Quests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,7 +47,7 @@ namespace GamebookTest1.Server.Data
                 .WithMany(s => s.SceneItems)
                 .HasForeignKey(si => si.SceneId)
                 .OnDelete(DeleteBehavior.Cascade);
-            // One-to-many relationship between scene and scene item
+
             modelBuilder
                 .Entity<SceneItem>()
                 .HasOne(si => si.Item)
@@ -50,20 +55,11 @@ namespace GamebookTest1.Server.Data
                 .HasForeignKey(si => si.ItemId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // One-to-One relationship between Item and ItemImage
             modelBuilder
                 .Entity<Item>()
-                .HasOne(i => i.ItemImage) // Item has one ItemImage
-                .WithOne() // ItemImage is associated with one Item
-                .HasForeignKey<Item>(i => i.ItemImageId) // Foreign key in Item
-                .OnDelete(DeleteBehavior.Cascade); // Optionally, use Cascade delete if desired
-
-            // One-to-One relationship between Image and Item (reverse side)
-            modelBuilder
-                .Entity<Image>()
-                .HasOne(i => i.Item) // Image references Item
-                .WithOne(i => i.ItemImage) // One Item has one ItemImage
-                .HasForeignKey<Image>(i => i.ItemId); // Foreign key in Image
+                .HasOne(i => i.ItemImage)
+                .WithOne() // Or WithMany if it's a one-to-many relationship
+                .HasForeignKey<Item>(i => i.ItemImageId);
 
             modelBuilder
                 .Entity<GameState>()
@@ -71,34 +67,6 @@ namespace GamebookTest1.Server.Data
                 .WithMany()
                 .HasForeignKey(gs => gs.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Image>().HasData();
-
-            modelBuilder.Entity<Scene>().HasData();
-            modelBuilder.Entity<SceneCharacter>().HasData();
-            modelBuilder
-                .Entity<Character>()
-                .HasData(
-                    new Character
-                    {
-                        CharacterId = 1,
-                        FirstName = "Alice",
-                        LastName = "Adventurer",
-                        Nickname = "Idk",
-                        BackStory = "Alice is a brave adventurer who loves to explore the world.",
-                    }
-                );
-
-            modelBuilder.Entity<SceneItem>().HasData();
-            modelBuilder.Entity<Item>().HasData();
-
-            modelBuilder.Entity<Dialog>().HasData();
-
-            modelBuilder.Entity<User>().HasData();
-
-            modelBuilder.Entity<Inventory>().HasData();
-            modelBuilder.Entity<GameState>().HasData();
-            modelBuilder.Entity<Quest>().HasData();
         }
     }
 }

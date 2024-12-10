@@ -3,36 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\controllers\\charactercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\controllers\\charactercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\models\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\models\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241208160834_idkasaas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GamebookTest1.Server\\Migrations\\20241208160834_idkasaas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241208160811_idkasaas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GamebookTest1.Server\\Migrations\\20241208160811_idkasaas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241210194451_ItemImageConectionfixsd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GamebookTest1.Server\\Migrations\\20241210194451_ItemImageConectionfixsd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\models\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\models\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\models\\quest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\models\\quest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\models\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\models\\gamestate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\controllers\\itemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\controllers\\itemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,32 +23,20 @@
       "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\models\\image.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\models\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\models\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\controllers\\itemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\controllers\\itemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241210194015_ItemImageConectionfix.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GamebookTest1.Server\\Migrations\\20241210194015_ItemImageConectionfix.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\models\\sceneitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\models\\sceneitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\controllers\\sceneitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\controllers\\sceneitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\controllers\\scenecharactercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\controllers\\scenecharactercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\controllers\\charactercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\controllers\\charactercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\models\\scenecharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\models\\scenecharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\marti\\downloads\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\models\\scene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\models\\scene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -78,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 196,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -98,33 +66,85 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Quest.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Quest.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\Quest.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Quest.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Models\\Quest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABXAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "20241210194451_ItemImageConectionfixsd.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241210194451_ItemImageConectionfixsd.cs",
+              "RelativeDocumentMoniker": "GamebookTest1.Server\\Migrations\\20241210194451_ItemImageConectionfixsd.cs",
+              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241210194451_ItemImageConectionfixsd.cs",
+              "RelativeToolTip": "GamebookTest1.Server\\Migrations\\20241210194451_ItemImageConectionfixsd.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T15:57:12.093Z",
+              "WhenOpened": "2024-12-10T19:44:51.556Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Inventory.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Inventory.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\Inventory.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Inventory.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Models\\Inventory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABIAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "20241210194015_ItemImageConectionfix.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241210194015_ItemImageConectionfix.cs",
+              "RelativeDocumentMoniker": "GamebookTest1.Server\\Migrations\\20241210194015_ItemImageConectionfix.cs",
+              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241210194015_ItemImageConectionfix.cs",
+              "RelativeToolTip": "GamebookTest1.Server\\Migrations\\20241210194015_ItemImageConectionfix.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T15:55:16.308Z",
+              "WhenOpened": "2024-12-10T19:40:15.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Image.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Image.cs",
+              "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\Image.cs",
+              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Image.cs",
+              "RelativeToolTip": "GamebookTest1.Server\\Models\\Image.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:34:56.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ItemController.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\ItemController.cs",
+              "RelativeDocumentMoniker": "GamebookTest1.Server\\Controllers\\ItemController.cs",
+              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\ItemController.cs",
+              "RelativeToolTip": "GamebookTest1.Server\\Controllers\\ItemController.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAqwHoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:23:09.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Item.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Item.cs",
+              "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\Item.cs",
+              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Item.cs",
+              "RelativeToolTip": "GamebookTest1.Server\\Models\\Item.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:20:40.417Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "GamebookTest1.Server\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "GamebookTest1.Server\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAUwD0AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-10T17:00:15.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Character.cs",
               "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Character.cs",
               "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\Character.cs",
@@ -132,189 +152,39 @@
               "RelativeToolTip": "GamebookTest1.Server\\Models\\Character.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:02:59.11Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GameState.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\GameState.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\GameState.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\GameState.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Models\\GameState.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T15:51:15.734Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CharacterController.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\CharacterController.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Controllers\\CharacterController.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\CharacterController.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Controllers\\CharacterController.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAgwEkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:15:13.79Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "20241208160811_idkasaas.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241208160811_idkasaas.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Migrations\\20241208160811_idkasaas.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241208160811_idkasaas.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Migrations\\20241208160811_idkasaas.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T16:08:12.025Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "20241208160834_idkasaas.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241208160834_idkasaas.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Migrations\\20241208160834_idkasaas.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Migrations\\20241208160834_idkasaas.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Migrations\\20241208160834_idkasaas.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T16:08:34.77Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAcwFcAAABiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:04:50.127Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Program.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Program.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Program.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAACIAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:34:11.105Z",
+              "WhenOpened": "2024-12-10T17:00:10.84Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Item.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Item.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\Item.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Item.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Models\\Item.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBAAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:03:11.221Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Image.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Image.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\Image.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Image.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Models\\Image.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:02:33.526Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ItemController.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\ItemController.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Controllers\\ItemController.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\ItemController.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Controllers\\ItemController.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAIwH8AAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:17:11.038Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "SceneItem.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\SceneItem.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\SceneItem.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\SceneItem.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Models\\SceneItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:07:20.041Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "SceneCharacterController.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\SceneCharacterController.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Controllers\\SceneCharacterController.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\SceneCharacterController.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Controllers\\SceneCharacterController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:12:01.229Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "SceneItemController.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\SceneItemController.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Controllers\\SceneItemController.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\SceneItemController.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Controllers\\SceneItemController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAgwCsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:12:46.493Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
               "Title": "SceneCharacter.cs",
               "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\SceneCharacter.cs",
               "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\SceneCharacter.cs",
               "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\SceneCharacter.cs",
               "RelativeToolTip": "GamebookTest1.Server\\Models\\SceneCharacter.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAIBJwBYAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-07T20:07:19.448Z",
               "EditorCaption": ""
-            },
+            }
+          ]
+        },
+        {
+          "DockedWidth": 196,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Scene.cs",
-              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Scene.cs",
-              "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\Scene.cs",
-              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\Scene.cs",
-              "RelativeToolTip": "GamebookTest1.Server\\Models\\Scene.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "CharacterController.cs",
+              "DocumentMoniker": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\CharacterController.cs",
+              "RelativeDocumentMoniker": "GamebookTest1.Server\\Controllers\\CharacterController.cs",
+              "ToolTip": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\CharacterController.cs",
+              "RelativeToolTip": "GamebookTest1.Server\\Controllers\\CharacterController.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAqwGgAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:03:34.868Z",
+              "WhenOpened": "2024-12-10T17:04:30.433Z",
               "EditorCaption": ""
             }
           ]

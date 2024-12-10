@@ -2,6 +2,7 @@
 using GamebookTest1.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamebookTest1.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241210194015_ItemImageConectionfix")]
+    partial class ItemImageConectionfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -123,7 +126,8 @@ namespace GamebookTest1.Server.Migrations
 
                     b.HasIndex("CharacterId");
 
-                    b.HasIndex("ItemId");
+                    b.HasIndex("ItemId")
+                        .IsUnique();
 
                     b.HasIndex("SceneId")
                         .IsUnique();
@@ -169,9 +173,6 @@ namespace GamebookTest1.Server.Migrations
                     b.HasKey("ItemId");
 
                     b.HasIndex("InventoryId");
-
-                    b.HasIndex("ItemImageId")
-                        .IsUnique();
 
                     b.ToTable("Items");
                 });
@@ -345,8 +346,9 @@ namespace GamebookTest1.Server.Migrations
                         .HasForeignKey("CharacterId");
 
                     b.HasOne("GamebookTest1.Server.Models.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId");
+                        .WithOne("ItemImage")
+                        .HasForeignKey("GamebookTest1.Server.Models.Image", "ItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("GamebookTest1.Server.Models.Scene", "Scene")
                         .WithOne("BackgroundImage")
@@ -375,12 +377,6 @@ namespace GamebookTest1.Server.Migrations
                     b.HasOne("GamebookTest1.Server.Models.Inventory", null)
                         .WithMany("Items")
                         .HasForeignKey("InventoryId");
-
-                    b.HasOne("GamebookTest1.Server.Models.Image", "ItemImage")
-                        .WithOne()
-                        .HasForeignKey("GamebookTest1.Server.Models.Item", "ItemImageId");
-
-                    b.Navigation("ItemImage");
                 });
 
             modelBuilder.Entity("GamebookTest1.Server.Models.SceneCharacter", b =>
@@ -429,6 +425,12 @@ namespace GamebookTest1.Server.Migrations
             modelBuilder.Entity("GamebookTest1.Server.Models.Inventory", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Item", b =>
+                {
+                    b.Navigation("ItemImage")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GamebookTest1.Server.Models.Scene", b =>

@@ -9,6 +9,7 @@ import { LoginPage } from "./pages/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage";
 import { ImageUpload } from "./pages/ImageUpload";
 import { FetchingDataTest } from "./pages/FetchingDataTest";
+import { FileUpload } from "./pages/FileUpload";
 
 /* interface Forecast {
   date: string;
@@ -82,6 +83,10 @@ function App() {
     {
       path: "dataTest",
       element: <FetchingDataTest />,
+    },
+    {
+      path: "/FileUpload",
+      element: <FileUpload />,
     },
   ]);
   return (
