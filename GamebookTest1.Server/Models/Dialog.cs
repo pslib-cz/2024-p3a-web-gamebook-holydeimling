@@ -8,8 +8,8 @@ namespace GamebookTest1.Server.Models
         [Key]
         public int DialogId { get; set; }
 
-        [ForeignKey("CharacterId")]
-        public int DialogCharacterId { get; set; }
+        [Required]
+        public Character Character { get; set; } = null!;
 
         [Required]
         public required string Text { get; set; }
