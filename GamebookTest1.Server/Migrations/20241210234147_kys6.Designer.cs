@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamebookTest1.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241210224644_kys")]
-    partial class kys
+    [Migration("20241210234147_kys6")]
+    partial class kys6
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -172,9 +172,6 @@ namespace GamebookTest1.Server.Migrations
                     b.Property<string>("ItemDescription")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ItemImageId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("ItemName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -184,6 +181,23 @@ namespace GamebookTest1.Server.Migrations
                     b.HasIndex("InventoryId");
 
                     b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Position", b =>
+                {
+                    b.Property<int>("PositionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("X")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Y")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("PositionId");
+
+                    b.ToTable("Positions");
                 });
 
             modelBuilder.Entity("GamebookTest1.Server.Models.Quest", b =>
@@ -235,22 +249,29 @@ namespace GamebookTest1.Server.Migrations
                     b.Property<int>("CharacterId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("PositionId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("SceneId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("SceneId1")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("SizeId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("SceneCharacterId");
 
                     b.HasIndex("CharacterId");
 
+                    b.HasIndex("PositionId");
+
                     b.HasIndex("SceneId");
+
+                    b.HasIndex("SceneId1");
+
+                    b.HasIndex("SizeId");
 
                     b.ToTable("SceneCharacters");
                 });
@@ -264,24 +285,43 @@ namespace GamebookTest1.Server.Migrations
                     b.Property<int>("ItemId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("PositionId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("SceneId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("SizeId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("SceneItemId");
 
                     b.HasIndex("ItemId");
 
+                    b.HasIndex("PositionId");
+
                     b.HasIndex("SceneId");
 
+                    b.HasIndex("SizeId");
+
                     b.ToTable("SceneItems");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.Size", b =>
+                {
+                    b.Property<int>("SizeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Height")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Width")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("SizeId");
+
+                    b.ToTable("Sizes");
                 });
 
             modelBuilder.Entity("GamebookTest1.Server.Models.User", b =>
@@ -405,15 +445,35 @@ namespace GamebookTest1.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GamebookTest1.Server.Models.Position", "Position")
+                        .WithMany()
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GamebookTest1.Server.Models.Scene", "Scene")
-                        .WithMany("SceneCharacters")
+                        .WithMany()
                         .HasForeignKey("SceneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GamebookTest1.Server.Models.Scene", null)
+                        .WithMany("SceneCharacters")
+                        .HasForeignKey("SceneId1");
+
+                    b.HasOne("GamebookTest1.Server.Models.Size", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Character");
 
+                    b.Navigation("Position");
+
                     b.Navigation("Scene");
+
+                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("GamebookTest1.Server.Models.SceneItem", b =>
@@ -424,15 +484,31 @@ namespace GamebookTest1.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GamebookTest1.Server.Models.Position", "Position")
+                        .WithMany()
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GamebookTest1.Server.Models.Scene", "Scene")
                         .WithMany("SceneItems")
                         .HasForeignKey("SceneId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GamebookTest1.Server.Models.Size", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Item");
 
+                    b.Navigation("Position");
+
                     b.Navigation("Scene");
+
+                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("GamebookTest1.Server.Models.Character", b =>

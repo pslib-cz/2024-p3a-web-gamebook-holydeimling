@@ -8,16 +8,16 @@ namespace GamebookTest1.Server.Models
         [Key]
         public int SceneItemId { get; set; } // Primary key
 
-        public int SceneId { get; set; }
-        public Scene Scene { get; set; } // Navigation property to Scene
-
-        public int ItemId { get; set; }
-        public Item Item { get; set; } // Navigation property to Item
+        [Required]
+        public Scene Scene { get; set; } = null!; // Navigation property to Scene
 
         [Required]
-        public string Position { get; set; } // Position in the scene (e.g., coordinates)
+        public Item Item { get; set; } = null!; // Navigation property to Item
 
         [Required]
-        public string Size { get; set; } // Size (e.g., scale or dimensions)
+        public Position Position { get; set; } = new Position(); // Position in the scene (e.g., coordinates)
+
+        [Required]
+        public Size Size { get; set; } = new Size(); // Size (e.g., scale or dimensions)
     }
 }

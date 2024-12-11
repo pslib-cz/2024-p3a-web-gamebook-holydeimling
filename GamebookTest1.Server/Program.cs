@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using GamebookTest1.Server.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
