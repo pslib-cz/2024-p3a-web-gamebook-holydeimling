@@ -15,12 +15,12 @@ namespace GamebookTest1.Server.Data
         public DbSet<SceneItem> SceneItems { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Dialog> Dialogs { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<GameState> GameStates { get; set; }
         public DbSet<Quest> Quests { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Size> Sizes { get; set; }
+        public DbSet<User> Users { get; set; } //users
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,13 @@ namespace GamebookTest1.Server.Data
 
             // Define one-to-many relationship between Item and SceneItem
             modelBuilder.Entity<SceneItem>().HasOne(si => si.Item).WithMany(); // Cascading delete ensures SceneItems are removed when Item is deleted
+
+
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
         }
+
     }
 }
