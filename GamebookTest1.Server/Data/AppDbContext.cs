@@ -59,6 +59,8 @@ namespace GamebookTest1.Server.Data
             // Define one-to-many relationship between Item and SceneItem
             modelBuilder.Entity<SceneItem>().HasOne(si => si.Item).WithMany(); // Cascading delete ensures SceneItems are removed when Item is deleted
 
+            modelBuilder.Entity<Dialog>().HasOne(ci => ci.Character).WithMany(); // A Dialog has one Character
+
 
 
             modelBuilder.Entity<User>()
