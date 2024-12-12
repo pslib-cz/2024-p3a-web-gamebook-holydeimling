@@ -22,8 +22,7 @@ namespace GamebookTest1.Server.Controllers
         public async Task<IActionResult> GetAllSceneItems()
         {
             var sceneItems = await _context
-                .SceneItems.Include(si => si.Scene)
-                .Include(si => si.Item)
+                .SceneItems.Include(si => si.Item)
                 .ThenInclude(i => i.ItemImages) // Include ItemImages
                 .Include(si => si.Position) // Include Position
                 .Include(si => si.Size) // Include Size
@@ -36,8 +35,7 @@ namespace GamebookTest1.Server.Controllers
         public async Task<IActionResult> GetSceneItemById(int id)
         {
             var sceneItem = await _context
-                .SceneItems.Include(si => si.Scene)
-                .Include(si => si.Item)
+                .SceneItems.Include(si => si.Item)
                 .ThenInclude(i => i.ItemImages) // Include ItemImages
                 .Include(si => si.Position) // Include Position
                 .Include(si => si.Size) // Include Size
@@ -54,7 +52,6 @@ namespace GamebookTest1.Server.Controllers
         // POST: api/SceneItem/create-scene-item
         [HttpPost("create-scene-item")]
         public async Task<IActionResult> CreateSceneItem(
-            [FromForm] int sceneId,
             [FromForm] int itemId,
             [FromForm] int positionX,
             [FromForm] int positionY,
@@ -75,15 +72,8 @@ namespace GamebookTest1.Server.Controllers
                 return BadRequest("Item not found.");
             }
 
-            var _scene = await _context.Scenes.FindAsync(sceneId);
-            if (_scene == null)
-            {
-                return BadRequest("Scene not found.");
-            }
-
             var newSceneItem = new SceneItem
             {
-                Scene = _scene,
                 Item = _item,
                 Position = position,
                 Size = size,

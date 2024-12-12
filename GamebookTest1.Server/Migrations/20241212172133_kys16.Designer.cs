@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamebookTest1.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241211000351_kys7")]
-    partial class kys7
+    [Migration("20241212172133_kys16")]
+    partial class kys16
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,7 +65,7 @@ namespace GamebookTest1.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("DialogCharacterId")
+                    b.Property<int>("CharacterId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("SceneId")
@@ -76,6 +76,8 @@ namespace GamebookTest1.Server.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("DialogId");
+
+                    b.HasIndex("CharacterId");
 
                     b.HasIndex("SceneId");
 
@@ -252,10 +254,7 @@ namespace GamebookTest1.Server.Migrations
                     b.Property<int>("PositionId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SceneId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("SceneId1")
+                    b.Property<int?>("SceneId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SizeId")
@@ -268,8 +267,6 @@ namespace GamebookTest1.Server.Migrations
                     b.HasIndex("PositionId");
 
                     b.HasIndex("SceneId");
-
-                    b.HasIndex("SceneId1");
 
                     b.HasIndex("SizeId");
 
@@ -288,10 +285,7 @@ namespace GamebookTest1.Server.Migrations
                     b.Property<int>("PositionId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SceneId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("SceneId1")
+                    b.Property<int?>("SceneId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SizeId")
@@ -304,8 +298,6 @@ namespace GamebookTest1.Server.Migrations
                     b.HasIndex("PositionId");
 
                     b.HasIndex("SceneId");
-
-                    b.HasIndex("SceneId1");
 
                     b.HasIndex("SizeId");
 
@@ -369,9 +361,17 @@ namespace GamebookTest1.Server.Migrations
 
             modelBuilder.Entity("GamebookTest1.Server.Models.Dialog", b =>
                 {
+                    b.HasOne("GamebookTest1.Server.Models.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GamebookTest1.Server.Models.Scene", null)
                         .WithMany("SceneDialogs")
                         .HasForeignKey("SceneId");
+
+                    b.Navigation("Character");
                 });
 
             modelBuilder.Entity("GamebookTest1.Server.Models.GameState", b =>
@@ -456,15 +456,9 @@ namespace GamebookTest1.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GamebookTest1.Server.Models.Scene", "Scene")
-                        .WithMany()
-                        .HasForeignKey("SceneId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("GamebookTest1.Server.Models.Scene", null)
                         .WithMany("SceneCharacters")
-                        .HasForeignKey("SceneId1");
+                        .HasForeignKey("SceneId");
 
                     b.HasOne("GamebookTest1.Server.Models.Size", "Size")
                         .WithMany()
@@ -475,8 +469,6 @@ namespace GamebookTest1.Server.Migrations
                     b.Navigation("Character");
 
                     b.Navigation("Position");
-
-                    b.Navigation("Scene");
 
                     b.Navigation("Size");
                 });
@@ -495,15 +487,9 @@ namespace GamebookTest1.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GamebookTest1.Server.Models.Scene", "Scene")
-                        .WithMany()
-                        .HasForeignKey("SceneId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("GamebookTest1.Server.Models.Scene", null)
                         .WithMany("SceneItems")
-                        .HasForeignKey("SceneId1");
+                        .HasForeignKey("SceneId");
 
                     b.HasOne("GamebookTest1.Server.Models.Size", "Size")
                         .WithMany()
@@ -514,8 +500,6 @@ namespace GamebookTest1.Server.Migrations
                     b.Navigation("Item");
 
                     b.Navigation("Position");
-
-                    b.Navigation("Scene");
 
                     b.Navigation("Size");
                 });

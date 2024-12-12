@@ -5,7 +5,7 @@
 namespace GamebookTest1.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class kys5 : Migration
+    public partial class kys16 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -123,13 +123,19 @@ namespace GamebookTest1.Server.Migrations
                 {
                     DialogId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    DialogCharacterId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CharacterId = table.Column<int>(type: "INTEGER", nullable: false),
                     Text = table.Column<string>(type: "TEXT", nullable: false),
                     SceneId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Dialogs", x => x.DialogId);
+                    table.ForeignKey(
+                        name: "FK_Dialogs_Characters_CharacterId",
+                        column: x => x.CharacterId,
+                        principalTable: "Characters",
+                        principalColumn: "CharacterId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Dialogs_Scenes_SceneId",
                         column: x => x.SceneId,
@@ -143,10 +149,10 @@ namespace GamebookTest1.Server.Migrations
                 {
                     SceneCharacterId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    SceneId = table.Column<int>(type: "INTEGER", nullable: false),
                     CharacterId = table.Column<int>(type: "INTEGER", nullable: false),
                     PositionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    SizeId = table.Column<int>(type: "INTEGER", nullable: false)
+                    SizeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    SceneId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -167,8 +173,7 @@ namespace GamebookTest1.Server.Migrations
                         name: "FK_SceneCharacters_Scenes_SceneId",
                         column: x => x.SceneId,
                         principalTable: "Scenes",
-                        principalColumn: "SceneId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "SceneId");
                     table.ForeignKey(
                         name: "FK_SceneCharacters_Sizes_SizeId",
                         column: x => x.SizeId,
@@ -298,10 +303,10 @@ namespace GamebookTest1.Server.Migrations
                 {
                     SceneItemId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    SceneId = table.Column<int>(type: "INTEGER", nullable: false),
                     ItemId = table.Column<int>(type: "INTEGER", nullable: false),
                     PositionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    SizeId = table.Column<int>(type: "INTEGER", nullable: false)
+                    SizeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    SceneId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -322,8 +327,7 @@ namespace GamebookTest1.Server.Migrations
                         name: "FK_SceneItems_Scenes_SceneId",
                         column: x => x.SceneId,
                         principalTable: "Scenes",
-                        principalColumn: "SceneId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "SceneId");
                     table.ForeignKey(
                         name: "FK_SceneItems_Sizes_SizeId",
                         column: x => x.SizeId,
@@ -331,6 +335,11 @@ namespace GamebookTest1.Server.Migrations
                         principalColumn: "SizeId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dialogs_CharacterId",
+                table: "Dialogs",
+                column: "CharacterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Dialogs_SceneId",

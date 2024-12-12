@@ -24,8 +24,7 @@ namespace GamebookTest1.Server.Controllers
         public async Task<IActionResult> GetAllSceneCharacters()
         {
             var sceneCharacters = await _context
-                .SceneCharacters.Include(sc => sc.Scene)
-                .Include(sc => sc.Character)
+                .SceneCharacters.Include(sc => sc.Character)
                 .ThenInclude(c => c.CharacterImages) // Include CharacterImages
                 .Include(sc => sc.Position) // Include Position
                 .Include(sc => sc.Size) // Include Size
@@ -39,8 +38,7 @@ namespace GamebookTest1.Server.Controllers
         public async Task<IActionResult> GetSceneCharacterById(int id)
         {
             var sceneCharacter = await _context
-                .SceneCharacters.Include(sc => sc.Scene)
-                .Include(sc => sc.Character)
+                .SceneCharacters.Include(sc => sc.Character)
                 .ThenInclude(c => c.CharacterImages) // Include CharacterImages
                 .Include(sc => sc.Position) // Include Position
                 .Include(sc => sc.Size) // Include Size
@@ -57,7 +55,6 @@ namespace GamebookTest1.Server.Controllers
         // POST: api/SceneCharacter/create-scene-character
         [HttpPost("create-scene-character")]
         public async Task<IActionResult> CreateSceneCharacter(
-            [FromForm] int sceneId,
             [FromForm] int characterId,
             [FromForm] int positionX,
             [FromForm] int positionY,
@@ -81,16 +78,9 @@ namespace GamebookTest1.Server.Controllers
                 return BadRequest("Character not found.");
             }
 
-            var _scene = await _context.Scenes.FindAsync(sceneId);
-            if (_scene == null)
-            {
-                return BadRequest("Scene not found.");
-            }
-
             // Create the SceneCharacter object
             var newSceneCharacter = new SceneCharacter
             {
-                Scene = _scene,
                 Character = _character,
                 Position = position, // Link to Position via PositionId
                 Size = size, // Directly assign Size

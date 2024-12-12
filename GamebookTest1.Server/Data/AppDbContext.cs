@@ -49,17 +49,16 @@ namespace GamebookTest1.Server.Data
 
             // Define one-to-many relationship between Character and SceneCharacter
             modelBuilder.Entity<SceneCharacter>().HasOne(sc => sc.Character).WithMany(); // Cascading delete ensures SceneCharacters are removed when Character is deleted
-
-            // Define one-to-many relationship between Scene and SceneCharacter
-            modelBuilder.Entity<SceneCharacter>().HasOne(sc => sc.Scene).WithMany(); // Cascading delete ensures SceneCharacters are removed when Scene is deleted
-
-            // Define one-to-many relationship between Scene and SceneItem
-            modelBuilder.Entity<SceneItem>().HasOne(si => si.Scene).WithMany(); // Cascading delete ensures SceneItems are removed when Scene is deleted
-
             // Define one-to-many relationship between Item and SceneItem
             modelBuilder.Entity<SceneItem>().HasOne(si => si.Item).WithMany(); // Cascading delete ensures SceneItems are removed when Item is deleted
 
             modelBuilder.Entity<Dialog>().HasOne(ci => ci.Character).WithMany(); // A Dialog has one Character
+
+            //scene relationships
+            modelBuilder.Entity<Scene>().HasOne(s => s.BackgroundImage).WithMany(); // A Scene has many SceneCharacters
+            modelBuilder.Entity<Scene>().HasMany(s => s.SceneCharacters).WithOne(); // A Scene has many SceneItems
+            modelBuilder.Entity<Scene>().HasMany(s => s.SceneItems).WithOne(); // A Scene has many Dialogs
+            modelBuilder.Entity<Scene>().HasMany(s => s.SceneDialogs).WithOne(); // A Scene has many Quests
         }
     }
 }

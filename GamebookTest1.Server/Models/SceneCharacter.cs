@@ -9,9 +9,6 @@ namespace GamebookTest1.Server.Models
         public int SceneCharacterId { get; set; } // Primary key
 
         [Required]
-        public Scene Scene { get; set; } = null!; // Navigation property to Scene
-
-        [Required]
         public Character Character { get; set; } = null!; // Navigation property to Character
 
         [Required]

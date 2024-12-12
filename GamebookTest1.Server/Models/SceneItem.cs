@@ -9,9 +9,6 @@ namespace GamebookTest1.Server.Models
         public int SceneItemId { get; set; } // Primary key
 
         [Required]
-        public Scene Scene { get; set; } = null!; // Navigation property to Scene
-
-        [Required]
         public Item Item { get; set; } = null!; // Navigation property to Item
 
         [Required]
