@@ -74,11 +74,6 @@ namespace GamebookTest1.Server.Controllers
                 ItemImages = images,
             };
 
-            foreach (var image in images)
-            {
-                image.ItemId = newItem.ItemId;
-            }
-
             _context.Items.Add(newItem);
             await _context.SaveChangesAsync();
 

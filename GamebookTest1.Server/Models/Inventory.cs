@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GamebookTest1.Server.Models
 {
@@ -7,11 +8,15 @@ namespace GamebookTest1.Server.Models
         [Key]
         public int InventoryId { get; set; }
 
-        [Required]
-        public int CharacterId { get; set; }
-        public Character Character { get; set; } = null!;
-
-        [Required]
-        public ICollection<Item> Items { get; set; } = new List<Item>();
+        // Directly save references to Item objects (no IDs exposed)
+        public Item? Item1 { get; set; }
+        public Item? Item2 { get; set; }
+        public Item? Item3 { get; set; }
+        public Item? Item4 { get; set; }
+        public Item? Item5 { get; set; }
+        public Item? Item6 { get; set; }
+        public Item? Item7 { get; set; }
+        public Item? Item8 { get; set; }
+        public Item? Item9 { get; set; }
     }
 }

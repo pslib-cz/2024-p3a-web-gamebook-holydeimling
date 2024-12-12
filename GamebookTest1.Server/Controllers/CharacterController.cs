@@ -83,12 +83,6 @@ namespace GamebookTest1.Server.Controllers
                 CharacterImages = images,
             };
 
-            // Update CharacterId in the images
-            foreach (var image in images)
-            {
-                image.CharacterId = newCharacter.CharacterId;
-            }
-
             _context.Characters.Add(newCharacter);
             await _context.SaveChangesAsync();
 

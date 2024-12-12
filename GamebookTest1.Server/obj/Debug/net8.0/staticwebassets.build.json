@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cpNPt4Y9KhHtWCxRIK5789AjFfc9wkgukxuFHvsqdAg=",
+  "Hash": "6E6XgxaaHPJESR+q1pZbN15r+7g9lwZZNdGXLUpOojc=",
   "Source": "GamebookTest1.Server",
   "BasePath": "_content/GamebookTest1.Server",
   "Mode": "Default",
@@ -276,6 +276,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\8fac1e0f-8981-4e1f-b44a-65f5d4d7218c.png"
     },
     {
+      "Identity": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a038f2b4-cedf-4508-bf9a-8873e994e8d7.png",
+      "SourceId": "GamebookTest1.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\",
+      "BasePath": "_content/GamebookTest1.Server",
+      "RelativePath": "uploads/a038f2b4-cedf-4508-bf9a-8873e994e8d7.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\a038f2b4-cedf-4508-bf9a-8873e994e8d7.png"
+    },
+    {
       "Identity": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a95e8b92-ed3b-4532-9d2b-88db79d5b23c.png",
       "SourceId": "GamebookTest1.Server",
       "SourceType": "Discovered",
@@ -333,6 +352,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\ca25a7bd-e6bc-4c0d-a129-f9951fd14c02.png"
     },
     {
+      "Identity": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\dd730551-2bb4-4b88-a1f7-062457fffa48.png",
+      "SourceId": "GamebookTest1.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\",
+      "BasePath": "_content/GamebookTest1.Server",
+      "RelativePath": "uploads/dd730551-2bb4-4b88-a1f7-062457fffa48.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\dd730551-2bb4-4b88-a1f7-062457fffa48.png"
+    },
+    {
       "Identity": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\eb6f0908-db2b-430e-8b49-8f779ff56c20.png",
       "SourceId": "GamebookTest1.Server",
       "SourceType": "Discovered",
@@ -350,6 +388,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\eb6f0908-db2b-430e-8b49-8f779ff56c20.png"
+    },
+    {
+      "Identity": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\fb9e3dba-2e0d-4675-b5fd-3d9443754140.png",
+      "SourceId": "GamebookTest1.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\",
+      "BasePath": "_content/GamebookTest1.Server",
+      "RelativePath": "uploads/fb9e3dba-2e0d-4675-b5fd-3d9443754140.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\fb9e3dba-2e0d-4675-b5fd-3d9443754140.png"
     }
   ]
 }

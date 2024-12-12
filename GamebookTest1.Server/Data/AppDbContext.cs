@@ -37,14 +37,12 @@ namespace GamebookTest1.Server.Data
                 .Entity<Item>()
                 .HasMany(i => i.ItemImages)
                 .WithOne()
-                .HasForeignKey(i => i.ItemId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder
                 .Entity<Character>()
                 .HasMany(c => c.CharacterImages)
                 .WithOne()
-                .HasForeignKey(i => i.CharacterId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Define one-to-many relationship between Character and SceneCharacter
@@ -59,6 +57,61 @@ namespace GamebookTest1.Server.Data
             modelBuilder.Entity<Scene>().HasMany(s => s.SceneCharacters).WithOne(); // A Scene has many SceneItems
             modelBuilder.Entity<Scene>().HasMany(s => s.SceneItems).WithOne(); // A Scene has many Dialogs
             modelBuilder.Entity<Scene>().HasMany(s => s.SceneDialogs).WithOne(); // A Scene has many Quests
+
+            // Configure relationships without exposing IDs
+            modelBuilder
+                .Entity<Inventory>()
+                .HasOne(i => i.Item1)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict); // Prevent cascading deletes if not needed
+
+            modelBuilder
+                .Entity<Inventory>()
+                .HasOne(i => i.Item2)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder
+                .Entity<Inventory>()
+                .HasOne(i => i.Item3)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder
+                .Entity<Inventory>()
+                .HasOne(i => i.Item4)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder
+                .Entity<Inventory>()
+                .HasOne(i => i.Item5)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder
+                .Entity<Inventory>()
+                .HasOne(i => i.Item6)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder
+                .Entity<Inventory>()
+                .HasOne(i => i.Item7)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder
+                .Entity<Inventory>()
+                .HasOne(i => i.Item8)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder
+                .Entity<Inventory>()
+                .HasOne(i => i.Item9)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

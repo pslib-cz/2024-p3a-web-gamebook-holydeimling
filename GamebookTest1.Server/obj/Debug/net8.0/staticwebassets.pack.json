@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets\\uploads\\8fac1e0f-8981-4e1f-b44a-65f5d4d7218c.png"
     },
     {
+      "Id": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a038f2b4-cedf-4508-bf9a-8873e994e8d7.png",
+      "PackagePath": "staticwebassets\\uploads\\a038f2b4-cedf-4508-bf9a-8873e994e8d7.png"
+    },
+    {
       "Id": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a95e8b92-ed3b-4532-9d2b-88db79d5b23c.png",
       "PackagePath": "staticwebassets\\uploads\\a95e8b92-ed3b-4532-9d2b-88db79d5b23c.png"
     },
@@ -53,8 +57,16 @@
       "PackagePath": "staticwebassets\\uploads\\ca25a7bd-e6bc-4c0d-a129-f9951fd14c02.png"
     },
     {
+      "Id": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\dd730551-2bb4-4b88-a1f7-062457fffa48.png",
+      "PackagePath": "staticwebassets\\uploads\\dd730551-2bb4-4b88-a1f7-062457fffa48.png"
+    },
+    {
       "Id": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\eb6f0908-db2b-430e-8b49-8f779ff56c20.png",
       "PackagePath": "staticwebassets\\uploads\\eb6f0908-db2b-430e-8b49-8f779ff56c20.png"
+    },
+    {
+      "Id": "C:\\Users\\marti\\Downloads\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\fb9e3dba-2e0d-4675-b5fd-3d9443754140.png",
+      "PackagePath": "staticwebassets\\uploads\\fb9e3dba-2e0d-4675-b5fd-3d9443754140.png"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GamebookTest1.Server.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -2,6 +2,7 @@
 using GamebookTest1.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamebookTest1.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241212194651_kys22")]
+    partial class kys22
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
@@ -431,48 +434,39 @@ namespace GamebookTest1.Server.Migrations
                 {
                     b.HasOne("GamebookTest1.Server.Models.Item", "Item1")
                         .WithMany()
-                        .HasForeignKey("Item1ItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("Item1ItemId");
 
                     b.HasOne("GamebookTest1.Server.Models.Item", "Item2")
                         .WithMany()
-                        .HasForeignKey("Item2ItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("Item2ItemId");
 
                     b.HasOne("GamebookTest1.Server.Models.Item", "Item3")
                         .WithMany()
-                        .HasForeignKey("Item3ItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("Item3ItemId");
 
                     b.HasOne("GamebookTest1.Server.Models.Item", "Item4")
                         .WithMany()
-                        .HasForeignKey("Item4ItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("Item4ItemId");
 
                     b.HasOne("GamebookTest1.Server.Models.Item", "Item5")
                         .WithMany()
-                        .HasForeignKey("Item5ItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("Item5ItemId");
 
                     b.HasOne("GamebookTest1.Server.Models.Item", "Item6")
                         .WithMany()
-                        .HasForeignKey("Item6ItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("Item6ItemId");
 
                     b.HasOne("GamebookTest1.Server.Models.Item", "Item7")
                         .WithMany()
-                        .HasForeignKey("Item7ItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("Item7ItemId");
 
                     b.HasOne("GamebookTest1.Server.Models.Item", "Item8")
                         .WithMany()
-                        .HasForeignKey("Item8ItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("Item8ItemId");
 
                     b.HasOne("GamebookTest1.Server.Models.Item", "Item9")
                         .WithMany()
-                        .HasForeignKey("Item9ItemId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("Item9ItemId");
 
                     b.Navigation("Item1");
 
