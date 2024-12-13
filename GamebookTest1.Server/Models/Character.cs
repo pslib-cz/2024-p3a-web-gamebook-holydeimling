@@ -1,13 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 
 namespace GamebookTest1.Server.Models
 {
     public class Character
     {
-        public required int CharacterId { get; set; }
-        public required string CharacterFirstname { get; set; }
-        public required string CharacterSecondname { get; set; }
-        public string? CharacterNickname { get; set; }
-        public required List<string> Images { get; set; }
+        [Key]
+        public int CharacterId { get; set; }
+
+        [Required]
+        public string FirstName { get; set; } = string.Empty;
+
+        [Required]
+        public string LastName { get; set; } = string.Empty;
+
+        public string? Nickname { get; set; }
+        public string? BackStory { get; set; }
+
+        // Navigation property for images
+        public ICollection<Image> CharacterImages { get; set; } = new List<Image>();
     }
 }

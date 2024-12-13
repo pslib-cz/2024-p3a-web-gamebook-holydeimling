@@ -1,83 +1,28 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections;
+using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 
 namespace GamebookTest1.Server.Models
 {
     public class Scene
     {
-        public required int SceneId { get; set; }
-        public string? SceneName { get; set; }
-        public required string? BackGroundImage { get; set; }
+        [Key]
+        public int SceneId { get; set; }
 
-        [NotMapped]
-        public List<SceneCharacters>? Characters { get; set; } = new List<SceneCharacters>();
+        [Required]
+        // One-to-One relationship with Image
+        public required Image BackgroundImage { get; set; }
 
-        [NotMapped]
-        public List<SceneItems>? Items { get; set; } = new List<SceneItems>();
-    }
+        [Required]
+        public required string SceneName { get; set; }
 
-    [NotMapped]
-    public class CharacterPosition
-    {
-        [NotMapped]
-        public required int X { get; set; }
+        [Required]
+        public required ICollection<SceneCharacter> SceneCharacters { get; set; }
 
-        [NotMapped]
-        public required int Y { get; set; }
-    }
+        [Required]
+        public required ICollection<SceneItem> SceneItems { get; set; }
 
-    public class CharacterSize
-    {
-        [NotMapped]
-        public required int Width { get; set; }
-
-        [NotMapped]
-        public required int Height { get; set; }
-    }
-
-    [NotMapped]
-    public class SceneCharacters
-    {
-        [NotMapped]
-        public required CharacterPosition CharacterPosition { get; set; }
-
-        [NotMapped]
-        public required CharacterSize CharacterSize { get; set; }
-
-        [NotMapped]
-        public required Character Character { get; set; }
-    }
-
-    [NotMapped]
-    public class ItemPosition
-    {
-        [NotMapped]
-        public required int X { get; set; }
-
-        [NotMapped]
-        public required int Y { get; set; }
-    }
-
-    [NotMapped]
-    public class ItemSize
-    {
-        [NotMapped]
-        public required int Width { get; set; }
-
-        [NotMapped]
-        public required int Height { get; set; }
-    }
-
-    [NotMapped]
-    public class SceneItems
-    {
-        [NotMapped]
-        public required ItemPosition ItemPosition { get; set; }
-
-        [NotMapped]
-        public required ItemSize ItemSize { get; set; }
-
-        [NotMapped]
-        public required Item Item { get; set; }
+        [Required]
+        public required ICollection<Dialog> SceneDialogs { get; set; }
     }
 }
