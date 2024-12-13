@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marti\\Source\\Repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\GamebookTest1.Server.csproj": {}
+    "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\GamebookTest1.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marti\\Source\\Repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\GamebookTest1.Server.csproj": {
+    "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\GamebookTest1.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marti\\Source\\Repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\GamebookTest1.Server.csproj",
+        "projectUniqueName": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\GamebookTest1.Server.csproj",
         "projectName": "GamebookTest1.Server",
-        "projectPath": "C:\\Users\\marti\\Source\\Repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\GamebookTest1.Server.csproj",
-        "packagesPath": "C:\\Users\\marti\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marti\\Source\\Repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\obj\\",
+        "projectPath": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\GamebookTest1.Server.csproj",
+        "packagesPath": "C:\\Users\\harry\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\harry\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -39,11 +39,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -112,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

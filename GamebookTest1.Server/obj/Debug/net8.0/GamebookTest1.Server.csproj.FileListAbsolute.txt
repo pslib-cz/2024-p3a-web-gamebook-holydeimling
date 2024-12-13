@@ -932,3 +932,5 @@ C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Ser
 C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\GamebookTest1.Server.pdb
 C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\GamebookTest1.Server.genruntimeconfig.cache
 C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\ref\GamebookTest1.Server.dll
+C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\Microsoft.AspNetCore.SpaProxy.dll
+C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll

@@ -15,7 +15,7 @@ namespace GamebookTest1.Server.Data
         public DbSet<SceneItem> SceneItems { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Dialog> Dialogs { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; } //users
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<GameState> GameStates { get; set; }
         public DbSet<Quest> Quests { get; set; }
@@ -112,6 +112,11 @@ namespace GamebookTest1.Server.Data
                 .HasOne(i => i.Item9)
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
         }
     }
 }
