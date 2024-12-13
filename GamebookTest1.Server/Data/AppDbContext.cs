@@ -15,12 +15,12 @@ namespace GamebookTest1.Server.Data
         public DbSet<SceneItem> SceneItems { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Dialog> Dialogs { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<GameState> GameStates { get; set; }
         public DbSet<Quest> Quests { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Size> Sizes { get; set; }
+        public DbSet<User> Users { get; set; } //users
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -112,6 +112,13 @@ namespace GamebookTest1.Server.Data
                 .HasOne(i => i.Item9)
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
         }
+
     }
 }
