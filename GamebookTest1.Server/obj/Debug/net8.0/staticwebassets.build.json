@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "L2LUwf8rEV4Bci7nPIaxT2uJtSf69RlgpI6tysKWm/E=",
+  "Hash": "zm+EtH4Wkg42zYNx5OMns69wXk+kTa52HBYJ/zkXYcY=",
   "Source": "GamebookTest1.Server",
   "BasePath": "_content/GamebookTest1.Server",
   "Mode": "Default",
@@ -160,6 +160,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\4081ef0e-f43c-497c-b4d3-c85805f7ecf2.png"
+    },
+    {
+      "Identity": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\5aa311ad-f2b9-4014-ba21-092c404afba8.png",
+      "SourceId": "GamebookTest1.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\",
+      "BasePath": "_content/GamebookTest1.Server",
+      "RelativePath": "uploads/5aa311ad-f2b9-4014-ba21-092c404afba8.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\5aa311ad-f2b9-4014-ba21-092c404afba8.png"
     },
     {
       "Identity": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\642d5d63-828f-4d2f-b410-b726bb01063f.png",
