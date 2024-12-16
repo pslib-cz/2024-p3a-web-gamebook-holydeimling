@@ -7,17 +7,9 @@ namespace GamebookTest1.Server.Models
         [Key]
         public int GameStateId { get; set; }
 
-        [Required]
-        public int UserId { get; set; }
-
-        // Navigation property for User
-        public User User { get; set; } = null!;
+        public Inventory InventoryState { get; set; } = new Inventory { };
 
         [Required]
-        public int InventoryId { get; set; }
-        public Inventory Inventory { get; set; } = null!;
-
-        [Required]
-        public ICollection<Quest> Quests { get; set; } = new List<Quest>();
+        public ICollection<Quest> QuestsState { get; set; } = new List<Quest>();
     }
 }

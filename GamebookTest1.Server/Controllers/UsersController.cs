@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
 using GamebookTest1.Server.Data;
 using GamebookTest1.Server.Models;
-using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 namespace GamebookTest1.Server.Controllers
 {
@@ -22,23 +23,47 @@ namespace GamebookTest1.Server.Controllers
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(
+            [FromForm] string userName,
             [FromForm] string email,
             [FromForm] string password,
             [FromForm] string confirmPassword,
-            [FromForm] UserRole? userRole = null)
+            [FromForm] UserRole? userRole = null
+        )
         {
+            //create new gamaeState
+            var createdCurrentInventory = new Inventory();
+            _context.Inventories.Add(createdCurrentInventory);
+            var createdCurrentQuests = new List<Quest>();
+            _context.Quests.AddRange(createdCurrentQuests);
+            await _context.SaveChangesAsync();
+
+            var gameState = new GameState
+            {
+                InventoryState = createdCurrentInventory,
+                QuestsState = createdCurrentQuests,
+            };
+            _context.GameStates.Add(gameState);
+            await _context.SaveChangesAsync();
+
             // Create a DTO-like object for validation
             var registerDto = new UserRegisterDto
             {
                 Email = email,
                 Password = password,
-                ConfirmPassword = confirmPassword
+                ConfirmPassword = confirmPassword,
             };
 
             // Validate input
             var validationContext = new ValidationContext(registerDto);
             var validationResults = new List<ValidationResult>();
-            if (!Validator.TryValidateObject(registerDto, validationContext, validationResults, true))
+            if (
+                !Validator.TryValidateObject(
+                    registerDto,
+                    validationContext,
+                    validationResults,
+                    true
+                )
+            )
             {
                 return BadRequest(validationResults.Select(vr => vr.ErrorMessage));
             }
@@ -50,20 +75,23 @@ namespace GamebookTest1.Server.Controllers
             }
 
             // Create new user
-            var user = new User
+            var newUser = new User
             {
+                UserName = userName,
                 Email = email,
                 PasswordHash = HashPassword(password),
-                UserRole = "User"// Default to User if not specified
+                UserRole =
+                    "User" // Default to User if not specified
+                ,
+                GameState = gameState,
             };
 
             try
             {
-                _context.Users.Add(user);
+                _context.Users.Add(newUser);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetUser), new { id = user.Id },
-                    new { user.Id, user.Email, user.UserRole });
+                return CreatedAtAction(nameof(GetUserById), new { id = newUser.Id }, newUser);
             }
             catch (Exception)
             {
@@ -81,34 +109,37 @@ namespace GamebookTest1.Server.Controllers
             }
 
             // Find user
-            var user = await _context.Users
+            var newUser = await _context
+                .Users.Include(g => g.GameState)
                 .FirstOrDefaultAsync(u => u.Email == email);
 
-            if (user == null)
+            if (newUser == null)
             {
                 return Unauthorized("Invalid email or password");
             }
 
             // Verify password
-            if (!VerifyPassword(password, user.PasswordHash))
+            if (!VerifyPassword(password, newUser.PasswordHash))
             {
                 return Unauthorized("Invalid email or password");
             }
 
-            return Ok(new { user.Id, user.Email, user.UserRole });
+            return CreatedAtAction(nameof(GetUserById), new { id = newUser.Id }, newUser);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser(int id)
+        public async Task<IActionResult> GetUserById(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var newUser = await _context
+                .Users.Include(g => g.GameState)
+                .FirstOrDefaultAsync(u => u.Id == id);
 
-            if (user == null)
+            if (newUser == null)
             {
                 return NotFound();
             }
 
-            return Ok(new { user.Id, user.Email, user.UserRole });
+            return Ok(newUser);
         }
 
         [HttpPut("role/{id}")]
@@ -124,14 +155,22 @@ namespace GamebookTest1.Server.Controllers
             if (newRole != "User" && newRole != "Admin")
             {
                 return BadRequest("Invalid role");
-            };
+            }
+            ;
 
             user.UserRole = newRole;
 
             try
             {
                 await _context.SaveChangesAsync();
-                return Ok(new { user.Id, user.Email, user.UserRole });
+                return Ok(
+                    new
+                    {
+                        user.Id,
+                        user.Email,
+                        user.UserRole,
+                    }
+                );
             }
             catch (Exception)
             {

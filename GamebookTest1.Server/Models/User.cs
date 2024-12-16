@@ -8,6 +8,9 @@ namespace GamebookTest1.Server.Models
         public int Id { get; set; }
 
         [Required]
+        public string UserName { get; set; }
+
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -18,6 +21,8 @@ namespace GamebookTest1.Server.Models
 
         public string UserRole { get; set; } = "User";
 
+        [Required]
+        public GameState GameState { get; set; }
     }
 
     // DTO for registration
@@ -50,6 +55,6 @@ namespace GamebookTest1.Server.Models
     public enum UserRole
     {
         User,
-        Admin
+        Admin,
     }
 }

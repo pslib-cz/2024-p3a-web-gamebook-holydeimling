@@ -113,10 +113,12 @@ namespace GamebookTest1.Server.Data
                 .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<User>()
-                .HasIndex(u => u.Email)
-                .IsUnique();
-
+            modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
+            modelBuilder
+                .Entity<User>()
+                .HasOne(u => u.GameState)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -22,12 +22,12 @@ namespace GamebookTest1.Server.Migrations
                     b.Property<int>("GameStatesGameStateId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("QuestsQuestId")
+                    b.Property<int>("QuestsStateQuestId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("GameStatesGameStateId", "QuestsQuestId");
+                    b.HasKey("GameStatesGameStateId", "QuestsStateQuestId");
 
-                    b.HasIndex("QuestsQuestId");
+                    b.HasIndex("QuestsStateQuestId");
 
                     b.ToTable("GameStateQuest");
                 });
@@ -88,17 +88,12 @@ namespace GamebookTest1.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("InventoryId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("UserId")
+                    b.Property<int>("InventoryStateInventoryId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("GameStateId");
 
-                    b.HasIndex("InventoryId");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("InventoryStateInventoryId");
 
                     b.ToTable("GameStates");
                 });
@@ -356,7 +351,14 @@ namespace GamebookTest1.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("GameStateId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -368,6 +370,8 @@ namespace GamebookTest1.Server.Migrations
 
                     b.HasIndex("Email")
                         .IsUnique();
+
+                    b.HasIndex("GameStateId");
 
                     b.ToTable("Users");
                 });
@@ -382,7 +386,7 @@ namespace GamebookTest1.Server.Migrations
 
                     b.HasOne("GamebookTest1.Server.Models.Quest", null)
                         .WithMany()
-                        .HasForeignKey("QuestsQuestId")
+                        .HasForeignKey("QuestsStateQuestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -404,21 +408,13 @@ namespace GamebookTest1.Server.Migrations
 
             modelBuilder.Entity("GamebookTest1.Server.Models.GameState", b =>
                 {
-                    b.HasOne("GamebookTest1.Server.Models.Inventory", "Inventory")
+                    b.HasOne("GamebookTest1.Server.Models.Inventory", "InventoryState")
                         .WithMany()
-                        .HasForeignKey("InventoryId")
+                        .HasForeignKey("InventoryStateInventoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GamebookTest1.Server.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Inventory");
-
-                    b.Navigation("User");
+                    b.Navigation("InventoryState");
                 });
 
             modelBuilder.Entity("GamebookTest1.Server.Models.Image", b =>
@@ -571,6 +567,17 @@ namespace GamebookTest1.Server.Migrations
                     b.Navigation("Position");
 
                     b.Navigation("Size");
+                });
+
+            modelBuilder.Entity("GamebookTest1.Server.Models.User", b =>
+                {
+                    b.HasOne("GamebookTest1.Server.Models.GameState", "GameState")
+                        .WithMany()
+                        .HasForeignKey("GameStateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GameState");
                 });
 
             modelBuilder.Entity("GamebookTest1.Server.Models.Character", b =>

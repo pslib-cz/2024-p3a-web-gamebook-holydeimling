@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GamebookTest1.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class mig1 : Migration
+    public partial class dsdsa : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -83,22 +83,6 @@ namespace GamebookTest1.Server.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Sizes", x => x.SizeId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UserRole = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -229,23 +213,16 @@ namespace GamebookTest1.Server.Migrations
                 {
                     GameStateId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    InventoryId = table.Column<int>(type: "INTEGER", nullable: false)
+                    InventoryStateInventoryId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_GameStates", x => x.GameStateId);
                     table.ForeignKey(
-                        name: "FK_GameStates_Inventories_InventoryId",
-                        column: x => x.InventoryId,
+                        name: "FK_GameStates_Inventories_InventoryStateInventoryId",
+                        column: x => x.InventoryStateInventoryId,
                         principalTable: "Inventories",
                         principalColumn: "InventoryId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GameStates_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -358,11 +335,11 @@ namespace GamebookTest1.Server.Migrations
                 columns: table => new
                 {
                     GameStatesGameStateId = table.Column<int>(type: "INTEGER", nullable: false),
-                    QuestsQuestId = table.Column<int>(type: "INTEGER", nullable: false)
+                    QuestsStateQuestId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GameStateQuest", x => new { x.GameStatesGameStateId, x.QuestsQuestId });
+                    table.PrimaryKey("PK_GameStateQuest", x => new { x.GameStatesGameStateId, x.QuestsStateQuestId });
                     table.ForeignKey(
                         name: "FK_GameStateQuest_GameStates_GameStatesGameStateId",
                         column: x => x.GameStatesGameStateId,
@@ -370,10 +347,34 @@ namespace GamebookTest1.Server.Migrations
                         principalColumn: "GameStateId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GameStateQuest_Quests_QuestsQuestId",
-                        column: x => x.QuestsQuestId,
+                        name: "FK_GameStateQuest_Quests_QuestsStateQuestId",
+                        column: x => x.QuestsStateQuestId,
                         principalTable: "Quests",
                         principalColumn: "QuestId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserName = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UserRole = table.Column<string>(type: "TEXT", nullable: false),
+                    GameStateId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_GameStates_GameStateId",
+                        column: x => x.GameStateId,
+                        principalTable: "GameStates",
+                        principalColumn: "GameStateId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -388,19 +389,14 @@ namespace GamebookTest1.Server.Migrations
                 column: "SceneId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GameStateQuest_QuestsQuestId",
+                name: "IX_GameStateQuest_QuestsStateQuestId",
                 table: "GameStateQuest",
-                column: "QuestsQuestId");
+                column: "QuestsStateQuestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GameStates_InventoryId",
+                name: "IX_GameStates_InventoryStateInventoryId",
                 table: "GameStates",
-                column: "InventoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GameStates_UserId",
-                table: "GameStates",
-                column: "UserId");
+                column: "InventoryStateInventoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Images_CharacterId",
@@ -507,6 +503,11 @@ namespace GamebookTest1.Server.Migrations
                 table: "Users",
                 column: "Email",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_GameStateId",
+                table: "Users",
+                column: "GameStateId");
         }
 
         /// <inheritdoc />
@@ -525,7 +526,7 @@ namespace GamebookTest1.Server.Migrations
                 name: "SceneItems");
 
             migrationBuilder.DropTable(
-                name: "GameStates");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Quests");
@@ -540,13 +541,13 @@ namespace GamebookTest1.Server.Migrations
                 name: "Sizes");
 
             migrationBuilder.DropTable(
-                name: "Inventories");
-
-            migrationBuilder.DropTable(
-                name: "Users");
+                name: "GameStates");
 
             migrationBuilder.DropTable(
                 name: "Images");
+
+            migrationBuilder.DropTable(
+                name: "Inventories");
 
             migrationBuilder.DropTable(
                 name: "Characters");
