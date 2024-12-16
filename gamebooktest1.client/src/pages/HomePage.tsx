@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HomeScreenButton } from "../components/Home/HomeScreenButton";
 import { HomeScreenLogo } from "../components/Home/HomeScreenLogo";
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../UserContext";
 
 export const HomePage = () => {
+  const { user, setUser } = useUser();
   const navigate = useNavigate();
   const [homeScreenButtonsData, setHomeScreenButtonsData] = useState([
     {
@@ -24,6 +26,27 @@ export const HomePage = () => {
       onClick: () => console.log("Options"),
     },
   ]);
+  const [homeScreenButtonsDataLoggedIn, setHomeScreenButtonsDataLoggedIn] =
+    useState([
+      {
+        text: "Hrát",
+        onClick: () => {
+          setDataToRender(playScreenButtonsData);
+        },
+      },
+      {
+        text: "Zásluhy",
+        onClick: () => console.log("Options"),
+      },
+      {
+        text: "Odhlásit se",
+        onClick: () => {
+          setUser(null);
+          setDataToRender(homeScreenButtonsData);
+        },
+      },
+    ]);
+
   const [loginScreenButtonsData, setLoginScreenButtonsData] = useState([
     {
       text: "Přihlásit se",
@@ -59,6 +82,14 @@ export const HomePage = () => {
 
   const [dataToRender, setDataToRender] = useState(homeScreenButtonsData);
 
+  useEffect(() => {
+    if (user) {
+      setDataToRender(homeScreenButtonsDataLoggedIn);
+    } else {
+      setDataToRender(homeScreenButtonsData);
+    }
+  }, [user]);
+
   return (
     <main className="homepage__container">
       <div className="items__container">
@@ -67,6 +98,9 @@ export const HomePage = () => {
           <HomeScreenButton key={index} {...buttonData} />
         ))}
       </div>
+      <span>id: {user?.id}</span>
+      <span>email: {user?.email}</span>
+      <span>role: {user?.userRole}</span>
     </main>
   );
 };

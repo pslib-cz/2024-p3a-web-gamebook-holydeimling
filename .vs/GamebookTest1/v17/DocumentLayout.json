@@ -99,8 +99,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Data\\AppDbContext.cs",
               "ViewState": "AgIAAD8AAAAAAAAAAAAqwHEAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T17:17:28.491Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T17:17:28.491Z"
             },
             {
               "$type": "Document",
@@ -112,8 +111,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\SceneController.cs",
               "ViewState": "AgIAAF8AAAAAAAAAAAAIwC8AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T17:25:50.147Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T17:25:50.147Z"
             },
             {
               "$type": "Document",
@@ -125,8 +123,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\SceneCharacterController.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T17:17:31.606Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T17:17:31.606Z"
             },
             {
               "$type": "Document",
@@ -138,8 +135,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Models\\SceneCharacter.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T17:17:21.064Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T17:17:21.064Z"
             }
           ]
         },
@@ -157,8 +153,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Models\\Inventory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T18:43:35.428Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T18:43:35.428Z"
             },
             {
               "$type": "Document",
@@ -170,8 +165,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\ItemController.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAgwCEAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T18:37:15.242Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T18:37:15.242Z"
             },
             {
               "$type": "Document",
@@ -183,8 +177,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\CharacterController.cs",
               "ViewState": "AgIAABwAAAAAAAAAAIA4wFMAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T18:36:58.473Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T18:36:58.473Z"
             },
             {
               "$type": "Document",
@@ -196,8 +189,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Models\\Image.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T18:36:19.278Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T18:36:19.278Z"
             },
             {
               "$type": "Document",
@@ -222,8 +214,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Models\\SceneItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T17:16:21.991Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-12T17:16:21.991Z"
             }
           ]
         }
