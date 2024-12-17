@@ -10,6 +10,7 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { ImageUpload } from "./pages/ImageUpload";
 import { FetchingDataTest } from "./pages/FetchingDataTest";
 import { FileUpload } from "./pages/FileUpload";
+import { Scene } from "./pages/Scene";
 
 /* interface Forecast {
   date: string;
@@ -87,6 +88,10 @@ function App() {
     {
       path: "/FileUpload",
       element: <FileUpload />,
+    },
+    {
+      path: "/scene",
+      element: <Scene />,
     },
   ]);
   return (
