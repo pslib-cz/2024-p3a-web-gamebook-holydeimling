@@ -1,57 +1,57 @@
 export type Image = {
-  ImageId: number;
-  FilePath: string;
+  imageId: number;
+  filePath: string;
 };
 export type Size = {
-  SizeId: number;
-  Width: number;
-  Height: number;
+  sizeId: number;
+  width: number;
+  height: number;
 };
 export type Position = {
-  PositionId: number;
-  X: number;
-  Y: number;
+  positionId: number;
+  x: number;
+  y: number;
 };
 
 export type Character = {
-  CharacterId: number;
-  FirstName: string;
-  LastName: string;
-  Nickname: string | null;
-  BackStory: string | null;
-  CharacterImages: Image[];
+  characterId: number;
+  firstName: string;
+  lastName: string;
+  nickname: string | null;
+  backStory: string | null;
+  characterImages: Image[];
 };
 
 export type Item = {
-  ItemId: number;
-  ItemName: string;
-  ItemDescription: string | null;
-  ItemImages: Image[];
+  itemId: number;
+  itemName: string;
+  itemDescription: string | null;
+  itemImages: Image[];
 };
 
 export type SceneCharacter = {
-  SceneCharacterId: number;
-  Character: Character;
-  Position: Position;
-  Size: Size;
+  sceneCharacterId: number;
+  character: Character;
+  position: Position;
+  size: Size;
 };
 
 export type SceneItem = {
-  SceneItemId: number;
-  Item: Item;
-  Position: Position;
-  Size: Size;
+  sceneItemId: number;
+  item: Item;
+  position: Position;
+  size: Size;
 };
 export type Dialog = {
-  DialogId: number;
-  Character: Character;
-  Text: string;
+  dialogId: number;
+  character: Character;
+  text: string;
 };
 export type Scene = {
-  SceneId: number;
-  BackgroundImage: Image;
-  SceneName: string;
-  SceneCharacters: SceneCharacter[];
-  SceneItems: SceneItem[];
-  SceneDialogs: Dialog[];
+  sceneId: number;
+  backgroundImage: Image;
+  sceneName: string;
+  sceneCharacters: SceneCharacter[];
+  sceneItems: SceneItem[];
+  sceneDialogs: Dialog[];
 };

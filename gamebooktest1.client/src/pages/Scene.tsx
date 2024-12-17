@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Scene, SceneCharacter } from "../types";
 
-export const Scene = () => {
+export const ScenePage = () => {
   const [sceneId, setSceneId] = useState(1); // State to store the scene ID
-  const [scene, setScene] = useState(null); // State to store the fetched scene object
+  const [scene, setScene] = useState<Scene>(); // State to store the fetched scene object
   const [inputSceneId, setInputSceneId] = useState(1); // State to store the input value
 
   const fetchScene = async (id: number) => {
@@ -19,8 +20,8 @@ export const Scene = () => {
       }
 
       const data = await response.json(); // Parse response as JSON
-      setScene(data); // Save the response to state
-      console.log(data); // Log the object to console
+      setScene(data as Scene); // Set the scene object in state
+      console.log(scene); // Log the object to console
     } catch (error) {
       console.error("Error fetching scene:", error);
     }
@@ -57,6 +58,7 @@ export const Scene = () => {
           />
         </label>
         <button onClick={handleButtonClick}>Change Scene</button>
+        {scene && <p>{scene.backgroundImage.imageId}</p>}
       </div>
     </div>
   );
