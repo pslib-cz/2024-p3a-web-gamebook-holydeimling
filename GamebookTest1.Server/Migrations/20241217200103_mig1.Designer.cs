@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamebookTest1.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241216133959_dsdsa")]
-    partial class dsdsa
+    [Migration("20241217200103_mig1")]
+    partial class mig1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
