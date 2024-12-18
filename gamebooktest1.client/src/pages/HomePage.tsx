@@ -101,6 +101,8 @@ export const HomePage = () => {
       <span>id: {user?.id}</span>
       <span>email: {user?.email}</span>
       <span>role: {user?.userRole}</span>
+      <span>name: {user?.userName}</span>
+      <span>gameState: {user?.gameState.checkpointSceneId}</span>
     </main>
   );
 };

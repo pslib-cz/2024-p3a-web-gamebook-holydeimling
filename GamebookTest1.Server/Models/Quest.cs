@@ -18,8 +18,5 @@ namespace GamebookTest1.Server.Models
 
         [Required]
         public required bool IsCompleted { get; set; }
-
-        // Collection property for GameStates
-        public ICollection<GameState> GameStates { get; set; } = new List<GameState>();
     }
 }

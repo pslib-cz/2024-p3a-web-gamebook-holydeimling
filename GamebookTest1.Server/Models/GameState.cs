@@ -11,5 +11,8 @@ namespace GamebookTest1.Server.Models
 
         [Required]
         public ICollection<Quest> QuestsState { get; set; } = new List<Quest>();
+
+        [Required]
+        public int CheckpointSceneId { get; set; }
     }
 }

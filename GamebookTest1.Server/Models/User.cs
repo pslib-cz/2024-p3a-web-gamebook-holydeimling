@@ -8,7 +8,7 @@ namespace GamebookTest1.Server.Models
         public int Id { get; set; }
 
         [Required]
-        public string UserName { get; set; }
+        public string UserName { get; set; } = null!;
 
         [Required]
         [EmailAddress]
@@ -22,7 +22,7 @@ namespace GamebookTest1.Server.Models
         public string UserRole { get; set; } = "User";
 
         [Required]
-        public GameState GameState { get; set; }
+        public GameState GameState { get; set; } = new GameState();
     }
 
     // DTO for registration

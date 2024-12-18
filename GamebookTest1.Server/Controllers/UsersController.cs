@@ -41,6 +41,7 @@ namespace GamebookTest1.Server.Controllers
             {
                 InventoryState = createdCurrentInventory,
                 QuestsState = createdCurrentQuests,
+                CheckpointSceneId = 1,
             };
             _context.GameStates.Add(gameState);
             await _context.SaveChangesAsync();

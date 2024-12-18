@@ -5,6 +5,7 @@ using GamebookTest1.Server.Data; // Replace with your namespace
 using GamebookTest1.Server.Models; // Replace with your namespace
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -20,7 +21,7 @@ public class ImageController : ControllerBase
     }
 
     [HttpPost("upload")]
-    public async Task<IActionResult> UploadFile(IFormFile file)
+    public async Task<IActionResult> UploadFile(IFormFile file, [FromForm] string name)
     {
         if (file == null || file.Length == 0)
         {
@@ -58,12 +59,19 @@ public class ImageController : ControllerBase
 
         // Save the file path to the database
         var relativePath = Path.Combine("uploads", fileName).Replace("\\", "/");
-        var uploadedFile = new Image { FilePath = relativePath };
+        var uploadedFile = new Image { FilePath = relativePath, Name = name };
         _context.Images.Add(uploadedFile);
         await _context.SaveChangesAsync();
 
         // Return the relative file path
         return Ok(new { FilePath = relativePath });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllImages()
+    {
+        var images = await _context.Images.ToListAsync();
+        return Ok(images);
     }
 
     [HttpGet("list")]

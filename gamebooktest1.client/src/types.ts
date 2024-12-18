@@ -1,5 +1,7 @@
+import { Quest } from "./components/Quest";
 export type Image = {
   imageId: number;
+  name: string;
   filePath: string;
 };
 export type Size = {
@@ -54,4 +56,32 @@ export type Scene = {
   sceneCharacters: SceneCharacter[];
   sceneItems: SceneItem[];
   sceneDialogs: Dialog[];
+};
+
+export type GameState = {
+  gameStateId: number;
+  inventoryState: Inventory;
+  questState: Quest[];
+  checkpointSceneId: number;
+};
+
+export type Inventory = {
+  inventoryId: number;
+  item1: Item | null;
+  item2: Item | null;
+  item3: Item | null;
+  item4: Item | null;
+  item5: Item | null;
+  item6: Item | null;
+  item7: Item | null;
+  item8: Item | null;
+  item9: Item | null;
+};
+
+export type Quest = {
+  questId: number;
+  questHeading: string;
+  questContent: string;
+  isStoryQuest: boolean;
+  isCompleted: boolean;
 };

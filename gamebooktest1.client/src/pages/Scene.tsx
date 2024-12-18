@@ -4,7 +4,6 @@ import { Scene, SceneCharacter } from "../types";
 export const ScenePage = () => {
   const [sceneId, setSceneId] = useState(1); // State to store the scene ID
   const [scene, setScene] = useState<Scene>(); // State to store the fetched scene object
-  const [inputSceneId, setInputSceneId] = useState(1); // State to store the input value
 
   const fetchScene = async (id: number) => {
     try {
@@ -31,12 +30,8 @@ export const ScenePage = () => {
     fetchScene(sceneId);
   }, [sceneId]); // Fetch scene whenever sceneId changes
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputSceneId(Number(event.target.value));
-  };
-
   const handleButtonClick = () => {
-    setSceneId(inputSceneId);
+    setSceneId(sceneId + 1); // Increment sceneId by 1
   };
 
   return (
@@ -49,17 +44,24 @@ export const ScenePage = () => {
         <p>Loading...</p>
       )}
       <div>
-        <label>
-          Change Scene ID:
-          <input
-            type="number"
-            value={inputSceneId}
-            onChange={handleInputChange}
-          />
-        </label>
         <button onClick={handleButtonClick}>Change Scene</button>
-        {scene && <p>{scene.backgroundImage.imageId}</p>}
       </div>
+      {scene?.sceneId && <img src={scene.backgroundImage.filePath} alt="" />}
+      {scene?.sceneCharacters.map((sceneCharacter: SceneCharacter) => (
+        <div key={sceneCharacter.sceneCharacterId}>
+          <h3>{sceneCharacter.character.firstName}</h3>
+          <img
+            src={sceneCharacter.character.characterImages[0].filePath}
+            alt=""
+          />
+        </div>
+      ))}
+      {scene?.sceneItems.map((sceneItem) => (
+        <div key={sceneItem.sceneItemId}>
+          <h3>{sceneItem.item.itemName}</h3>
+          <img src={sceneItem.item.itemImages[0].filePath} alt="" />
+        </div>
+      ))}
     </div>
   );
 };

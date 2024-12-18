@@ -44,6 +44,8 @@ export const LoginPage = () => {
         id: response.data.id,
         email: response.data.email,
         userRole: response.data.userRole,
+        userName: response.data.userName,
+        gameState: response.data.gameState,
       });
       navigate("/"); // Redirect to dashboard or home page
     } catch (error) {

@@ -5,11 +5,14 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
+import { GameState } from "./types";
 
 interface User {
   id: number;
+  userName: string;
   email: string;
   userRole: string;
+  gameState: GameState;
 }
 
 interface UserContextProps {
