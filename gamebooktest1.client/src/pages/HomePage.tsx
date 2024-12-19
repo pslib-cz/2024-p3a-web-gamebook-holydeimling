@@ -23,7 +23,7 @@ export const HomePage = () => {
     },
     {
       text: "Zásluhy",
-      onClick: () => console.log("Options"),
+      onClick: () => console.log("Zásluhy"),
     },
   ]);
   const [homeScreenButtonsDataLoggedIn, setHomeScreenButtonsDataLoggedIn] =
@@ -46,6 +46,28 @@ export const HomePage = () => {
         },
       },
     ]);
+  const [
+    homeScreenButtonsDataAdminLoggedIn,
+    setHomeScreenButtonsDataAdminLoggedIn,
+  ] = useState([
+    {
+      text: "Hrát",
+      onClick: () => {
+        setDataToRender(playScreenButtonsData);
+      },
+    },
+    {
+      text: "Backoffice",
+      onClick: () => navigate("/backoffice"),
+    },
+    {
+      text: "Odhlásit se",
+      onClick: () => {
+        setUser(null);
+        setDataToRender(homeScreenButtonsData);
+      },
+    },
+  ]);
 
   const [loginScreenButtonsData, setLoginScreenButtonsData] = useState([
     {
@@ -84,7 +106,11 @@ export const HomePage = () => {
 
   useEffect(() => {
     if (user) {
-      setDataToRender(homeScreenButtonsDataLoggedIn);
+      if (user.userRole === "Admin") {
+        setDataToRender(homeScreenButtonsDataAdminLoggedIn);
+      } else {
+        setDataToRender(homeScreenButtonsDataLoggedIn);
+      }
     } else {
       setDataToRender(homeScreenButtonsData);
     }

@@ -1,0 +1,48 @@
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+}
+
+.backoffice__header{
+  background-color: var(--backgroudColor);
+  margin: 0;
+  padding: 20px 0;
+}
+
+.backoffice__header>nav{
+
+}
+
+.backoffice__header>nav>ul{
+  list-style: none;
+  display: flex;
+  margin: 0;
+  justify-content: space-evenly;
+}
+
+.backoffice__header>nav>ul>li{
+  text-decoration: none;
+}
+
+.backoffice__header>nav>ul>li>a{
+  color: var(--textColor);
+  text-decoration: none;
+  font-family: "Joan";
+  font-size: 20px;
+  transition: .2 ease-in-out;
+}
+
+.backoffice__header>nav>ul>li>a:hover{
+  color: var(--borderColor);
+}

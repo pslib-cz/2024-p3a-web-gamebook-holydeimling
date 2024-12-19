@@ -21,6 +21,52 @@ namespace GamebookTest1.Server.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _context
+                .Users.Include(u => u.GameState)
+                .ThenInclude(i => i.InventoryState)
+                .ThenInclude(it => it.Item1)
+                .ThenInclude(im => im.ItemImages)
+                .Include(u => u.GameState)
+                .ThenInclude(i => i.InventoryState)
+                .ThenInclude(it => it.Item2)
+                .ThenInclude(im => im.ItemImages)
+                .Include(u => u.GameState)
+                .ThenInclude(i => i.InventoryState)
+                .ThenInclude(it => it.Item3)
+                .ThenInclude(im => im.ItemImages)
+                .Include(u => u.GameState)
+                .ThenInclude(i => i.InventoryState)
+                .ThenInclude(it => it.Item4)
+                .ThenInclude(im => im.ItemImages)
+                .Include(u => u.GameState)
+                .ThenInclude(i => i.InventoryState)
+                .ThenInclude(it => it.Item5)
+                .ThenInclude(im => im.ItemImages)
+                .Include(u => u.GameState)
+                .ThenInclude(i => i.InventoryState)
+                .ThenInclude(it => it.Item6)
+                .ThenInclude(im => im.ItemImages)
+                .Include(u => u.GameState)
+                .ThenInclude(i => i.InventoryState)
+                .ThenInclude(it => it.Item7)
+                .ThenInclude(im => im.ItemImages)
+                .Include(u => u.GameState)
+                .ThenInclude(i => i.InventoryState)
+                .ThenInclude(it => it.Item8)
+                .ThenInclude(im => im.ItemImages)
+                .Include(u => u.GameState)
+                .ThenInclude(i => i.InventoryState)
+                .ThenInclude(it => it.Item9)
+                .ThenInclude(im => im.ItemImages)
+                .Include(u => u.GameState)
+                .ThenInclude(q => q.QuestsState)
+                .ToListAsync();
+            return Ok(users);
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register(
             [FromForm] string userName,

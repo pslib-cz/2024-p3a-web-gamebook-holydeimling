@@ -1,0 +1,55 @@
+.error-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ffcc00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flying-text {
+  position: absolute;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff0000;
+  animation: fly 20s ease-in-out infinite, resize 5s linear infinite;
+  cursor: pointer;
+}
+
+@keyframes fly {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(50vw, -50vh) rotate(360deg);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate(-50vw, 50vh) rotate(720deg);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(50vw, 50vh) rotate(1080deg);
+    opacity: 0.25;
+  }
+  100% {
+    transform: translate(-50vw, -50vh) rotate(1440deg);
+    opacity: 0;
+  }
+}
+
+@keyframes resize {
+  0% {
+    font-size: 2rem;
+  }
+  50% {
+    font-size: 4rem;
+  }
+  100% {
+    font-size: 2rem;
+  }
+}
