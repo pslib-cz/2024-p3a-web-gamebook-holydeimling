@@ -26,6 +26,7 @@ namespace GamebookTest1.Server.Controllers
             var dialogs = await _context
                 .Dialogs.Include(i => i.Character)
                 .ThenInclude(c => c.CharacterImages)
+                .Include(d => d.DialogAnswers)
                 .ToListAsync();
             return Ok(dialogs);
         }
@@ -37,6 +38,7 @@ namespace GamebookTest1.Server.Controllers
             var dialog = await _context
                 .Dialogs.Include(i => i.Character)
                 .ThenInclude(c => c.CharacterImages)
+                .Include(d => d.DialogAnswers)
                 .FirstOrDefaultAsync(c => c.DialogId == id);
             if (dialog == null)
             {
@@ -49,9 +51,18 @@ namespace GamebookTest1.Server.Controllers
         [HttpPost("create-dialog-with-character")]
         public async Task<IActionResult> CreateDialogWithCharacter(
             [FromForm] int characterId,
-            [FromForm] string text
+            [FromForm] string text,
+            [FromForm] List<int> dialogAnswersIds
         )
         {
+            var _dialogAnswers = new List<DialogAnswer>();
+            if (dialogAnswersIds != null)
+            {
+                _dialogAnswers = await _context
+                    .DialogAnswers.Where(da => dialogAnswersIds.Contains(da.DialogAnswerId))
+                    .ToListAsync();
+            }
+
             if (string.IsNullOrWhiteSpace(text))
             {
                 return BadRequest("Text is required.");
@@ -66,7 +77,17 @@ namespace GamebookTest1.Server.Controllers
                 return BadRequest("Character not found.");
             }
 
-            var newDialog = new Dialog { Character = character, Text = text };
+            if (_dialogAnswers.Count == 0)
+            {
+                return BadRequest("DialogAnswers not found.");
+            }
+
+            var newDialog = new Dialog
+            {
+                Character = character,
+                Text = text,
+                DialogAnswers = _dialogAnswers,
+            };
 
             _context.Dialogs.Add(newDialog);
             await _context.SaveChangesAsync();

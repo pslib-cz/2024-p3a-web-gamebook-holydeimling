@@ -13,5 +13,8 @@ namespace GamebookTest1.Server.Models
 
         [Required]
         public required string Text { get; set; }
+
+        [Required]
+        public ICollection<DialogAnswer> DialogAnswers { get; set; } = null!;
     }
 }

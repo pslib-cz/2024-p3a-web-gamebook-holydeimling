@@ -66,7 +66,7 @@ export const HomePage = () => {
   const [playScreenButtonsData, setPlayScreenButtonsData] = useState([
     {
       text: "Nová hra",
-      onClick: () => console.log("New Game"),
+      onClick: () => navigate("/scene"),
     },
     {
       text: "Pokračovat",
@@ -89,7 +89,6 @@ export const HomePage = () => {
       setDataToRender(homeScreenButtonsData);
     }
   }, [user]);
-
   return (
     <main className="homepage__container">
       <div className="items__container">
@@ -98,11 +97,19 @@ export const HomePage = () => {
           <HomeScreenButton key={index} {...buttonData} />
         ))}
       </div>
-      <span>id: {user?.id}</span>
-      <span>email: {user?.email}</span>
-      <span>role: {user?.userRole}</span>
-      <span>name: {user?.userName}</span>
-      <span>gameState: {user?.gameState.checkpointSceneId}</span>
+      <span>id: {user?.id} </span>
+      <br />
+      <span>email: {user?.email} </span>
+      <br />
+      <span>role: {user?.userRole} </span>
+      <br />
+      <span>name: {user?.userName} </span>
+      <br />
+      <span>checkpointId {user?.gameState.checkpointSceneId} </span>
+      <br />
+      <span>gamestate id {user?.gameState.gameStateId} </span>
+      <br />
+      <span>inventoryState {user?.gameState.inventoryState.inventoryId} </span>
     </main>
   );
 };

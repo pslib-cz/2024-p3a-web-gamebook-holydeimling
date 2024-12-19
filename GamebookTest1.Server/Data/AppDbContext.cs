@@ -21,6 +21,7 @@ namespace GamebookTest1.Server.Data
         public DbSet<Quest> Quests { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Size> Sizes { get; set; }
+        public DbSet<DialogAnswer> DialogAnswers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -119,6 +120,8 @@ namespace GamebookTest1.Server.Data
                 .HasOne(u => u.GameState)
                 .WithMany()
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Dialog>().HasMany(s => s.DialogAnswers).WithOne(); // A Dialog has many DialogAnswers
         }
     }
 }
