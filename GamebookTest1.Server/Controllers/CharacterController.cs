@@ -93,6 +93,65 @@ namespace GamebookTest1.Server.Controllers
             );
         }
 
+        [HttpPut("edit-character/{id}")]
+        public async Task<IActionResult> EditCharacter(
+            int id,
+            [FromForm] string? firstName,
+            [FromForm] string? lastName,
+            [FromForm] string? nickname,
+            [FromForm] string? backStory,
+            [FromForm] List<int>? imageIds // List of Image IDs to associate
+        )
+        {
+            var character = await _context
+                .Characters.Include(c => c.CharacterImages)
+                .FirstOrDefaultAsync(c => c.CharacterId == id);
+
+            if (character == null)
+            {
+                return NotFound();
+            }
+
+            if (!string.IsNullOrWhiteSpace(firstName))
+            {
+                character.FirstName = firstName;
+            }
+
+            if (!string.IsNullOrWhiteSpace(lastName))
+            {
+                character.LastName = lastName;
+            }
+
+            if (!string.IsNullOrWhiteSpace(nickname))
+            {
+                character.Nickname = nickname;
+            }
+
+            if (!string.IsNullOrWhiteSpace(backStory))
+            {
+                character.BackStory = backStory;
+            }
+
+            if (imageIds != null && imageIds.Any())
+            {
+                var images = await _context
+                    .Images.Where(img => imageIds.Contains(img.ImageId))
+                    .ToListAsync();
+
+                if (images.Count != imageIds.Count)
+                {
+                    return BadRequest("One or more Image IDs are invalid.");
+                }
+
+                character.CharacterImages = images;
+            }
+
+            _context.Characters.Update(character);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         // DELETE: api/Character/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCharacter(int id)

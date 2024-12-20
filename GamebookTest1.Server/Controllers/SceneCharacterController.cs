@@ -98,6 +98,45 @@ namespace GamebookTest1.Server.Controllers
             );
         }
 
+        // PUT: api/SceneCharacter/edit-scene-character/{id}
+        [HttpPut("edit-scene-character/{id}")]
+        public async Task<IActionResult> EditSceneCharacter(
+            int id,
+            [FromForm] int? positionX,
+            [FromForm] int? positionY,
+            [FromForm] int? sizeWidth,
+            [FromForm] int? sizeHeight
+        )
+        {
+            var sceneCharacter = await _context
+                .SceneCharacters.Include(sc => sc.Position)
+                .Include(sc => sc.Size)
+                .FirstOrDefaultAsync(sc => sc.SceneCharacterId == id);
+
+            if (sceneCharacter == null)
+            {
+                return NotFound();
+            }
+
+            // Update Position
+            if (positionX.HasValue)
+                sceneCharacter.Position.X = positionX.Value;
+            if (positionY.HasValue)
+                sceneCharacter.Position.Y = positionY.Value;
+
+            // Update Size
+            if (sizeWidth.HasValue)
+                sceneCharacter.Size.Width = sizeWidth.Value;
+            if (sizeHeight.HasValue)
+                sceneCharacter.Size.Height = sizeHeight.Value;
+
+            // Save changes to the database
+            _context.SceneCharacters.Update(sceneCharacter);
+            await _context.SaveChangesAsync();
+
+            return Ok(sceneCharacter);
+        }
+
         // DELETE: api/SceneCharacter/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSceneCharacter(int id)

@@ -80,6 +80,53 @@ namespace GamebookTest1.Server.Controllers
             return CreatedAtAction(nameof(GetItemById), new { id = newItem.ItemId }, newItem);
         }
 
+        // PUT: api/Item/edit-item/{id}
+        [HttpPut("edit-item/{id}")]
+        public async Task<IActionResult> EditItem(
+            int id,
+            [FromForm] string? itemName,
+            [FromForm] string? itemDescription,
+            [FromForm] List<int>? imageIds
+        )
+        {
+            var item = await _context
+                .Items.Include(i => i.ItemImages)
+                .FirstOrDefaultAsync(i => i.ItemId == id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            if (!string.IsNullOrWhiteSpace(itemName))
+            {
+                item.ItemName = itemName;
+            }
+
+            if (!string.IsNullOrWhiteSpace(itemDescription))
+            {
+                item.ItemDescription = itemDescription;
+            }
+
+            if (imageIds != null && imageIds.Any())
+            {
+                var images = await _context
+                    .Images.Where(img => imageIds.Contains(img.ImageId))
+                    .ToListAsync();
+
+                if (images.Count != imageIds.Count)
+                {
+                    return BadRequest("One or more Image IDs are invalid.");
+                }
+
+                item.ItemImages = images;
+            }
+
+            _context.Items.Update(item);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         // DELETE: api/Item/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem(int id)

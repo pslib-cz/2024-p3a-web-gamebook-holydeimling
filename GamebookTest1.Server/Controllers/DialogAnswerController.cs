@@ -68,6 +68,35 @@ namespace GamebookTest1.Server.Controllers
             );
         }
 
+        [HttpPut("edit-dialog-answer/{id}")]
+        public async Task<IActionResult> EditDialogAnswer(
+            int id,
+            [FromForm] string? answerText,
+            [FromForm] int? nextSceneId
+        )
+        {
+            var dialogAnswer = await _context.DialogAnswers.FindAsync(id);
+            if (dialogAnswer == null)
+            {
+                return NotFound();
+            }
+
+            if (!string.IsNullOrWhiteSpace(answerText))
+            {
+                dialogAnswer.AnswerText = answerText;
+            }
+
+            if (nextSceneId.HasValue)
+            {
+                dialogAnswer.NextSceneId = nextSceneId.Value;
+            }
+
+            _context.DialogAnswers.Update(dialogAnswer);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDialogAnswer(int id)
         {

@@ -98,6 +98,58 @@ namespace GamebookTest1.Server.Controllers
             );
         }
 
+        [HttpPut("edit-dialog/{id}")]
+        public async Task<IActionResult> EditDialog(
+            int id,
+            [FromForm] int? characterId,
+            [FromForm] string? text,
+            [FromForm] List<int>? dialogAnswersIds
+        )
+        {
+            var dialog = await _context
+                .Dialogs.Include(d => d.DialogAnswers)
+                .FirstOrDefaultAsync(d => d.DialogId == id);
+
+            if (dialog == null)
+            {
+                return NotFound();
+            }
+
+            if (characterId.HasValue)
+            {
+                var character = await _context.Characters.FindAsync(characterId.Value);
+                if (character == null)
+                {
+                    return BadRequest("Character not found.");
+                }
+                dialog.Character = character;
+            }
+
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                dialog.Text = text;
+            }
+
+            if (dialogAnswersIds != null)
+            {
+                var _dialogAnswers = await _context
+                    .DialogAnswers.Where(da => dialogAnswersIds.Contains(da.DialogAnswerId))
+                    .ToListAsync();
+
+                if (_dialogAnswers.Count == 0)
+                {
+                    return BadRequest("DialogAnswers not found.");
+                }
+
+                dialog.DialogAnswers = _dialogAnswers;
+            }
+
+            _context.Dialogs.Update(dialog);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDialog(int id)
         {

@@ -8,7 +8,10 @@ import { ImageUpload } from "./pages/ImageUpload";
 import { FileUpload } from "./pages/FileUpload";
 import { ScenePage } from "./pages/Scene";
 import { BackofficePage } from "./pages/BackofficePage";
-import { BackofficeCategoryPage } from "./pages/BackofficeCategoryPage"; // Import the category page
+import {
+  BackofficeCategoryPage,
+  BackofficeCategoryRouter,
+} from "./pages/BackofficeCategoryPage"; // Import the category page
 
 function App() {
   const router = createBrowserRouter([
@@ -47,6 +50,12 @@ function App() {
         {
           path: ":category", // Dynamically load the category
           element: <BackofficeCategoryPage />,
+          children: [
+            {
+              path: ":id", // Dynamically load the ID
+              element: <BackofficeCategoryRouter />,
+            },
+          ],
         },
       ],
     },

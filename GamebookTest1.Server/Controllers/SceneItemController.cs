@@ -88,5 +88,75 @@ namespace GamebookTest1.Server.Controllers
                 newSceneItem
             );
         }
+
+        // PUT: api/SceneItem/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSceneItem(
+            int id,
+            [FromForm] int? itemId,
+            [FromForm] int? positionX,
+            [FromForm] int? positionY,
+            [FromForm] int? sizeWidth,
+            [FromForm] int? sizeHeight
+        )
+        {
+            var sceneItem = await _context
+                .SceneItems.Include(si => si.Item)
+                .Include(si => si.Position)
+                .Include(si => si.Size)
+                .FirstOrDefaultAsync(si => si.SceneItemId == id);
+
+            if (sceneItem == null)
+            {
+                return NotFound();
+            }
+
+            if (itemId.HasValue)
+            {
+                var item = await _context.Items.FindAsync(itemId.Value);
+                if (item == null)
+                {
+                    return BadRequest("Item not found.");
+                }
+                sceneItem.Item = item;
+            }
+
+            if (positionX.HasValue)
+                sceneItem.Position.X = positionX.Value;
+            if (positionY.HasValue)
+                sceneItem.Position.Y = positionY.Value;
+            if (sizeWidth.HasValue)
+                sceneItem.Size.Width = sizeWidth.Value;
+            if (sizeHeight.HasValue)
+                sceneItem.Size.Height = sizeHeight.Value;
+
+            _context.SceneItems.Update(sceneItem);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // DELETE: api/SceneItem/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSceneItem(int id)
+        {
+            var sceneItem = await _context
+                .SceneItems.Include(si => si.Position)
+                .Include(si => si.Size)
+                .FirstOrDefaultAsync(si => si.SceneItemId == id);
+
+            if (sceneItem == null)
+            {
+                return NotFound();
+            }
+
+            _context.Positions.Remove(sceneItem.Position);
+            _context.Sizes.Remove(sceneItem.Size);
+            _context.SceneItems.Remove(sceneItem);
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

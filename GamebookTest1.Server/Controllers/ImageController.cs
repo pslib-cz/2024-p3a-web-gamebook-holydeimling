@@ -91,4 +91,47 @@ public class ImageController : ControllerBase
         }
         return Ok(image);
     }
+
+    [HttpPut("edit-image/{id}")]
+    public async Task<IActionResult> EditImage(
+        int id,
+        [FromForm] string? name,
+        [FromForm] string? filePath
+    )
+    {
+        var image = await _context.Images.FindAsync(id);
+        if (image == null)
+        {
+            return NotFound();
+        }
+
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            image.Name = name;
+        }
+
+        if (!string.IsNullOrWhiteSpace(filePath))
+        {
+            image.FilePath = filePath;
+        }
+
+        _context.Images.Update(image);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteImage(int id)
+    {
+        var image = await _context.Images.FindAsync(id);
+        if (image == null)
+        {
+            return NotFound();
+        }
+
+        _context.Images.Remove(image);
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
 }

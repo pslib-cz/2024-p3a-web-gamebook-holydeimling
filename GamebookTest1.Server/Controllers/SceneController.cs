@@ -118,6 +118,72 @@ namespace GamebookTest1.Server.Controllers
             return CreatedAtAction(nameof(GetSceneById), new { id = newScene.SceneId }, newScene);
         }
 
+        [HttpPut("edit-scene/{id}")]
+        public async Task<IActionResult> EditScene(
+            int id,
+            [FromForm] int? imageId,
+            [FromForm] string? sceneName,
+            [FromForm] List<int>? sceneCharactersIds,
+            [FromForm] List<int>? sceneItemsIds,
+            [FromForm] List<int>? sceneDialogsIds
+        )
+        {
+            var scene = await _context
+                .Scenes.Include(s => s.SceneCharacters)
+                .Include(s => s.SceneItems)
+                .Include(s => s.SceneDialogs)
+                .FirstOrDefaultAsync(s => s.SceneId == id);
+
+            if (scene == null)
+            {
+                return NotFound();
+            }
+
+            if (imageId.HasValue)
+            {
+                var newImage = await _context.Images.FindAsync(imageId.Value);
+                if (newImage == null)
+                {
+                    return BadRequest("Invalid image ID.");
+                }
+                scene.BackgroundImage = newImage;
+            }
+
+            if (!string.IsNullOrWhiteSpace(sceneName))
+            {
+                scene.SceneName = sceneName;
+            }
+
+            if (sceneCharactersIds != null)
+            {
+                var newSceneCharacters = await _context
+                    .SceneCharacters.Where(sc => sceneCharactersIds.Contains(sc.SceneCharacterId))
+                    .ToListAsync();
+                scene.SceneCharacters = newSceneCharacters;
+            }
+
+            if (sceneItemsIds != null)
+            {
+                var newSceneItems = await _context
+                    .SceneItems.Where(si => sceneItemsIds.Contains(si.SceneItemId))
+                    .ToListAsync();
+                scene.SceneItems = newSceneItems;
+            }
+
+            if (sceneDialogsIds != null)
+            {
+                var newSceneDialogs = await _context
+                    .Dialogs.Where(d => sceneDialogsIds.Contains(d.DialogId))
+                    .ToListAsync();
+                scene.SceneDialogs = newSceneDialogs;
+            }
+
+            _context.Scenes.Update(scene);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteScene(int id)
         {
