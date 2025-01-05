@@ -50,7 +50,7 @@ namespace GamebookTest1.Server.Controllers
         }
 
         // POST: api/SceneItem/create-scene-item
-        [HttpPost("create-scene-item")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateSceneItem(
             [FromForm] int itemId,
             [FromForm] int positionX,
@@ -90,7 +90,7 @@ namespace GamebookTest1.Server.Controllers
         }
 
         // PUT: api/SceneItem/{id}
-        [HttpPut("{id}")]
+        [HttpPut("edit/{id}")]
         public async Task<IActionResult> UpdateSceneItem(
             int id,
             [FromForm] int? itemId,

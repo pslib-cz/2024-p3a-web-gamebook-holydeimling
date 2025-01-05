@@ -7,21 +7,26 @@ import "./InventoryItem.css";
 import { DiscardArea } from "./DiscardArea";
 import { ConfirmationPopup } from "../ConfirmationPopup";
 import debilek from "../../assets/testMainCharacter.png";
+import { Inventory } from "../../types";
 
-export const Inventory = () => {
+interface InventoryProps {
+  currentInventory: Inventory | null | undefined;
+}
+
+export const InventoryComponent = ({ currentInventory }: InventoryProps) => {
   const [showInventory, setShowInventory] = useState<boolean>(false);
   const [inventoryItemsData, setInventoryItemsData] = useState<
-    (string | null)[]
+    (string | null | undefined)[]
   >([
-    null,
-    null,
-    "https://as1.ftcdn.net/v2/jpg/00/46/83/66/1000_F_46836607_dezz1BvZ9PpitfdJAkSa1bpcl6FnEish.jpg",
-    null,
-    null,
-    null,
-    "https://as1.ftcdn.net/v2/jpg/00/46/83/66/1000_F_46836607_dezz1BvZ9PpitfdJAkSa1bpcl6FnEish.jpg",
-    "https://as1.ftcdn.net/v2/jpg/00/46/83/66/1000_F_46836607_dezz1BvZ9PpitfdJAkSa1bpcl6FnEish.jpg",
-    "https://as1.ftcdn.net/v2/jpg/00/46/83/66/1000_F_46836607_dezz1BvZ9PpitfdJAkSa1bpcl6FnEish.jpg",
+    currentInventory?.item1?.itemImages[0].filePath,
+    currentInventory?.item2?.itemImages[0].filePath,
+    currentInventory?.item3?.itemImages[0].filePath,
+    currentInventory?.item4?.itemImages[0].filePath,
+    currentInventory?.item5?.itemImages[0].filePath,
+    currentInventory?.item6?.itemImages[0].filePath,
+    currentInventory?.item7?.itemImages[0].filePath,
+    currentInventory?.item8?.itemImages[0].filePath,
+    currentInventory?.item9?.itemImages[0].filePath,
   ]);
 
   const [showPopup, setShowPopup] = useState<boolean>(false);

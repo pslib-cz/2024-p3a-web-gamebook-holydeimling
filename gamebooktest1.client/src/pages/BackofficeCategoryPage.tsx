@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams, Link, Route, Routes } from "react-router-dom";
+import { useParams, Link, Route, Routes, useNavigate } from "react-router-dom";
+import ItemDetail from "./BakofficeItemDetail";
+import "./BackofficePage.css";
 
 export const BackofficeCategoryPage = () => {
   const { category } = useParams<{ category: string }>();
   const [data, setData] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [categoryIdName, setCategoryIdName] = useState<string>("");
+  const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const fetchData = async (category: string) => {
     try {
@@ -47,6 +51,16 @@ export const BackofficeCategoryPage = () => {
     }
   }, [category]);
 
+  const handleItemClick = (id: string) => {
+    setSelectedItemId(id);
+    navigate(`/backoffice/${category}/${id}`);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedItemId(null);
+    navigate(`/backoffice/${category}`);
+  };
+
   if (error) {
     return <p className="error">{error}</p>;
   }
@@ -59,74 +73,17 @@ export const BackofficeCategoryPage = () => {
       ) : (
         <div className="cards-container">
           {data.map((item, index) => (
-            <div key={index} className="card">
-              <Link to={`/backoffice/${category}/${item[categoryIdName]}`}>
-                <p>ID: {item[categoryIdName]}</p>
-              </Link>
+            <div
+              key={index}
+              className="card"
+              onClick={() => handleItemClick(item[categoryIdName])}
+            >
+              <p>ID: {item[categoryIdName]}</p>
             </div>
           ))}
         </div>
       )}
-    </div>
-  );
-};
-
-const ItemDetail: React.FC = () => {
-  const { category, id } = useParams<{ category: string; id: string }>();
-  const [item, setItem] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchItem = async (category: string, id: string) => {
-    try {
-      const response = await fetch(
-        `https://localhost:7174/api/${category}/${id}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      setItem(result);
-      console.log(`Fetched item with ID ${id}`);
-    } catch (error) {
-      setError(`Failed to fetch ${category} item with ID ${id}.`);
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    if (category && id) {
-      fetchItem(category, id);
-    }
-  }, [category, id]);
-
-  if (error) {
-    return <p className="error">{error}</p>;
-  }
-
-  return (
-    <div className="item-detail-container">
-      <h1>
-        Detail for {category} ID: {id}
-      </h1>
-      {item ? (
-        <div className="item-details">
-          {Object.entries(item).map(([key, value]) => (
-            <div key={key} className="item-detail">
-              <strong>{key}:</strong> {JSON.stringify(value, null, 2)}
-            </div>
-          ))}
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      {selectedItemId && <ItemDetail onClose={handleCloseModal} />}
     </div>
   );
 };
@@ -138,7 +95,10 @@ export const BackofficeCategoryRouter = () => {
         path="/backoffice/:category"
         element={<BackofficeCategoryPage />}
       />
-      <Route path="/backoffice/:category/:id" element={<ItemDetail />} />
+      <Route
+        path="/backoffice/:category/:id"
+        element={<BackofficeCategoryPage />}
+      />
     </Routes>
   );
 };

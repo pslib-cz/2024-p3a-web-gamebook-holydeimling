@@ -8,13 +8,11 @@ namespace GamebookTest1.Server.Models
         [Key]
         public int DialogId { get; set; }
 
-        [Required]
-        public Character Character { get; set; } = null!;
+        public Character? Character { get; set; }
 
         [Required]
         public required string Text { get; set; }
 
-        [Required]
-        public ICollection<DialogAnswer> DialogAnswers { get; set; } = null!;
+        public ICollection<DialogAnswer>? DialogAnswers { get; set; } = null!;
     }
 }

@@ -24,12 +24,22 @@ namespace GamebookTest1.Server.Controllers
                 .Scenes.Include(s => s.SceneCharacters)
                 .ThenInclude(sc => sc.Character)
                 .ThenInclude(c => c.CharacterImages)
+                .Include(s => s.SceneCharacters)
+                .ThenInclude(s => s.Size)
+                .Include(s => s.SceneCharacters)
+                .ThenInclude(p => p.Position)
                 .Include(s => s.SceneItems)
                 .ThenInclude(si => si.Item)
                 .ThenInclude(i => i.ItemImages)
+                .Include(s => s.SceneItems)
+                .ThenInclude(s => s.Position)
+                .Include(s => s.SceneItems)
+                .ThenInclude(s => s.Size)
                 .Include(s => s.SceneDialogs)
                 .ThenInclude(sd => sd.Character)
                 .ThenInclude(c => c.CharacterImages)
+                .Include(s => s.SceneDialogs)
+                .ThenInclude(s => s.DialogAnswers)
                 .Include(s => s.BackgroundImage)
                 .ToListAsync();
             return Ok(scenes);
@@ -42,12 +52,22 @@ namespace GamebookTest1.Server.Controllers
                 .Scenes.Include(s => s.SceneCharacters)
                 .ThenInclude(sc => sc.Character)
                 .ThenInclude(c => c.CharacterImages)
+                .Include(s => s.SceneCharacters)
+                .ThenInclude(s => s.Size)
+                .Include(s => s.SceneCharacters)
+                .ThenInclude(p => p.Position)
                 .Include(s => s.SceneItems)
                 .ThenInclude(si => si.Item)
                 .ThenInclude(i => i.ItemImages)
+                .Include(s => s.SceneItems)
+                .ThenInclude(s => s.Position)
+                .Include(s => s.SceneItems)
+                .ThenInclude(s => s.Size)
                 .Include(s => s.SceneDialogs)
                 .ThenInclude(sd => sd.Character)
                 .ThenInclude(c => c.CharacterImages)
+                .Include(s => s.SceneDialogs)
+                .ThenInclude(s => s.DialogAnswers)
                 .Include(s => s.BackgroundImage)
                 .FirstOrDefaultAsync(s => s.SceneId == id);
 
@@ -59,7 +79,7 @@ namespace GamebookTest1.Server.Controllers
             return Ok(scene);
         }
 
-        [HttpPost("create-scene")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateScene(
             [FromForm] int imageId,
             [FromForm] string sceneName,
@@ -95,6 +115,7 @@ namespace GamebookTest1.Server.Controllers
                 _sceneDialogs = await _context
                     .Dialogs.Include(d => d.Character)
                     .ThenInclude(c => c.CharacterImages)
+                    .Include(d => d.DialogAnswers)
                     .Where(d => sceneDialogsIds.Contains(d.DialogId))
                     .ToListAsync();
             }
@@ -118,7 +139,7 @@ namespace GamebookTest1.Server.Controllers
             return CreatedAtAction(nameof(GetSceneById), new { id = newScene.SceneId }, newScene);
         }
 
-        [HttpPut("edit-scene/{id}")]
+        [HttpPut("edit/{id}")]
         public async Task<IActionResult> EditScene(
             int id,
             [FromForm] int? imageId,

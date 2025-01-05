@@ -48,7 +48,7 @@ namespace GamebookTest1.Server.Controllers
         }
 
         //POST: api/Dialog/create-dialog
-        [HttpPost("create-dialog-with-character")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateDialogWithCharacter(
             [FromForm] int characterId,
             [FromForm] string text,
@@ -72,15 +72,6 @@ namespace GamebookTest1.Server.Controllers
                 .Characters.Where(cha => cha.CharacterId == characterId)
                 .FirstOrDefaultAsync();
 
-            if (character == null)
-            {
-                return BadRequest("Character not found.");
-            }
-
-            if (_dialogAnswers.Count == 0)
-            {
-                return BadRequest("DialogAnswers not found.");
-            }
 
             var newDialog = new Dialog
             {
@@ -98,7 +89,7 @@ namespace GamebookTest1.Server.Controllers
             );
         }
 
-        [HttpPut("edit-dialog/{id}")]
+        [HttpPut("edit/{id}")]
         public async Task<IActionResult> EditDialog(
             int id,
             [FromForm] int? characterId,

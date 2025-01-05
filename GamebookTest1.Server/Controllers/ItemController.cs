@@ -40,7 +40,7 @@ namespace GamebookTest1.Server.Controllers
         }
 
         // POST: api/Item/create-item-with-image
-        [HttpPost("create-item-with-image")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateItemWithImage(
             [FromForm] string itemName,
             [FromForm] string? itemDescription,
@@ -81,7 +81,7 @@ namespace GamebookTest1.Server.Controllers
         }
 
         // PUT: api/Item/edit-item/{id}
-        [HttpPut("edit-item/{id}")]
+        [HttpPut("edit/{id}")]
         public async Task<IActionResult> EditItem(
             int id,
             [FromForm] string? itemName,

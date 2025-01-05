@@ -52,8 +52,8 @@ namespace GamebookTest1.Server.Controllers
             return Ok(sceneCharacter);
         }
 
-        // POST: api/SceneCharacter/create-scene-character
-        [HttpPost("create-scene-character")]
+        // POST: api/SceneCharacter/create
+        [HttpPost("create")]
         public async Task<IActionResult> CreateSceneCharacter(
             [FromForm] int characterId,
             [FromForm] int positionX,
@@ -98,8 +98,8 @@ namespace GamebookTest1.Server.Controllers
             );
         }
 
-        // PUT: api/SceneCharacter/edit-scene-character/{id}
-        [HttpPut("edit-scene-character/{id}")]
+        // PUT: api/SceneCharacter/edit/{id}
+        [HttpPut("edit/{id}")]
         public async Task<IActionResult> EditSceneCharacter(
             int id,
             [FromForm] int? positionX,

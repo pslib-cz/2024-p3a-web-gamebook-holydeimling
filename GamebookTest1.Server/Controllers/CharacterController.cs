@@ -45,7 +45,7 @@ namespace GamebookTest1.Server.Controllers
             return Ok(character);
         }
 
-        [HttpPost("create-character-with-images")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateCharacterWithImages(
             [FromForm] string firstName,
             [FromForm] string lastName,
@@ -93,7 +93,7 @@ namespace GamebookTest1.Server.Controllers
             );
         }
 
-        [HttpPut("edit-character/{id}")]
+        [HttpPut("edit/{id}")]
         public async Task<IActionResult> EditCharacter(
             int id,
             [FromForm] string? firstName,

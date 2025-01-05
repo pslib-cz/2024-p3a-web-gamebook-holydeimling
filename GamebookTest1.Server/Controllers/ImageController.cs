@@ -92,7 +92,7 @@ public class ImageController : ControllerBase
         return Ok(image);
     }
 
-    [HttpPut("edit-image/{id}")]
+    [HttpPut("edit/{id}")]
     public async Task<IActionResult> EditImage(
         int id,
         [FromForm] string? name,

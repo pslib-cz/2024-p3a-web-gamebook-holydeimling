@@ -37,7 +37,7 @@ namespace GamebookTest1.Server.Controllers
             return Ok(dialogAnswer);
         }
 
-        [HttpPost("create-dialog-answer")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateDialogAnswer(
             [FromForm] string answerText,
             [FromForm] int nextSceneId
@@ -68,7 +68,7 @@ namespace GamebookTest1.Server.Controllers
             );
         }
 
-        [HttpPut("edit-dialog-answer/{id}")]
+        [HttpPut("edit/{id}")]
         public async Task<IActionResult> EditDialogAnswer(
             int id,
             [FromForm] string? answerText,

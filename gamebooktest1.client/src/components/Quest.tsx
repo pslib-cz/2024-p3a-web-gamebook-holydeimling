@@ -5,7 +5,7 @@ type QuestProps = {
   content: string;
 };
 
-export const Quest = ({ heading, content }: QuestProps) => {
+export const QuestComponent = ({ heading, content }: QuestProps) => {
   return (
     <div className="quest__body">
       <h2 className="quest__heading">{heading}</h2>

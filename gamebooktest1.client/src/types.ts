@@ -1,4 +1,3 @@
-import { Quest } from "./components/Quest";
 export type Image = {
   imageId: number;
   name: string;
@@ -48,6 +47,12 @@ export type Dialog = {
   dialogId: number;
   character: Character;
   text: string;
+  dialogAnswers: DialogAnswer[];
+};
+export type DialogAnswer = {
+  dialogAnswerId: number;
+  answerText?: string;
+  nextSceneId: number;
 };
 export type Scene = {
   sceneId: number;
@@ -61,7 +66,7 @@ export type Scene = {
 export type GameState = {
   gameStateId: number;
   inventoryState: Inventory;
-  questState: Quest[];
+  questsState: Quest[];
   checkpointSceneId: number;
 };
 
