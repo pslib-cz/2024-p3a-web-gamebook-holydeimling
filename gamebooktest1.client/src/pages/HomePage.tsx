@@ -81,7 +81,11 @@ export const HomePage = () => {
     {
       text: "Zpět",
       onClick: () => {
-        setDataToRender(homeScreenButtonsData);
+        setDataToRender(
+          user?.userRole === "Admin"
+            ? homeScreenButtonsDataAdminLoggedIn
+            : homeScreenButtonsData
+        );
       },
     },
   ]);
@@ -97,7 +101,11 @@ export const HomePage = () => {
     {
       text: "Zpět",
       onClick: () => {
-        setDataToRender(homeScreenButtonsData);
+        setDataToRender(
+          user?.userRole === "Admin"
+            ? homeScreenButtonsDataAdminLoggedIn
+            : homeScreenButtonsData
+        );
       },
     },
   ]);
