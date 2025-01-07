@@ -85,7 +85,8 @@ namespace GamebookTest1.Server.Controllers
             [FromForm] string sceneName,
             [FromForm] List<int> sceneCharactersIds,
             [FromForm] List<int> sceneItemsIds,
-            [FromForm] List<int> sceneDialogsIds
+            [FromForm] List<int> sceneDialogsIds,
+            [FromForm] int? minigameId
         )
         {
             var _image = await _context.Images.FindAsync(imageId);
@@ -132,6 +133,7 @@ namespace GamebookTest1.Server.Controllers
                 SceneCharacters = _sceneCharacters,
                 SceneItems = _sceneItems,
                 SceneDialogs = _sceneDialogs,
+                MinigameId = minigameId,
             };
 
             _context.Scenes.Add(newScene);
@@ -146,7 +148,8 @@ namespace GamebookTest1.Server.Controllers
             [FromForm] string? sceneName,
             [FromForm] List<int>? sceneCharactersIds,
             [FromForm] List<int>? sceneItemsIds,
-            [FromForm] List<int>? sceneDialogsIds
+            [FromForm] List<int>? sceneDialogsIds,
+            [FromForm] int? minigameId
         )
         {
             var scene = await _context
@@ -198,6 +201,12 @@ namespace GamebookTest1.Server.Controllers
                     .ToListAsync();
                 scene.SceneDialogs = newSceneDialogs;
             }
+
+            if (minigameId.HasValue)
+            {
+                scene.MinigameId = minigameId;
+            }
+            ;
 
             _context.Scenes.Update(scene);
             await _context.SaveChangesAsync();

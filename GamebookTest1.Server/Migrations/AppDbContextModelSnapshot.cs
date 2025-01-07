@@ -79,7 +79,7 @@ namespace GamebookTest1.Server.Migrations
                     b.Property<int?>("DialogId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("NextSceneId")
+                    b.Property<int?>("NextSceneId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("DialogAnswerId");
@@ -265,6 +265,9 @@ namespace GamebookTest1.Server.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("BackgroundImageImageId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("MinigameId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("SceneName")

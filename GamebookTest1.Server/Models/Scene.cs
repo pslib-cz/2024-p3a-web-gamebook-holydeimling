@@ -24,5 +24,7 @@ namespace GamebookTest1.Server.Models
 
         [Required]
         public required ICollection<Dialog> SceneDialogs { get; set; }
+
+        public int? MinigameId { get; set; }
     }
 }

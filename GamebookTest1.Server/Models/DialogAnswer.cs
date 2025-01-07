@@ -9,7 +9,6 @@ namespace GamebookTest1.Server.Models
         public int DialogAnswerId { get; set; }
         public string? AnswerText { get; set; }
 
-        [Required]
-        public int NextSceneId { get; set; }
+        public int? NextSceneId { get; set; }
     }
 }

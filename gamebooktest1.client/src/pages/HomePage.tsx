@@ -4,6 +4,8 @@ import { HomeScreenLogo } from "../components/Home/HomeScreenLogo";
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../UserContext";
+import audio from "../assets/music/cesky-hello-neighbor-song-remix.mp3";
+import ReactAudioPlayer from "react-audio-player";
 
 export const HomePage = () => {
   const { user, setUser } = useUser();
@@ -123,6 +125,7 @@ export const HomePage = () => {
       setDataToRender(homeScreenButtonsData);
     }
   }, [user]);
+
   return (
     <main className="homepage__container">
       <div className="items__container">
