@@ -23,8 +23,8 @@ namespace GamebookTest1.Server.Controllers
         [HttpGet]
         public async Task<IActionResult> GetGameState()
         {
-            var gameStates = await _context.GameStates
-                .Include(q => q.QuestsState)
+            var gameStates = await _context
+                .GameStates.Include(q => q.QuestsState)
                 .Include(i => i.InventoryState)
                 .ThenInclude(i => i.Item1)
                 .ThenInclude(i => i.ItemImages)
@@ -67,7 +67,8 @@ namespace GamebookTest1.Server.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGameStateById(int id)
         {
-            var gameState = await _context.GameStates.Include(q => q.QuestsState)
+            var gameState = await _context
+                .GameStates.Include(q => q.QuestsState)
                 .Include(i => i.InventoryState)
                 .ThenInclude(i => i.Item1)
                 .ThenInclude(i => i.ItemImages)
@@ -111,7 +112,10 @@ namespace GamebookTest1.Server.Controllers
 
         //PUT: api/GameState/edit/CheckpointSceneId/{id}
         [HttpPut("edit/CheckpointSceneId/{id}")]
-        public async Task<IActionResult> EditGameStateCheckpointSceneId(int id, [FromForm] int checkpointSceneId)
+        public async Task<IActionResult> EditGameStateCheckpointSceneId(
+            int id,
+            [FromForm] int checkpointSceneId
+        )
         {
             var gameState = await _context.GameStates.FirstOrDefaultAsync(i => i.GameStateId == id);
             if (gameState == null)
@@ -125,9 +129,13 @@ namespace GamebookTest1.Server.Controllers
 
         //PUT: api/GameState/edit/QuestsState/{id}
         [HttpPut("edit/QuestsState/{id}")]
-        public async Task<IActionResult> EditGameStateQuestsState(int id, [FromForm] List<int> questsIds)
+        public async Task<IActionResult> EditGameStateQuestsState(
+            int id,
+            [FromForm] List<int> questsIds
+        )
         {
-            var gameState = await _context.GameStates.Include(q => q.QuestsState)
+            var gameState = await _context
+                .GameStates.Include(q => q.QuestsState)
                 .Include(i => i.InventoryState)
                 .ThenInclude(i => i.Item1)
                 .ThenInclude(i => i.ItemImages)
@@ -167,9 +175,11 @@ namespace GamebookTest1.Server.Controllers
                 return NotFound();
             }
 
-            if(questsIds != null && questsIds.Any())
+            if (questsIds != null && questsIds.Any())
             {
-                var quests = await _context.Quests.Where(q => questsIds.Contains(q.QuestId)).ToListAsync();
+                var quests = await _context
+                    .Quests.Where(q => questsIds.Contains(q.QuestId))
+                    .ToListAsync();
                 if (quests.Count != questsIds.Count)
                 {
                     return BadRequest("One or more Quest IDs are invalid.");
@@ -183,8 +193,56 @@ namespace GamebookTest1.Server.Controllers
 
             await _context.SaveChangesAsync();
             return Ok(gameState);
-
         }
 
+        [HttpPost("addQuest/{id}")]
+        public async Task<IActionResult> AddQuestToGameState(int id, [FromForm] int questId)
+        {
+            var gameState = await _context
+                .GameStates.Include(q => q.QuestsState)
+                .FirstOrDefaultAsync(i => i.GameStateId == id);
+            if (gameState == null)
+            {
+                return NotFound();
+            }
+
+            var quest = await _context.Quests.FindAsync(questId);
+            if (quest == null)
+            {
+                return BadRequest("Invalid Quest ID.");
+            }
+
+            if (!gameState.QuestsState.Contains(quest))
+            {
+                gameState.QuestsState.Add(quest);
+                await _context.SaveChangesAsync();
+            }
+
+            return Ok(gameState);
+        }
+
+        // DELETE: api/GameState/deleteQuest/{id}
+        [HttpDelete("deleteQuest/{id}")]
+        public async Task<IActionResult> DeleteQuestFromGameState(int id, [FromForm] int questId)
+        {
+            var gameState = await _context
+                .GameStates.Include(q => q.QuestsState)
+                .FirstOrDefaultAsync(i => i.GameStateId == id);
+            if (gameState == null)
+            {
+                return NotFound();
+            }
+
+            var quest = gameState.QuestsState.FirstOrDefault(q => q.QuestId == questId);
+            if (quest == null)
+            {
+                return BadRequest("Quest not found in the game state.");
+            }
+
+            gameState.QuestsState.Remove(quest);
+            await _context.SaveChangesAsync();
+
+            return Ok(gameState);
+        }
     }
 }

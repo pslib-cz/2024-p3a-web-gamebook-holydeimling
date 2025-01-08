@@ -61,6 +61,10 @@ export type Scene = {
   sceneCharacters: SceneCharacter[];
   sceneItems: SceneItem[];
   sceneDialogs: Dialog[];
+  isCheckpoint: boolean;
+  minigameId: number | null;
+  questToAddId: number | null;
+  questToRemoveId: number | null;
 };
 
 export type GameState = {

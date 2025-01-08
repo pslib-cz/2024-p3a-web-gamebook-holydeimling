@@ -4,8 +4,8 @@ import "./Scene.css";
 import { useUser } from "../UserContext";
 import { InventoryComponent } from "../components/Inventory/Inventory";
 import { QuestContainer } from "../components/QuestContainer";
-import { editQuestState } from "../utils/editQuestState";
 import { fetchScene } from "../utils/fetchScene";
+import { saveDataOnCheckpoint } from "../utils/saveDataOnCheckpoint";
 
 export const ScenePage = () => {
   const { user, setUser } = useUser();
@@ -16,20 +16,24 @@ export const ScenePage = () => {
 
   const [dialogIndex, setDialogIndex] = useState(0);
 
+  //nastaveni sceny na checkpointSceneId
   useEffect(() => {
     if (user) {
       setSceneId(user.gameState.checkpointSceneId);
     }
   }, [user]);
 
+  //fetch sceny pokaždé, když se změní sceneId
   useEffect(() => {
     fetchScene(sceneId, setCurrentScene);
-  }, [sceneId]); // Fetch scene whenever sceneId changes
+  }, [sceneId]);
 
+  //docasne pridavani id sceny (testovani)
   const handleButtonClick = () => {
     setSceneId(sceneId + 1); // Increment sceneId by 1
   };
 
+  //pokud nejsou zadne dialogAnswers, tak se zobrazi button Continue, jinak se zobrazi dialogAnswers
   const handleContinueClick = () => {
     if (
       currentScene?.sceneDialogs.length !== undefined &&
@@ -45,6 +49,30 @@ export const ScenePage = () => {
       setSceneId(sceneId + 1);
     }
   };
+
+  //pokud je scena checkpoint, tak se ulozi data
+  useEffect(() => {
+    if (currentScene?.isCheckpoint) {
+      saveDataOnCheckpoint(
+        user,
+        setUser,
+        sceneId,
+        user?.gameState.inventoryState,
+        user?.gameState.questsState
+      );
+    }
+  }, [currentScene]);
+
+  useEffect(() => {
+    if (
+      currentScene?.questToAddId !== null ||
+      currentScene?.questToAddId !== 0
+    ) {
+      // Add quest to the user
+    }
+  }, [currentScene]);
+
+  //ODSTRANENI SCENY POKUD SCENE.questTODeleteID !== null
 
   return (
     <>
@@ -154,13 +182,6 @@ export const ScenePage = () => {
               )}
             </div>
           )}
-        <button
-          onClick={() => {
-            editQuestState(user, setUser, user?.gameState.gameStateId, [1, 2]);
-          }}
-        >
-          Change Quest
-        </button>
       </div>
     </>
   );
