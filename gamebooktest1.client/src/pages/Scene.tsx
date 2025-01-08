@@ -1,49 +1,29 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Scene, SceneCharacter } from "../types";
+import { useEffect, useState } from "react";
+import { Scene } from "../types";
 import "./Scene.css";
 import { useUser } from "../UserContext";
 import { InventoryComponent } from "../components/Inventory/Inventory";
 import { QuestContainer } from "../components/QuestContainer";
 import { editQuestState } from "../utils/editQuestState";
+import { fetchScene } from "../utils/fetchScene";
 
 export const ScenePage = () => {
-  const { user, setUser } = useUser(); // Get the user object from context
+  const { user, setUser } = useUser();
   const [sceneId, setSceneId] = useState<number>(
-    user?.gameState.checkpointSceneId || 1
+    user?.gameState.checkpointSceneId ? user.gameState.checkpointSceneId : 1
   ); // State to store the scene ID
-  const [scene, setScene] = useState<Scene | null>(null); // State to store the fetched scene object
-  const [error, setError] = useState<string | null>(null); // State to store any errors
+  const [currentScene, setCurrentScene] = useState<Scene | null>(null); // State to store the fetched scene object
 
   const [dialogIndex, setDialogIndex] = useState(0);
 
-  const fetchScene = async (id: number) => {
-    try {
-      const response = await fetch(`https://localhost:7174/api/Scene/${id}`, {
-        method: "GET",
-        headers: {
-          Accept: "*/*", // Header matching your curl command
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json(); // Parse response as JSON
-      setScene(data as Scene); // Set the scene object in state
-      setError(null); // Clear any previous errors
-      console.log(data); // Log the object to console
-    } catch (error) {
-      console.error("Error fetching scene:", error);
-    }
-  };
-
   useEffect(() => {
-    console.log(user);
+    if (user) {
+      setSceneId(user.gameState.checkpointSceneId);
+    }
   }, [user]);
 
   useEffect(() => {
-    fetchScene(sceneId);
+    fetchScene(sceneId, setCurrentScene);
   }, [sceneId]); // Fetch scene whenever sceneId changes
 
   const handleButtonClick = () => {
@@ -52,12 +32,12 @@ export const ScenePage = () => {
 
   const handleContinueClick = () => {
     if (
-      scene?.sceneDialogs.length !== undefined &&
-      scene?.sceneDialogs.length > 0 &&
+      currentScene?.sceneDialogs.length !== undefined &&
+      currentScene?.sceneDialogs.length > 0 &&
       dialogIndex !== undefined &&
       dialogIndex !== null &&
       dialogIndex >= 0 &&
-      dialogIndex < scene?.sceneDialogs.length - 1
+      dialogIndex < currentScene?.sceneDialogs.length - 1
     ) {
       setDialogIndex(dialogIndex + 1);
     } else {
@@ -72,8 +52,8 @@ export const ScenePage = () => {
       <QuestContainer questState={user?.gameState.questsState} />
       <div
         style={{
-          backgroundImage: scene
-            ? `url(${scene.backgroundImage.filePath})`
+          backgroundImage: currentScene
+            ? `url(${currentScene.backgroundImage.filePath})`
             : "none",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -82,18 +62,12 @@ export const ScenePage = () => {
       >
         <h1>Scene id: {sceneId}</h1>
         <h2>Scene Data</h2>
-        {error ? (
-          <p className="error">{error}</p>
-        ) : scene ? (
-          <pre>{JSON.stringify(scene, null, 2)}</pre> // Pretty-print JSON data
-        ) : (
-          <p>Loading...</p>
-        )}
+
         <div>
           <button onClick={handleButtonClick}>Change Scene</button>
         </div>
         {/* items */}
-        {scene?.sceneItems.map((sceneItem) => (
+        {currentScene?.sceneItems.map((sceneItem) => (
           <div key={sceneItem.sceneItemId}>
             <h3>{sceneItem.item.itemName}</h3>
             <img
@@ -112,7 +86,7 @@ export const ScenePage = () => {
           </div>
         ))}
         {/* characters */}
-        {scene?.sceneCharacters.map((sceneCharacter) => (
+        {currentScene?.sceneCharacters.map((sceneCharacter) => (
           <div key={sceneCharacter.sceneCharacterId}>
             <h3>
               {sceneCharacter.character.firstName}{" "}
@@ -135,24 +109,25 @@ export const ScenePage = () => {
           </div>
         ))}
         {/* dialogs*/}
-        {scene?.sceneDialogs.length !== undefined &&
-          scene?.sceneDialogs.length > 0 && (
+        {currentScene?.sceneDialogs.length !== undefined &&
+          currentScene?.sceneDialogs.length > 0 && (
             <div className="dialog-system">
               <img
                 src={
-                  scene.sceneDialogs[dialogIndex].character.characterImages[0]
-                    .filePath
+                  currentScene.sceneDialogs[dialogIndex].character
+                    .characterImages[0].filePath
                 }
                 alt=""
                 className="dialog-system__character"
               />
               <h3>
-                {scene.sceneDialogs[dialogIndex].character.firstName}{" "}
-                {scene.sceneDialogs[dialogIndex].character.nickname}{" "}
-                {scene.sceneDialogs[dialogIndex].character.lastName}
+                {currentScene.sceneDialogs[dialogIndex].character.firstName}{" "}
+                {currentScene.sceneDialogs[dialogIndex].character.nickname}{" "}
+                {currentScene.sceneDialogs[dialogIndex].character.lastName}
               </h3>
-              <p>{scene.sceneDialogs[dialogIndex].text}</p>
-              {scene.sceneDialogs[dialogIndex].dialogAnswers.length <= 0 ? (
+              <p>{currentScene.sceneDialogs[dialogIndex].text}</p>
+              {currentScene.sceneDialogs[dialogIndex].dialogAnswers.length <=
+              0 ? (
                 <button
                   onClick={() => {
                     handleContinueClick();
@@ -162,7 +137,7 @@ export const ScenePage = () => {
                 </button>
               ) : (
                 <div>
-                  {scene.sceneDialogs[dialogIndex].dialogAnswers.map(
+                  {currentScene.sceneDialogs[dialogIndex].dialogAnswers.map(
                     (dialogAnswer) => (
                       <button
                         key={dialogAnswer.dialogAnswerId}

@@ -7,13 +7,13 @@ import React, {
 } from "react";
 import { GameState } from "./types";
 
-interface User {
+export type User = {
   id: number;
   userName: string;
   email: string;
   userRole: string;
   gameState: GameState;
-}
+};
 
 interface UserContextProps {
   user: User | null;

@@ -25,6 +25,10 @@ namespace GamebookTest1.Server.Models
         [Required]
         public required ICollection<Dialog> SceneDialogs { get; set; }
 
+        [Required]
+        public bool IsCheckpoint { get; set; } = false;
         public int? MinigameId { get; set; }
+        public int? QuestToAddId { get; set; }
+        public int? QuestToRemoveId { get; set; }
     }
 }

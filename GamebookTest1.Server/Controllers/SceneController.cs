@@ -86,7 +86,10 @@ namespace GamebookTest1.Server.Controllers
             [FromForm] List<int> sceneCharactersIds,
             [FromForm] List<int> sceneItemsIds,
             [FromForm] List<int> sceneDialogsIds,
-            [FromForm] int? minigameId
+            [FromForm] bool isCheckpoint,
+            [FromForm] int? minigameId,
+            [FromForm] int? questToAddId,
+            [FromForm] int? questToRemoveId
         )
         {
             var _image = await _context.Images.FindAsync(imageId);
@@ -133,7 +136,10 @@ namespace GamebookTest1.Server.Controllers
                 SceneCharacters = _sceneCharacters,
                 SceneItems = _sceneItems,
                 SceneDialogs = _sceneDialogs,
+                IsCheckpoint = isCheckpoint,
                 MinigameId = minigameId,
+                QuestToAddId = questToAddId,
+                QuestToRemoveId = questToRemoveId,
             };
 
             _context.Scenes.Add(newScene);
@@ -149,7 +155,10 @@ namespace GamebookTest1.Server.Controllers
             [FromForm] List<int>? sceneCharactersIds,
             [FromForm] List<int>? sceneItemsIds,
             [FromForm] List<int>? sceneDialogsIds,
-            [FromForm] int? minigameId
+            [FromForm] bool? isCheckpoint,
+            [FromForm] int? minigameId,
+            [FromForm] int? questToAddId,
+            [FromForm] int? questToRemoveId
         )
         {
             var scene = await _context
@@ -202,11 +211,25 @@ namespace GamebookTest1.Server.Controllers
                 scene.SceneDialogs = newSceneDialogs;
             }
 
+            if (isCheckpoint.HasValue)
+            {
+                scene.IsCheckpoint = isCheckpoint.Value;
+            }
+
             if (minigameId.HasValue)
             {
                 scene.MinigameId = minigameId;
             }
-            ;
+
+            if (questToAddId.HasValue)
+            {
+                scene.QuestToAddId = questToAddId;
+            }
+
+            if (questToRemoveId.HasValue)
+            {
+                scene.QuestToRemoveId = questToRemoveId;
+            }
 
             _context.Scenes.Update(scene);
             await _context.SaveChangesAsync();
