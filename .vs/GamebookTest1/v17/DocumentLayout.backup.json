@@ -100,7 +100,8 @@
               "RelativeToolTip": "GamebookTest1.Server\\Migrations\\20250108163939_questAddRemove.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-08T16:39:40.243Z"
+              "WhenOpened": "2025-01-08T16:39:40.243Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -112,7 +113,8 @@
               "RelativeToolTip": "GamebookTest1.Server\\Migrations\\20250107194526_kys254.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T19:45:26.773Z"
+              "WhenOpened": "2025-01-07T19:45:26.773Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -124,7 +126,8 @@
               "RelativeToolTip": "GamebookTest1.Server\\Models\\Scene.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T19:41:44.018Z"
+              "WhenOpened": "2025-01-07T19:41:44.018Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -136,7 +139,8 @@
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\UsersController.cs",
               "ViewState": "AgIAAIQAAAAAAAAAAAAwwMQAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T16:35:12.145Z"
+              "WhenOpened": "2024-12-23T16:35:12.145Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -148,7 +152,8 @@
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\QuestController.cs",
               "ViewState": "AgIAAGAAAAAAAAAAAAAIwHkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T16:29:24.599Z"
+              "WhenOpened": "2024-12-23T16:29:24.599Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -156,9 +161,9 @@
               "Title": "GameStateController.cs",
               "DocumentMoniker": "C:\\Users\\marti\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\GameStateController.cs",
               "RelativeDocumentMoniker": "GamebookTest1.Server\\Controllers\\GameStateController.cs",
-              "ToolTip": "C:\\Users\\marti\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\GameStateController.cs*",
-              "RelativeToolTip": "GamebookTest1.Server\\Controllers\\GameStateController.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAwAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\marti\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\GameStateController.cs",
+              "RelativeToolTip": "GamebookTest1.Server\\Controllers\\GameStateController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-23T16:16:45.516Z",
               "EditorCaption": ""
@@ -173,7 +178,8 @@
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\SceneController.cs",
               "ViewState": "AgIAALgAAAAAAAAAAAAcwNgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T16:23:55.594Z"
+              "WhenOpened": "2024-12-23T16:23:55.594Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -185,7 +191,8 @@
               "RelativeToolTip": "GamebookTest1.Server\\Models\\GameState.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T16:17:01.038Z"
+              "WhenOpened": "2024-12-23T16:17:01.038Z",
+              "EditorCaption": ""
             }
           ]
         },
@@ -203,7 +210,8 @@
               "RelativeToolTip": "GamebookTest1.Server\\Migrations\\20250107200007_asadsad.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T20:00:08.007Z"
+              "WhenOpened": "2025-01-07T20:00:08.007Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -215,7 +223,8 @@
               "RelativeToolTip": "GamebookTest1.Server\\Models\\DialogAnswer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T19:59:11.091Z"
+              "WhenOpened": "2025-01-07T19:59:11.091Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -227,7 +236,8 @@
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\ItemController.cs",
               "ViewState": "AgIAAHMAAAAAAAAAAAAcwBMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T16:17:18.273Z"
+              "WhenOpened": "2024-12-23T16:17:18.273Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
