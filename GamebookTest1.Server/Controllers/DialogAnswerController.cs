@@ -40,7 +40,7 @@ namespace GamebookTest1.Server.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateDialogAnswer(
             [FromForm] string answerText,
-            [FromForm] int nextSceneId
+            [FromForm] int? nextSceneId
         )
         {
             if (string.IsNullOrWhiteSpace(answerText))
@@ -49,7 +49,7 @@ namespace GamebookTest1.Server.Controllers
             }
             if (nextSceneId == 0)
             {
-                return BadRequest("Next scene ID is required.");
+                return BadRequest("Next scene shouldn't be 0.");
             }
 
             var dialogAnswer = new DialogAnswer

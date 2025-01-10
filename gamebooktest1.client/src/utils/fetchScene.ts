@@ -5,7 +5,7 @@ export const fetchScene = async (
   setScene: (scene: Scene) => void
 ) => {
   try {
-    const response = await fetch(`https://localhost:7174/api/Scene/${id}`, {
+    const response = await fetch(`/api/Scene/${id}`, {
       method: "GET",
       headers: {
         Accept: "*/*", // Header matching your curl command

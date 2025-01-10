@@ -57,12 +57,10 @@ export default defineConfig({
         target,
         secure: false,
       },
-      /*       {
-        "^/api/": {
-          target,
-          secure: false,
-        },
-      }, */
+      "^/api/Scene": {
+        target,
+        secure: false,
+      },
     },
     port: 5173,
     https: {

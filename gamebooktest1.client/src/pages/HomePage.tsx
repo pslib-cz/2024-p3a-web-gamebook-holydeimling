@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../UserContext";
 import audio from "../assets/music/cesky-hello-neighbor-song-remix.mp3";
 import ReactAudioPlayer from "react-audio-player";
-import radioImage from "../assets/images/radio.png"; // Import your image
 import { newGame, loadGame } from "../utils/startGame";
 
 export const HomePage = () => {
@@ -99,16 +98,20 @@ export const HomePage = () => {
   const [playScreenButtonsData, setPlayScreenButtonsData] = useState([
     {
       text: "Nová hra",
-      onClick: () => {
-        newGame(user, setUser);
-        navigate("/scene");
+      onClick: async () => {
+        if (user) {
+          await newGame(user, setUser);
+          navigate("/scene");
+        }
       },
     },
     {
       text: "Pokračovat",
-      onClick: () => {
-        loadGame(user, setUser);
-        navigate("/scene");
+      onClick: async () => {
+        if (user) {
+          await loadGame(user, setUser);
+          navigate("/scene");
+        }
       },
     },
     {
@@ -137,6 +140,17 @@ export const HomePage = () => {
     }
   }, [user]);
 
+  const toggleAudio = () => {
+    if (audioRef.current && audioRef.current.audioEl.current) {
+      if (isPlaying) {
+        audioRef.current.audioEl.current.pause();
+      } else {
+        audioRef.current.audioEl.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   return (
     <main className="homepage__container">
       <div className="items__container">
@@ -164,6 +178,8 @@ export const HomePage = () => {
           </span>
         </>
       )}
+      <button onClick={toggleAudio}>radio</button>
+      <ReactAudioPlayer ref={audioRef} src={audio} />
     </main>
   );
 };

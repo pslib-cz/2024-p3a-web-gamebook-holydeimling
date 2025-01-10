@@ -127,6 +127,7 @@ export const ScenePage = () => {
               alt={sceneCharacter.character.firstName}
               style={{
                 position: "absolute",
+
                 top: `${sceneCharacter.position.y}px`,
                 left: `${sceneCharacter.position.x}px`,
                 width: `${sceneCharacter.size.width}px`,
