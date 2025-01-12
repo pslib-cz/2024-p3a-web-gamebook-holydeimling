@@ -5,6 +5,7 @@ import { HomeScreenForm } from "../components/Home/HomeScreenForm";
 import { HomeScreenLogo } from "../components/Home/HomeScreenLogo";
 import "./RegisterPage.css";
 import axios from "axios";
+import { toast } from "sonner";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ export const RegisterPage = () => {
     // Validate password match
     if (formData["heslo"] !== formData["potvrzení hesla"]) {
       setError("Hesla se neshodují");
+      toast.error("Hesla se neshodují");
       return;
     }
 
@@ -44,12 +46,15 @@ export const RegisterPage = () => {
 
       // Handle successful registration
       console.log("Registration successful:", response.data);
+      toast.success("Registrace proběhla úspěšně");
       navigate("/login"); // Redirect to login page
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setError(error.response?.data || "Registrace selhala");
+        toast.error("Registrace selhala: " + error.response?.data);
       } else {
         setError("Nastala neočekávaná chyba");
+        toast.error("Nastala neočekávaná chyba");
       }
     }
   };
@@ -58,7 +63,6 @@ export const RegisterPage = () => {
     <main className="homepage__container">
       <div className="items__container">
         <HomeScreenLogo />
-        {error && <div className="error-message">{error}</div>}
         <HomeScreenForm
           heading={formData.heading}
           inputs={formData.inputs}

@@ -6,10 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../UserContext";
 import { newGame, loadGame } from "../utils/startGame";
 import { Radio } from "../components/Radio";
+import { toast, Toaster } from "sonner";
+import { startSceneId } from "../utils/constants";
 
 export const HomePage = () => {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
+
   const [homeScreenButtonsData] = useState([
     {
       text: "Hrát",
@@ -28,6 +31,7 @@ export const HomePage = () => {
       onClick: () => console.log("Zásluhy"),
     },
   ]);
+
   const [homeScreenButtonsDataLoggedIn] = useState([
     {
       text: "Hrát",
@@ -44,9 +48,12 @@ export const HomePage = () => {
       onClick: () => {
         setUser(null);
         setDataToRender(homeScreenButtonsData);
+        navigate("/");
+        toast.success("Odhlášení proběhlo úspěšně");
       },
     },
   ]);
+
   const [homeScreenButtonsDataAdminLoggedIn] = useState([
     {
       text: "Hrát",
@@ -63,6 +70,8 @@ export const HomePage = () => {
       onClick: () => {
         setUser(null);
         setDataToRender(homeScreenButtonsData);
+        navigate("/");
+        toast.success("Odhlášení proběhlo úspěšně");
       },
     },
   ]);
@@ -87,23 +96,29 @@ export const HomePage = () => {
       },
     },
   ]);
+
   const [playScreenButtonsData] = useState([
     {
       text: "Nová hra",
       onClick: async () => {
-        if (user) {
-          await newGame(user, setUser);
-          navigate("/scene");
-        }
+        await newGame(user, setUser);
+        navigate(`/scene/${startSceneId}`);
       },
     },
     {
       text: "Pokračovat",
       onClick: async () => {
-        if (user) {
-          await loadGame(user, setUser);
-          navigate("/scene");
+        if (
+          user?.gameState.checkpointSceneId === 0 ||
+          user?.gameState.checkpointSceneId === null ||
+          user?.gameState.checkpointSceneId === undefined ||
+          user?.gameState.checkpointSceneId === 1
+        ) {
+          toast.error("Nemáte žádnou uloženou hru");
+          return;
         }
+        await loadGame(user, setUser);
+        navigate(`/scene/${user?.gameState.checkpointSceneId || 1}`);
       },
     },
     {
@@ -160,6 +175,7 @@ export const HomePage = () => {
           <Radio y={5} x={20} width={100} height={100} />
         </>
       )}
+      <Toaster richColors />
     </main>
   );
 };

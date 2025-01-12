@@ -12,6 +12,7 @@ import {
   BackofficeCategoryPage,
   BackofficeCategoryRouter,
 } from "./pages/BackofficeCategoryPage"; // Import the category page
+import { Toaster } from "sonner";
 
 function App() {
   const router = createBrowserRouter([
@@ -40,7 +41,7 @@ function App() {
       element: <FileUpload />,
     },
     {
-      path: "/scene",
+      path: "/scene/:id", // Add dynamic parameter for scene ID
       element: <ScenePage />,
     },
     {
@@ -61,7 +62,12 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toaster richColors />
+    </>
+  );
 }
 
 export default App;

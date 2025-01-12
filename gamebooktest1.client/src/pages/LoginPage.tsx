@@ -5,7 +5,8 @@ import { HomeScreenForm } from "../components/Home/HomeScreenForm";
 import { HomeScreenLogo } from "../components/Home/HomeScreenLogo";
 import "./LoginPage.css";
 import axios from "axios";
-import { useUser } from "../UserContext";
+import { User, useUser } from "../UserContext";
+import { toast, Toaster } from "sonner";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -35,7 +36,8 @@ export const LoginPage = () => {
 
       // Handle successful login (e.g., store user info, redirect)
       console.log("Login successful:", response.data);
-      setUser(response.data);
+      toast.success("Přihlášení proběhlo úspěšně");
+      setUser(response.data as User);
       setUser({
         id: response.data.id,
         email: response.data.email,
@@ -47,8 +49,10 @@ export const LoginPage = () => {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setError(error.response?.data || "Přihlášení selhalo");
+        toast.error("Přihlášení selhalo: " + error.response?.data);
       } else {
         setError("Nastala neočekávaná chyba");
+        toast.error("Nastala neočekávaná chyba");
       }
     }
   };
@@ -57,7 +61,6 @@ export const LoginPage = () => {
     <main className="homepage__container">
       <div className="items__container">
         <HomeScreenLogo />
-        {error && <div className="error-message">{error}</div>}
         <HomeScreenForm
           heading={formData.heading}
           inputs={formData.inputs}

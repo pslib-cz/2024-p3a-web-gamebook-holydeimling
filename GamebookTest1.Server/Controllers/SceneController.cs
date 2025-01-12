@@ -87,6 +87,7 @@ namespace GamebookTest1.Server.Controllers
             [FromForm] List<int> sceneItemsIds,
             [FromForm] List<int> sceneDialogsIds,
             [FromForm] bool isCheckpoint,
+            [FromForm] bool gameOver,
             [FromForm] int? minigameId,
             [FromForm] int? questToAddId,
             [FromForm] int? questToRemoveId
@@ -137,6 +138,7 @@ namespace GamebookTest1.Server.Controllers
                 SceneItems = _sceneItems,
                 SceneDialogs = _sceneDialogs,
                 IsCheckpoint = isCheckpoint,
+                GameOver = gameOver,
                 MinigameId = minigameId,
                 QuestToAddId = questToAddId,
                 QuestToRemoveId = questToRemoveId,
@@ -156,6 +158,7 @@ namespace GamebookTest1.Server.Controllers
             [FromForm] List<int>? sceneItemsIds,
             [FromForm] List<int>? sceneDialogsIds,
             [FromForm] bool? isCheckpoint,
+            [FromForm] bool? gameOver,
             [FromForm] int? minigameId,
             [FromForm] int? questToAddId,
             [FromForm] int? questToRemoveId
@@ -214,6 +217,11 @@ namespace GamebookTest1.Server.Controllers
             if (isCheckpoint.HasValue)
             {
                 scene.IsCheckpoint = isCheckpoint.Value;
+            }
+
+            if (gameOver.HasValue)
+            {
+                scene.GameOver = gameOver.Value;
             }
 
             if (minigameId.HasValue)

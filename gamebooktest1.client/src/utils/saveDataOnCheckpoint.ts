@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { Inventory, Quest } from "../types";
 import { User } from "../UserContext";
 
@@ -42,6 +43,7 @@ export const saveDataOnCheckpoint = async (
 
       const updatedUser = await userResponse.json();
       setUser(updatedUser as User);
+      toast.info("Hra uložena");
       console.log("User data fetched successfully", updatedUser);
     } catch (error) {
       console.error("Error updating checkpoint scene ID:", error);
