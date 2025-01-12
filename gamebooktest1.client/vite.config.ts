@@ -57,7 +57,7 @@ export default defineConfig({
         target,
         secure: false,
       },
-      "^/api/Scene": {
+      "^/api/*": {
         target,
         secure: false,
       },

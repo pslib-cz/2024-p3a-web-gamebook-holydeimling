@@ -11,7 +11,7 @@ export const newGame = async (
       formData.append("checkpointSceneId", `${startSceneId}`); // Set the checkpointSceneId to default value that is 1
 
       const response = await fetch(
-        `https://localhost:7174/api/GameState/edit/CheckpointSceneId/${user.gameState.gameStateId}`,
+        `/api/GameState/edit/CheckpointSceneId/${user.gameState.gameStateId}`,
         {
           method: "PUT",
           headers: {
@@ -30,15 +30,12 @@ export const newGame = async (
       );
 
       // Fetch the updated user data
-      const userResponse = await fetch(
-        `https://localhost:7174/api/Users/${user.id}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "*/*",
-          },
-        }
-      );
+      const userResponse = await fetch(`/api/Users/${user.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "*/*",
+        },
+      });
 
       if (!userResponse.ok) {
         throw new Error(`HTTP error! Status: ${userResponse.status}`);
@@ -59,15 +56,12 @@ export const loadGame = async (
 ) => {
   if (user) {
     try {
-      const response = await fetch(
-        `https://localhost:7174/api/Users/${user.id}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "*/*",
-          },
-        }
-      );
+      const response = await fetch(`/api/Users/${user.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "*/*",
+        },
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }

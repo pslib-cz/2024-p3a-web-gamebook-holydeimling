@@ -34,15 +34,11 @@ export const ImageUpload: React.FC = () => {
     formData.append("description", description);
 
     try {
-      const response = await axios.post(
-        "https://localhost:7174/api/image/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post("/api/image/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       setMessage(`Image uploaded successfully: ${response.data.imageId}`);
     } catch (error) {
       setMessage("Failed to upload image");

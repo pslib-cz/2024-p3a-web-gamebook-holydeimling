@@ -21,13 +21,10 @@ export const FileUpload: React.FC = () => {
     formData.append("file", file);
 
     try {
-      const response = await fetch(
-        "https://localhost:7174/api/FileUpload/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const response = await fetch("/api/FileUpload/upload", {
+        method: "POST",
+        body: formData,
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -44,7 +41,7 @@ export const FileUpload: React.FC = () => {
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const response = await fetch("https://localhost:7174/api/FileUpload/1");
+        const response = await fetch("/api/FileUpload/1");
         if (!response.ok) {
           throw new Error("Error! Status: " + response.status);
         }

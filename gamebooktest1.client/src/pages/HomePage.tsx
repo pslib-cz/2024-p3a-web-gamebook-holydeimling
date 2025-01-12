@@ -1,20 +1,16 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { HomeScreenButton } from "../components/Home/HomeScreenButton";
 import { HomeScreenLogo } from "../components/Home/HomeScreenLogo";
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../UserContext";
-import audio from "../assets/music/cesky-hello-neighbor-song-remix.mp3";
-import ReactAudioPlayer from "react-audio-player";
 import { newGame, loadGame } from "../utils/startGame";
+import { Radio } from "../components/Radio";
 
 export const HomePage = () => {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
-  const audioRef = useRef<ReactAudioPlayer>(null); // Create a ref for the audio player
-  const [isPlaying, setIsPlaying] = useState(false); // State to track if the audio is playing
-
-  const [homeScreenButtonsData, setHomeScreenButtonsData] = useState([
+  const [homeScreenButtonsData] = useState([
     {
       text: "Hrát",
       onClick: () => {
@@ -32,30 +28,26 @@ export const HomePage = () => {
       onClick: () => console.log("Zásluhy"),
     },
   ]);
-  const [homeScreenButtonsDataLoggedIn, setHomeScreenButtonsDataLoggedIn] =
-    useState([
-      {
-        text: "Hrát",
-        onClick: () => {
-          setDataToRender(playScreenButtonsData);
-        },
+  const [homeScreenButtonsDataLoggedIn] = useState([
+    {
+      text: "Hrát",
+      onClick: () => {
+        setDataToRender(playScreenButtonsData);
       },
-      {
-        text: "Zásluhy",
-        onClick: () => console.log("Options"),
+    },
+    {
+      text: "Zásluhy",
+      onClick: () => console.log("Options"),
+    },
+    {
+      text: "Odhlásit se",
+      onClick: () => {
+        setUser(null);
+        setDataToRender(homeScreenButtonsData);
       },
-      {
-        text: "Odhlásit se",
-        onClick: () => {
-          setUser(null);
-          setDataToRender(homeScreenButtonsData);
-        },
-      },
-    ]);
-  const [
-    homeScreenButtonsDataAdminLoggedIn,
-    setHomeScreenButtonsDataAdminLoggedIn,
-  ] = useState([
+    },
+  ]);
+  const [homeScreenButtonsDataAdminLoggedIn] = useState([
     {
       text: "Hrát",
       onClick: () => {
@@ -75,7 +67,7 @@ export const HomePage = () => {
     },
   ]);
 
-  const [loginScreenButtonsData, setLoginScreenButtonsData] = useState([
+  const [loginScreenButtonsData] = useState([
     {
       text: "Přihlásit se",
       onClick: () => navigate("/login"),
@@ -95,7 +87,7 @@ export const HomePage = () => {
       },
     },
   ]);
-  const [playScreenButtonsData, setPlayScreenButtonsData] = useState([
+  const [playScreenButtonsData] = useState([
     {
       text: "Nová hra",
       onClick: async () => {
@@ -140,17 +132,6 @@ export const HomePage = () => {
     }
   }, [user]);
 
-  const toggleAudio = () => {
-    if (audioRef.current && audioRef.current.audioEl.current) {
-      if (isPlaying) {
-        audioRef.current.audioEl.current.pause();
-      } else {
-        audioRef.current.audioEl.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
   return (
     <main className="homepage__container">
       <div className="items__container">
@@ -176,10 +157,9 @@ export const HomePage = () => {
           <span>
             inventoryState {user.gameState?.inventoryState?.inventoryId}{" "}
           </span>
+          <Radio y={5} x={20} width={100} height={100} />
         </>
       )}
-      <button onClick={toggleAudio}>radio</button>
-      <ReactAudioPlayer ref={audioRef} src={audio} />
     </main>
   );
 };

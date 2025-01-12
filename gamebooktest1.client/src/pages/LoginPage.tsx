@@ -27,15 +27,11 @@ export const LoginPage = () => {
     formDataObj.append("password", formData["heslo"]);
 
     try {
-      const response = await axios.post(
-        "https://localhost:7174/api/Users/login",
-        formDataObj,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post("/api/Users/login", formDataObj, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       // Handle successful login (e.g., store user info, redirect)
       console.log("Login successful:", response.data);

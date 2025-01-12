@@ -14,7 +14,7 @@ export const BackofficeCategoryPage = () => {
   const fetchData = async (category: string) => {
     try {
       console.log(`Fetching data for category: ${category}`);
-      const response = await fetch(`https://localhost:7174/api/${category}`, {
+      const response = await fetch(`/api/${category}`, {
         method: "GET",
         headers: {
           Accept: "application/json",

@@ -11,15 +11,12 @@ const ItemDetail: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const navigate = useNavigate();
   const fetchItem = async (category: string, id: string) => {
     try {
-      const response = await fetch(
-        `https://localhost:7174/api/${category}/${id}`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await fetch(`/api/${category}/${id}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -44,16 +41,13 @@ const ItemDetail: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   const handleEdit = async () => {
     try {
-      const response = await fetch(
-        `https://localhost:7174/api/${category}/edit/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(editedItem),
-        }
-      );
+      const response = await fetch(`/api/${category}/edit/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editedItem),
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
