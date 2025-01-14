@@ -237,31 +237,49 @@ export const ScenePage = () => {
                 </button>
               ) : (
                 <div>
-                  {currentScene.sceneDialogs[dialogIndex].dialogAnswers.map(
-                    (dialogAnswer) => (
-                      <button
-                        key={dialogAnswer.dialogAnswerId}
-                        onClick={() => {
-                          if (currentScene?.isCheckpoint) {
-                            saveDataOnCheckpoint(
-                              user,
-                              setUser,
-                              sceneId,
-                              user?.gameState.inventoryState,
-                              user?.gameState.questsState
-                            );
-                          }
-                          if (currentScene?.gameOver) {
-                            setShowGameOver(true);
-                          } else {
-                            navigate(`/scene/${dialogAnswer.nextSceneId}`); // Navigate to the next scene if no game over
-                          }
-                        }}
-                      >
-                        {dialogAnswer.answerText}
-                      </button>
-                    )
-                  )}
+                                  {currentScene.sceneDialogs[dialogIndex].dialogAnswers.map(
+                                      (dialogAnswer) => (
+                                          <button
+                                              key={dialogAnswer.dialogAnswerId}
+                                              onClick={() => {
+                                                  if (currentScene?.isCheckpoint) {
+                                                      saveDataOnCheckpoint(
+                                                          user,
+                                                          setUser,
+                                                          sceneId,
+                                                          user?.gameState.inventoryState,
+                                                          user?.gameState.questsState
+                                                      );
+                                                  }
+                                                  if (currentScene?.gameOver) {
+                                                      setShowGameOver(true);
+                                                  } else if (dialogAnswer.nextSceneId) {
+                                                      // Navigate to the next scene
+                                                      navigate(`/scene/${dialogAnswer.nextSceneId}`);
+                                                  } else if (dialogAnswer.nextDialogId) {
+                                                      // Find the index of the next dialog within the current scene
+                                                      const nextDialogIndex = currentScene.sceneDialogs.findIndex(
+                                                          (dialog) => dialog.dialogId === dialogAnswer.nextDialogId
+                                                      );
+                                                      if (nextDialogIndex !== -1) {
+                                                          // Update the dialogIndex to render the next dialog
+                                                          setDialogIndex(nextDialogIndex);
+                                                      } else {
+                                                          // Handle case where the next dialog is not found
+                                                          console.error("Next dialog not found in the current scene.");
+                                                      }
+                                                  } else {
+                                                      // Handle case where both nextSceneId and nextDialogId are null
+                                                      console.log("End of dialog sequence.");
+                                                      // You might navigate to a default scene or show an ending message
+                                                  }
+                                              }}
+                                          >
+                                              {dialogAnswer.answerText}
+                                          </button>
+                                      )
+                                  )}
+
                 </div>
               )}
             </div>

@@ -48,13 +48,15 @@ namespace GamebookTest1.Server.Controllers
             {
                 return BadRequest("Answer text is required.");
             }
-            if (nextSceneId == 0)
+
+            if (nextSceneId.HasValue && nextSceneId <= 0)
             {
-                return BadRequest("Next scene shouldn't be 0.");
+                return BadRequest("NextSceneId must be a positive integer or null.");
             }
-            if (nextDialogId == 0)
+
+            if (nextDialogId.HasValue && nextDialogId <= 0)
             {
-                return BadRequest("Next dialog shouldn't be 0.");
+                return BadRequest("NextDialogId must be a positive integer or null.");
             }
 
             var dialogAnswer = new DialogAnswer
@@ -73,6 +75,7 @@ namespace GamebookTest1.Server.Controllers
                 dialogAnswer
             );
         }
+
 
         [HttpPut("edit/{id}")]
         public async Task<IActionResult> EditDialogAnswer(
@@ -95,11 +98,19 @@ namespace GamebookTest1.Server.Controllers
 
             if (nextSceneId.HasValue)
             {
+                if (nextSceneId.Value <= 0)
+                {
+                    return BadRequest("NextSceneId must be a positive integer or null.");
+                }
                 dialogAnswer.NextSceneId = nextSceneId.Value;
             }
 
             if (nextDialogId.HasValue)
             {
+                if (nextDialogId.Value <= 0)
+                {
+                    return BadRequest("NextDialogId must be a positive integer or null.");
+                }
                 dialogAnswer.NextDialogId = nextDialogId.Value;
             }
 
@@ -108,6 +119,7 @@ namespace GamebookTest1.Server.Controllers
 
             return NoContent();
         }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDialogAnswer(int id)
