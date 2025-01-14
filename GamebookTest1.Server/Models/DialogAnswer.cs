@@ -10,5 +10,6 @@ namespace GamebookTest1.Server.Models
         public string? AnswerText { get; set; }
 
         public int? NextSceneId { get; set; }
+        public int? NextDialogId { get; set; }
     }
 }

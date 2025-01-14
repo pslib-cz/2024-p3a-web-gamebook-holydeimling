@@ -40,7 +40,8 @@ namespace GamebookTest1.Server.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateDialogAnswer(
             [FromForm] string answerText,
-            [FromForm] int? nextSceneId
+            [FromForm] int? nextSceneId,
+            [FromForm] int? nextDialogId
         )
         {
             if (string.IsNullOrWhiteSpace(answerText))
@@ -51,11 +52,16 @@ namespace GamebookTest1.Server.Controllers
             {
                 return BadRequest("Next scene shouldn't be 0.");
             }
+            if (nextDialogId == 0)
+            {
+                return BadRequest("Next dialog shouldn't be 0.");
+            }
 
             var dialogAnswer = new DialogAnswer
             {
                 AnswerText = answerText,
                 NextSceneId = nextSceneId,
+                NextDialogId = nextDialogId,
             };
 
             await _context.DialogAnswers.AddAsync(dialogAnswer);
@@ -72,7 +78,8 @@ namespace GamebookTest1.Server.Controllers
         public async Task<IActionResult> EditDialogAnswer(
             int id,
             [FromForm] string? answerText,
-            [FromForm] int? nextSceneId
+            [FromForm] int? nextSceneId,
+            [FromForm] int? nextDialogId
         )
         {
             var dialogAnswer = await _context.DialogAnswers.FindAsync(id);
@@ -89,6 +96,11 @@ namespace GamebookTest1.Server.Controllers
             if (nextSceneId.HasValue)
             {
                 dialogAnswer.NextSceneId = nextSceneId.Value;
+            }
+
+            if (nextDialogId.HasValue)
+            {
+                dialogAnswer.NextDialogId = nextDialogId.Value;
             }
 
             _context.DialogAnswers.Update(dialogAnswer);

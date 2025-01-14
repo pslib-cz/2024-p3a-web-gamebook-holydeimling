@@ -51,8 +51,9 @@ export type Dialog = {
 };
 export type DialogAnswer = {
   dialogAnswerId: number;
-  answerText?: string;
-  nextSceneId: number;
+  answerText?: string | null;
+  nextSceneId?: number | null;
+  nextDialogId: number | null;
 };
 export type Scene = {
   sceneId: number;
@@ -62,6 +63,7 @@ export type Scene = {
   sceneItems: SceneItem[];
   sceneDialogs: Dialog[];
   isCheckpoint: boolean;
+  gameOver: boolean;
   minigameId: number | null;
   questToAddId: number | null;
   questToRemoveId: number | null;
