@@ -1,5 +1,6 @@
 .button__container {
   width: 300px;
+  max-width: 800px;
   font-family: "Joan";
   font-size: 48px;
   background-color: var(--backgroudColor);

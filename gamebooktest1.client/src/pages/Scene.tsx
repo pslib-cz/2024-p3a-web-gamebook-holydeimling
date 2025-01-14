@@ -8,6 +8,8 @@ import { QuestContainer } from "../components/QuestContainer";
 import { fetchScene } from "../utils/fetchScene";
 import { saveDataOnCheckpoint } from "../utils/saveDataOnCheckpoint";
 import { PauseScreen } from "../components/PauseScreen";
+import { loadGame } from "../utils/startGame";
+import { GameOverScreen } from "../components/GameOverScreen";
 
 export const ScenePage = () => {
   const { user, setUser } = useUser();
@@ -20,7 +22,7 @@ export const ScenePage = () => {
   // Fetch scene whenever id changes
   useEffect(() => {
     const newSceneId = parseInt(id || "1");
-
+    /* 
     if (currentScene) {
       const allPossibleIdsFromCurrentScene = currentScene.sceneDialogs
         ?.map((dialog) =>
@@ -41,7 +43,7 @@ export const ScenePage = () => {
         console.log("Scene id is incorrect", newSceneId);
         navigate(`/`);
       }
-    }
+    } */
 
     setSceneId(newSceneId);
     fetchScene(newSceneId, setCurrentScene);
@@ -59,7 +61,11 @@ export const ScenePage = () => {
         user?.gameState.questsState
       );
     }
-    navigate(`/scene/${sceneId + 1}`); // Navigate to the next scene
+    if (currentScene?.gameOver) {
+      setShowGameOver(true);
+    } else {
+      navigate(`/scene/${sceneId + 1}`); // Navigate to the next scene if no game over
+    }
   };
 
   // Handle continue click
@@ -84,6 +90,11 @@ export const ScenePage = () => {
         user?.gameState.questsState
       );
     }
+    if (currentScene?.gameOver) {
+      setShowGameOver(true);
+    } else {
+      navigate(`/scene/${sceneId + 1}`); // Navigate to the next scene if no game over
+    }
   };
 
   useEffect(() => {
@@ -94,10 +105,6 @@ export const ScenePage = () => {
       // Add quest to the user
     }
   }, [currentScene]);
-
-  const gameOver = () => {
-    // Game over logic
-  };
 
   const [showPauseMenu, setShowPauseMenu] = useState(false);
 
@@ -125,8 +132,17 @@ export const ScenePage = () => {
     navigate("/");
   };
 
+  const [showGameOver, setShowGameOver] = useState(false);
+
   return (
     <>
+      {showGameOver && (
+        <GameOverScreen
+          user={user}
+          setUser={setUser}
+          setShowGameOver={setShowGameOver}
+        />
+      )}
       {showPauseMenu && (
         <PauseScreen
           handleResume={handleResumeClick}
@@ -161,13 +177,12 @@ export const ScenePage = () => {
                 src={`/${sceneItem.item.itemImages[0].filePath}`}
                 alt={sceneItem.item.itemName}
                 style={{
-                  position: "absolute",
-                  top: `${sceneItem.position.y}px`,
-                  left: `${sceneItem.position.x}px`,
-                  width: `${sceneItem.size.width}px`,
-                  height: `${sceneItem.size.height}px`,
+                  top: `${sceneItem.position.y}px`, //předělat na %
+                  left: `${sceneItem.position.x}px`, //předělat na %
+                  width: `${sceneItem.size.width}px`, //předělat na %
+                  height: `${sceneItem.size.height}px`, //předělat na %
                 }}
-                className="scene-item"
+                className="scene__image scene-item"
               />
             </div>
           );
@@ -186,13 +201,12 @@ export const ScenePage = () => {
                 src={`/${sceneCharacter.character.characterImages[0].filePath}`}
                 alt={sceneCharacter.character.firstName}
                 style={{
-                  position: "absolute",
-                  top: `${sceneCharacter.position.y}px`,
-                  left: `${sceneCharacter.position.x}px`,
-                  width: `${sceneCharacter.size.width}px`,
-                  height: `${sceneCharacter.size.height}px`,
+                  top: `${sceneCharacter.position.y}px`, //předělat na %
+                  left: `${sceneCharacter.position.x}px`, //předělat na %
+                  width: `${sceneCharacter.size.width}px`, //předělat na %
+                  height: `${sceneCharacter.size.height}px`, //předělat na %
                 }}
-                className="scene-character"
+                className="scene__image scene-character"
               />
             </div>
           );
@@ -237,7 +251,11 @@ export const ScenePage = () => {
                               user?.gameState.questsState
                             );
                           }
-                          navigate(`/scene/${dialogAnswer.nextSceneId}`);
+                          if (currentScene?.gameOver) {
+                            setShowGameOver(true);
+                          } else {
+                            navigate(`/scene/${dialogAnswer.nextSceneId}`); // Navigate to the next scene if no game over
+                          }
                         }}
                       >
                         {dialogAnswer.answerText}
