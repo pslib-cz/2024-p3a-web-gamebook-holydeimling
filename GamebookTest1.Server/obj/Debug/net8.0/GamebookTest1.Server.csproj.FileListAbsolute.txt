@@ -1238,3 +1238,4 @@ C:\Users\Harry Deimling\source\repos\2024-p3a-web-gamebook-holydeimling\Gamebook
 C:\Users\Harry Deimling\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\Harry Deimling\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets\msbuild.GamebookTest1.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 C:\Users\Harry Deimling\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Harry Deimling\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\SixLabors.ImageSharp.dll
