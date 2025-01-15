@@ -1,236 +1,232 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\034093e4-7a6f-4d29-aa57-a83aedebbd25.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\034093e4-7a6f-4d29-aa57-a83aedebbd25.png",
       "PackagePath": "staticwebassets\\uploads\\034093e4-7a6f-4d29-aa57-a83aedebbd25.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\059a3011-15cc-4628-a366-4042865dba2b.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\059a3011-15cc-4628-a366-4042865dba2b.png",
       "PackagePath": "staticwebassets\\uploads\\059a3011-15cc-4628-a366-4042865dba2b.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\0973ea8d-78ed-4e08-9219-8630b356cde8.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\0973ea8d-78ed-4e08-9219-8630b356cde8.jpg",
       "PackagePath": "staticwebassets\\uploads\\0973ea8d-78ed-4e08-9219-8630b356cde8.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\112f3634-09f7-4aa9-ba50-e28eba868220.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\112f3634-09f7-4aa9-ba50-e28eba868220.jpg",
       "PackagePath": "staticwebassets\\uploads\\112f3634-09f7-4aa9-ba50-e28eba868220.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\14c98959-56a4-4b4b-a988-dffc83dcf774.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\14c98959-56a4-4b4b-a988-dffc83dcf774.png",
       "PackagePath": "staticwebassets\\uploads\\14c98959-56a4-4b4b-a988-dffc83dcf774.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\14d4b0c6-e20f-42f6-9b50-13e1f67bedad.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\14d4b0c6-e20f-42f6-9b50-13e1f67bedad.png",
       "PackagePath": "staticwebassets\\uploads\\14d4b0c6-e20f-42f6-9b50-13e1f67bedad.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\2a651750-40ff-4c78-8f2b-c4d2333277c7.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\2a651750-40ff-4c78-8f2b-c4d2333277c7.png",
       "PackagePath": "staticwebassets\\uploads\\2a651750-40ff-4c78-8f2b-c4d2333277c7.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\2d966fc8-84e7-484f-bf67-f6b873973f50.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\2d966fc8-84e7-484f-bf67-f6b873973f50.jpg",
       "PackagePath": "staticwebassets\\uploads\\2d966fc8-84e7-484f-bf67-f6b873973f50.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\39e40889-47a9-49e1-a2a5-e7e88bdf59e4.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\39e40889-47a9-49e1-a2a5-e7e88bdf59e4.jpg",
       "PackagePath": "staticwebassets\\uploads\\39e40889-47a9-49e1-a2a5-e7e88bdf59e4.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\405cf31e-07eb-4ab3-aff8-fe2955ed333a.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\405cf31e-07eb-4ab3-aff8-fe2955ed333a.png",
       "PackagePath": "staticwebassets\\uploads\\405cf31e-07eb-4ab3-aff8-fe2955ed333a.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\4081ef0e-f43c-497c-b4d3-c85805f7ecf2.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\4081ef0e-f43c-497c-b4d3-c85805f7ecf2.png",
       "PackagePath": "staticwebassets\\uploads\\4081ef0e-f43c-497c-b4d3-c85805f7ecf2.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\4604249d-054d-48bb-b353-21e8147f2310.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\4604249d-054d-48bb-b353-21e8147f2310.jpg",
       "PackagePath": "staticwebassets\\uploads\\4604249d-054d-48bb-b353-21e8147f2310.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\4c35e372-bc57-45c4-af92-39f264ac559d.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\4c35e372-bc57-45c4-af92-39f264ac559d.jpg",
       "PackagePath": "staticwebassets\\uploads\\4c35e372-bc57-45c4-af92-39f264ac559d.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\5a5fdd67-9565-495a-afaa-bffff7b5f2a6.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\5a5fdd67-9565-495a-afaa-bffff7b5f2a6.png",
       "PackagePath": "staticwebassets\\uploads\\5a5fdd67-9565-495a-afaa-bffff7b5f2a6.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\5aa311ad-f2b9-4014-ba21-092c404afba8.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\5aa311ad-f2b9-4014-ba21-092c404afba8.png",
       "PackagePath": "staticwebassets\\uploads\\5aa311ad-f2b9-4014-ba21-092c404afba8.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\5d212ff6-4c24-41a8-b794-22830d0b66a0.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\5d212ff6-4c24-41a8-b794-22830d0b66a0.png",
       "PackagePath": "staticwebassets\\uploads\\5d212ff6-4c24-41a8-b794-22830d0b66a0.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\635d01c8-29c1-4713-b744-d4d1e6f080cd.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\635d01c8-29c1-4713-b744-d4d1e6f080cd.jpg",
       "PackagePath": "staticwebassets\\uploads\\635d01c8-29c1-4713-b744-d4d1e6f080cd.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\642d5d63-828f-4d2f-b410-b726bb01063f.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\642d5d63-828f-4d2f-b410-b726bb01063f.png",
       "PackagePath": "staticwebassets\\uploads\\642d5d63-828f-4d2f-b410-b726bb01063f.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6b5eae9d-b4f6-4585-be55-c1d9503eebbb.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6b5eae9d-b4f6-4585-be55-c1d9503eebbb.jpg",
       "PackagePath": "staticwebassets\\uploads\\6b5eae9d-b4f6-4585-be55-c1d9503eebbb.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6b7bde50-fdb3-4103-ad0b-f3fc0cd1fad0.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6b7bde50-fdb3-4103-ad0b-f3fc0cd1fad0.png",
       "PackagePath": "staticwebassets\\uploads\\6b7bde50-fdb3-4103-ad0b-f3fc0cd1fad0.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6c4c0ead-6fff-4eda-8bb2-8508dfa36f54.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6c4c0ead-6fff-4eda-8bb2-8508dfa36f54.png",
       "PackagePath": "staticwebassets\\uploads\\6c4c0ead-6fff-4eda-8bb2-8508dfa36f54.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6e32737c-6e4d-46e8-93ad-443f13b8f90e.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6e32737c-6e4d-46e8-93ad-443f13b8f90e.png",
       "PackagePath": "staticwebassets\\uploads\\6e32737c-6e4d-46e8-93ad-443f13b8f90e.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\71258f2c-1037-465d-a690-2679572a0b3a.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\71258f2c-1037-465d-a690-2679572a0b3a.jpg",
       "PackagePath": "staticwebassets\\uploads\\71258f2c-1037-465d-a690-2679572a0b3a.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\78462922-5a0f-47e3-8388-9ed204c3d4d4.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\78462922-5a0f-47e3-8388-9ed204c3d4d4.jpg",
       "PackagePath": "staticwebassets\\uploads\\78462922-5a0f-47e3-8388-9ed204c3d4d4.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\7b130a6a-546a-4de1-9551-28b2eb0ff3a5.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\7b130a6a-546a-4de1-9551-28b2eb0ff3a5.jpg",
       "PackagePath": "staticwebassets\\uploads\\7b130a6a-546a-4de1-9551-28b2eb0ff3a5.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\7be0dc50-235a-4d33-a857-86c22df4091a.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\7be0dc50-235a-4d33-a857-86c22df4091a.png",
       "PackagePath": "staticwebassets\\uploads\\7be0dc50-235a-4d33-a857-86c22df4091a.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\7e0dca0c-ffdd-4cde-8f5a-4531d8454d3c.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\7e0dca0c-ffdd-4cde-8f5a-4531d8454d3c.png",
       "PackagePath": "staticwebassets\\uploads\\7e0dca0c-ffdd-4cde-8f5a-4531d8454d3c.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\823ddd40-b4b5-44ba-99cc-ad2cf93ad17e.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\823ddd40-b4b5-44ba-99cc-ad2cf93ad17e.png",
       "PackagePath": "staticwebassets\\uploads\\823ddd40-b4b5-44ba-99cc-ad2cf93ad17e.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\839e83ce-47f8-416f-9113-62850ba0d634.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\839e83ce-47f8-416f-9113-62850ba0d634.jpg",
       "PackagePath": "staticwebassets\\uploads\\839e83ce-47f8-416f-9113-62850ba0d634.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\89711867-63e5-4d2b-8c7f-0a15fad7bccc.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\89711867-63e5-4d2b-8c7f-0a15fad7bccc.png",
       "PackagePath": "staticwebassets\\uploads\\89711867-63e5-4d2b-8c7f-0a15fad7bccc.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\8cbe046d-afbc-4cb5-a673-68bcb85516e3.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\8cbe046d-afbc-4cb5-a673-68bcb85516e3.png",
       "PackagePath": "staticwebassets\\uploads\\8cbe046d-afbc-4cb5-a673-68bcb85516e3.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\8fac1e0f-8981-4e1f-b44a-65f5d4d7218c.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\8fac1e0f-8981-4e1f-b44a-65f5d4d7218c.png",
       "PackagePath": "staticwebassets\\uploads\\8fac1e0f-8981-4e1f-b44a-65f5d4d7218c.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\9dae307d-7f61-4a73-a7be-40557d6ef05e.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\9dae307d-7f61-4a73-a7be-40557d6ef05e.jpg",
       "PackagePath": "staticwebassets\\uploads\\9dae307d-7f61-4a73-a7be-40557d6ef05e.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a038f2b4-cedf-4508-bf9a-8873e994e8d7.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a038f2b4-cedf-4508-bf9a-8873e994e8d7.png",
       "PackagePath": "staticwebassets\\uploads\\a038f2b4-cedf-4508-bf9a-8873e994e8d7.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a5c914cc-dc0d-4fec-a5ea-1da0c8609101.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a5c914cc-dc0d-4fec-a5ea-1da0c8609101.png",
       "PackagePath": "staticwebassets\\uploads\\a5c914cc-dc0d-4fec-a5ea-1da0c8609101.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a8721ff9-209a-4bd6-8e4d-c9c2178720ca.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a8721ff9-209a-4bd6-8e4d-c9c2178720ca.png",
       "PackagePath": "staticwebassets\\uploads\\a8721ff9-209a-4bd6-8e4d-c9c2178720ca.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a95e8b92-ed3b-4532-9d2b-88db79d5b23c.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\a95e8b92-ed3b-4532-9d2b-88db79d5b23c.png",
       "PackagePath": "staticwebassets\\uploads\\a95e8b92-ed3b-4532-9d2b-88db79d5b23c.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\b018317b-65c3-47ae-98a6-6cbc5da91902.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\b018317b-65c3-47ae-98a6-6cbc5da91902.jpg",
       "PackagePath": "staticwebassets\\uploads\\b018317b-65c3-47ae-98a6-6cbc5da91902.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\b35e18f3-9d99-45ce-8323-71bd5be34698.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\b35e18f3-9d99-45ce-8323-71bd5be34698.png",
       "PackagePath": "staticwebassets\\uploads\\b35e18f3-9d99-45ce-8323-71bd5be34698.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\b37ebf9b-f66e-4543-8e25-21b770a6a89c.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\b37ebf9b-f66e-4543-8e25-21b770a6a89c.jpg",
       "PackagePath": "staticwebassets\\uploads\\b37ebf9b-f66e-4543-8e25-21b770a6a89c.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\b851a5a9-3fb3-46ac-9888-68a3bb6d32a9.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\b851a5a9-3fb3-46ac-9888-68a3bb6d32a9.jpg",
       "PackagePath": "staticwebassets\\uploads\\b851a5a9-3fb3-46ac-9888-68a3bb6d32a9.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\b99d6eb2-7a99-4a12-b1bd-a23a98633b72.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\b99d6eb2-7a99-4a12-b1bd-a23a98633b72.jpg",
       "PackagePath": "staticwebassets\\uploads\\b99d6eb2-7a99-4a12-b1bd-a23a98633b72.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\bce64833-f1fb-40a3-a874-f97531244dcb.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\bce64833-f1fb-40a3-a874-f97531244dcb.png",
       "PackagePath": "staticwebassets\\uploads\\bce64833-f1fb-40a3-a874-f97531244dcb.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\c5b51048-8ee6-4af8-be7e-4a81751cb483.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\c5b51048-8ee6-4af8-be7e-4a81751cb483.png",
       "PackagePath": "staticwebassets\\uploads\\c5b51048-8ee6-4af8-be7e-4a81751cb483.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\c60d08ce-9c58-486a-b0ad-f870aee8a4f7.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\c60d08ce-9c58-486a-b0ad-f870aee8a4f7.png",
       "PackagePath": "staticwebassets\\uploads\\c60d08ce-9c58-486a-b0ad-f870aee8a4f7.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\c6bf1ec0-fa2b-4577-80a9-cede1a201337.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\c6bf1ec0-fa2b-4577-80a9-cede1a201337.png",
       "PackagePath": "staticwebassets\\uploads\\c6bf1ec0-fa2b-4577-80a9-cede1a201337.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\ca25a7bd-e6bc-4c0d-a129-f9951fd14c02.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\ca25a7bd-e6bc-4c0d-a129-f9951fd14c02.png",
       "PackagePath": "staticwebassets\\uploads\\ca25a7bd-e6bc-4c0d-a129-f9951fd14c02.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\cd5a5dff-f995-4fa7-bb0a-de62d8a74aba.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\cd5a5dff-f995-4fa7-bb0a-de62d8a74aba.jpg",
       "PackagePath": "staticwebassets\\uploads\\cd5a5dff-f995-4fa7-bb0a-de62d8a74aba.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\cf1a39b6-c4e4-4bdc-adeb-9c05a15d1ada.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\cf1a39b6-c4e4-4bdc-adeb-9c05a15d1ada.jpg",
       "PackagePath": "staticwebassets\\uploads\\cf1a39b6-c4e4-4bdc-adeb-9c05a15d1ada.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\d28f30fa-9b81-405e-8c01-c6e883f7226b.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\d28f30fa-9b81-405e-8c01-c6e883f7226b.jpg",
       "PackagePath": "staticwebassets\\uploads\\d28f30fa-9b81-405e-8c01-c6e883f7226b.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\dd730551-2bb4-4b88-a1f7-062457fffa48.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\dd730551-2bb4-4b88-a1f7-062457fffa48.png",
       "PackagePath": "staticwebassets\\uploads\\dd730551-2bb4-4b88-a1f7-062457fffa48.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\e5c5f053-e32e-40fe-ae8b-6b3475d73629.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\e5c5f053-e32e-40fe-ae8b-6b3475d73629.png",
       "PackagePath": "staticwebassets\\uploads\\e5c5f053-e32e-40fe-ae8b-6b3475d73629.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\eb6f0908-db2b-430e-8b49-8f779ff56c20.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\eb6f0908-db2b-430e-8b49-8f779ff56c20.png",
       "PackagePath": "staticwebassets\\uploads\\eb6f0908-db2b-430e-8b49-8f779ff56c20.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\f6d4d8ae-affd-49b6-8b10-12a9b5cf2618.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\f6d4d8ae-affd-49b6-8b10-12a9b5cf2618.png",
       "PackagePath": "staticwebassets\\uploads\\f6d4d8ae-affd-49b6-8b10-12a9b5cf2618.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\fb9e3dba-2e0d-4675-b5fd-3d9443754140.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\fb9e3dba-2e0d-4675-b5fd-3d9443754140.png",
       "PackagePath": "staticwebassets\\uploads\\fb9e3dba-2e0d-4675-b5fd-3d9443754140.png"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\fbb367ff-093a-447f-8b69-b3a0b60608fc.jpg",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\fbb367ff-093a-447f-8b69-b3a0b60608fc.jpg",
       "PackagePath": "staticwebassets\\uploads\\fbb367ff-093a-447f-8b69-b3a0b60608fc.jpg"
     },
     {
-      "Id": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\ff90a57a-24c2-47e4-8c0d-7e2113f505a6.png",
+      "Id": "C:\\Users\\harry\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\ff90a57a-24c2-47e4-8c0d-7e2113f505a6.png",
       "PackagePath": "staticwebassets\\uploads\\ff90a57a-24c2-47e4-8c0d-7e2113f505a6.png"
-    },
-    {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GamebookTest1.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
-      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GamebookTest1.Server.Microsoft.AspNetCore.StaticWebAssets.props",

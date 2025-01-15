@@ -3,16 +3,53 @@
 }
 
 .dialog-system{
-  border: 1px solid black;
+  border: 2px solid var(--borderColor);
+  border-radius: 12px;
   position: fixed;
-  bottom: 0;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(255, 255, 255, 0.6);
-  padding: 10px;
+  background-color: var(--backgroudColor);
+  padding: 20px;
   width: 80%;
-  max-height: 600px;
-  z-Index: 1000;
+  max-width: 1000px;
+  max-height: 300px;
+  z-index: 1000;
+  filter: drop-shadow(0px 4px 4px var(--borderColor));
+  font-family: "Joan";
+  color: var(--textColor);
+}
+
+.dialog-system button {
+  width: 150px;
+  padding: 8px;
+  margin: 8px;
+  font-family: "Joan";
+  font-size: 16px;
+  background-color: var(--backgroudColor);
+  color: var(--textColor);
+  border: 2px solid var(--borderColor);
+  border-radius: 12px;
+  filter: drop-shadow(0px 4px 4px var(--borderColor));
+  cursor: pointer;
+  transition: .2s ease-in-out;
+}
+
+.dialog-system button:hover {
+  background-color: var(--borderColor);
+  color: var(--backgroudColor);
+  border: 2px solid var(--backgroudColor);
+  filter: drop-shadow(0px 4px 4px var(--backgroudColor));
+}
+
+.dialog-system__character {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--borderColor);
+  margin-right: 15px;
+  float: left;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .scene-background__image{
@@ -36,12 +73,6 @@
 
 .scene-character{
 
-}
-
-.dialog-system__character{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
 }
 
 .scene__image{
