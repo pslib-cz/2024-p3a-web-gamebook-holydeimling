@@ -177,10 +177,10 @@ export const ScenePage = () => {
                 src={`/${sceneItem.item.itemImages[0].filePath}`}
                 alt={sceneItem.item.itemName}
                 style={{
-                  top: `${sceneItem.position.y}px`, //předělat na %
-                  left: `${sceneItem.position.x}px`, //předělat na %
-                  width: `${sceneItem.size.width}px`, //předělat na %
-                  height: `${sceneItem.size.height}px`, //předělat na %
+                  top: `${sceneItem.position.y}%`,
+                  left: `${sceneItem.position.x}%`,
+                  width: `${sceneItem.size.width}%`,
+                  height: `${sceneItem.size.height}%`,
                 }}
                 className="scene__image scene-item"
               />
@@ -201,10 +201,10 @@ export const ScenePage = () => {
                 src={`/${sceneCharacter.character.characterImages[0].filePath}`}
                 alt={sceneCharacter.character.firstName}
                 style={{
-                  top: `${sceneCharacter.position.y}px`, //předělat na %
-                  left: `${sceneCharacter.position.x}px`, //předělat na %
-                  width: `${sceneCharacter.size.width}px`, //předělat na %
-                  height: `${sceneCharacter.size.height}px`, //předělat na %
+                  top: `${sceneCharacter.position.y}%`,
+                  left: `${sceneCharacter.position.x}%`,
+                  width: `${sceneCharacter.size.width}%`,
+                  height: `${sceneCharacter.size.height}%`,
                 }}
                 className="scene__image scene-character"
               />
