@@ -8,7 +8,6 @@ import { QuestContainer } from "../components/QuestContainer";
 import { fetchScene } from "../utils/fetchScene";
 import { saveDataOnCheckpoint } from "../utils/saveDataOnCheckpoint";
 import { PauseScreen } from "../components/PauseScreen";
-import { loadGame } from "../utils/startGame";
 import { GameOverScreen } from "../components/GameOverScreen";
 
 export const ScenePage = () => {

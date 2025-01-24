@@ -31,7 +31,11 @@ export const DraggableInventoryItem = ({
       }}
     >
       {imageUrl ? (
-        <img src={imageUrl} alt="Inventory Item" className="icon__image" />
+        <img
+          src={`/${imageUrl}`}
+          alt="Inventory Item"
+          className="icon__image"
+        />
       ) : (
         <div className="empty-slot" />
       )}

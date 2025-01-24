@@ -12,7 +12,7 @@ export const QuestContainer = ({ questState }: QuestContainerProps) => {
   const [showQuests, setShowQuests] = useState(false);
 
   return (
-    <div className="quest-system__container">
+    <div className={`quest-system__container ${showQuests ? "expand" : ""}`}>
       <img
         src={questIcon}
         alt="Quest icon"

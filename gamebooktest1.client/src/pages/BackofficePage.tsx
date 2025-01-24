@@ -53,6 +53,9 @@ export const BackofficePage = () => {
       </header>
       <h1>Backoffice</h1>
       <Outlet />
+      <div style={{ position: "fixed", bottom: "1rem", right: "1rem" }}>
+        <Link to="/">Home</Link>
+      </div>
     </>
   );
 };

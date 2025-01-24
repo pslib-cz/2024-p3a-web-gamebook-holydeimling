@@ -1234,3 +1234,7 @@ C:\Users\Harry Deimling\source\repos\2024-p3a-web-gamebook-holydeimling\Gamebook
 C:\Users\Harry Deimling\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\GamebookTest1.Server.pdb
 C:\Users\Harry Deimling\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\GamebookTest1.Server.genruntimeconfig.cache
 C:\Users\Harry Deimling\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\ref\GamebookTest1.Server.dll
+C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\GamebookTest1.Server.staticwebassets.endpoints.json
+C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets\msbuild.GamebookTest1.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

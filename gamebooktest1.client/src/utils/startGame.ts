@@ -40,6 +40,7 @@ export const newGame = async (
       const updatedUser = await userResponse.json();
       setUser(updatedUser as User);
       toast.info("Nová hra byla zahájena");
+      console.log(user);
       console.log("User data fetched successfully", updatedUser);
     } catch (error) {
       console.error("Error updating checkpoint scene ID:", error);
@@ -67,6 +68,7 @@ export const loadGame = async (
       setUser(data as User);
       console.log("Game loaded successfully", data);
       toast.info("Hra byla načtena");
+      console.log(user);
     } catch (error) {
       console.error("Error loading game:", error);
       toast.error("Nastala chyba při načítání hry");

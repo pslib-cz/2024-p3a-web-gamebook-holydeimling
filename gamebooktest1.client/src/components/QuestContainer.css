@@ -1,15 +1,20 @@
-.quest-system__container{
+.quest-system__container {
   position: absolute;
   top: 0;
   right: 0;
   display: flex;
   gap: 1rem;
   width: 800px;
-  height: 100vh;
+  height: 15vh;
   overflow: hidden;
+  transition: height 0.5s ease-in-out; /* Add transition for smooth height change */
 }
 
-.quests__icon{
+.quest-system__container.expand {
+  height: 50vh; /* Change this to the desired height */
+}
+
+.quests__icon {
   width: 64px;
   height: 64px;
   object-fit: cover;
@@ -18,7 +23,7 @@
   right: 1rem;
 }
 
-.quests__container{
+.quests__container {
   position: absolute;
   top: calc(1rem + 64px + 1rem);
   right: 0;
