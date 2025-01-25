@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Scene } from "../types";
+import { Scene, SceneCharacter } from "../types";
 import "./Scene.css";
 import { useUser } from "../UserContext";
 import { InventoryComponent } from "../components/Inventory/Inventory";
@@ -9,6 +9,9 @@ import { fetchScene } from "../utils/fetchScene";
 import { saveDataOnCheckpoint } from "../utils/saveDataOnCheckpoint";
 import { PauseScreen } from "../components/PauseScreen";
 import { GameOverScreen } from "../components/GameOverScreen";
+import { SceneCharacterComponent } from "../components/SceneCharacterComponent";
+import { SceneItemComponent } from "../components/SceneItemComponent";
+import { addItemToInventory } from "../utils/inventoryFunctions";
 
 export const ScenePage = () => {
   const { user, setUser } = useUser();
@@ -133,6 +136,15 @@ export const ScenePage = () => {
 
   const [showGameOver, setShowGameOver] = useState(false);
 
+  const addInventory = async () => {
+    addItemToInventory({
+      item: currentScene?.sceneItems[0].item,
+      user: user,
+      slotToAddTo: 9,
+      setUser: setUser,
+    });
+  };
+
   return (
     <>
       {showGameOver && (
@@ -168,48 +180,14 @@ export const ScenePage = () => {
         </div>
         {/* items */}
         {currentScene?.sceneItems?.map((sceneItem) => {
-          return (
-            <div key={sceneItem.sceneItemId}>
-              <h3>{sceneItem.item.itemName}</h3>
-              <img
-                key={sceneItem.sceneItemId}
-                src={`/${sceneItem.item.itemImages[0].filePath}`}
-                alt={sceneItem.item.itemName}
-                style={{
-                  top: `${sceneItem.position.y}px`, //předělat na %
-                  left: `${sceneItem.position.x}px`, //předělat na %
-                  width: `${sceneItem.size.width}px`, //předělat na %
-                  height: `${sceneItem.size.height}px`, //předělat na %
-                }}
-                className="scene__image scene-item"
-              />
-            </div>
-          );
+          return <SceneItemComponent sceneItem={sceneItem} />;
         })}
         {/* characters */}
-        {currentScene?.sceneCharacters?.map((sceneCharacter) => {
-          return (
-            <div key={sceneCharacter.sceneCharacterId}>
-              <h3>
-                {sceneCharacter.character.firstName}{" "}
-                {sceneCharacter.character.nickname}{" "}
-                {sceneCharacter.character.lastName}
-              </h3>
-              <img
-                key={sceneCharacter.sceneCharacterId}
-                src={`/${sceneCharacter.character.characterImages[0].filePath}`}
-                alt={sceneCharacter.character.firstName}
-                style={{
-                  top: `${sceneCharacter.position.y}px`, //předělat na %
-                  left: `${sceneCharacter.position.x}px`, //předělat na %
-                  width: `${sceneCharacter.size.width}px`, //předělat na %
-                  height: `${sceneCharacter.size.height}px`, //předělat na %
-                }}
-                className="scene__image scene-character"
-              />
-            </div>
-          );
-        })}
+        {currentScene?.sceneCharacters?.map(
+          (sceneCharacter: SceneCharacter) => {
+            return <SceneCharacterComponent sceneCharacter={sceneCharacter} />;
+          }
+        )}
         {/* dialogs*/}
         {currentScene?.sceneDialogs?.length !== undefined &&
           currentScene.sceneDialogs.length > 0 && (
@@ -266,6 +244,7 @@ export const ScenePage = () => {
             </div>
           )}
       </div>
+      <button onClick={addInventory}>TestInventory</button>
     </>
   );
 };

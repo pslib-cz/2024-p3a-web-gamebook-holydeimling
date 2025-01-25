@@ -140,7 +140,7 @@ namespace GamebookTest1.Server.Controllers
             );
         }
 
-        [HttpPut("add-item/{inventoryId}")]
+        [HttpPut("{inventoryId}/add-item/")]
         public async Task<IActionResult> EditInventoryById(
             int inventoryId,
             int itemNumber,
@@ -193,10 +193,32 @@ namespace GamebookTest1.Server.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return NoContent();
+
+            var inventory = await _context
+                .Inventories.Include(i => i.Item1)
+                .ThenInclude(a => a.ItemImages)
+                .Include(i => i.Item2)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item3)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item4)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item5)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item6)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item7)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item8)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item9)
+                .ThenInclude(i => i.ItemImages)
+                .FirstOrDefaultAsync(i => i.InventoryId == inventoryId);
+
+            return Ok(inventory);
         }
 
-        [HttpPut("remove-item/{inventoryId}")]
+        [HttpPut("{inventoryId}/remove-item/")]
         public async Task<IActionResult> RemoveItemFromInventory(int inventoryId, int itemNumber)
         {
             var _inventory = await _context.Inventories.FindAsync(inventoryId);
@@ -239,7 +261,28 @@ namespace GamebookTest1.Server.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return NoContent();
+            var inventory = await _context
+                .Inventories.Include(i => i.Item1)
+                .ThenInclude(a => a.ItemImages)
+                .Include(i => i.Item2)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item3)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item4)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item5)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item6)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item7)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item8)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item9)
+                .ThenInclude(i => i.ItemImages)
+                .FirstOrDefaultAsync(i => i.InventoryId == inventoryId);
+
+            return Ok(inventory);
         }
 
         [HttpDelete("{id}")]

@@ -78,15 +78,7 @@ export type GameState = {
 
 export type Inventory = {
   inventoryId: number;
-  item1: Item | null;
-  item2: Item | null;
-  item3: Item | null;
-  item4: Item | null;
-  item5: Item | null;
-  item6: Item | null;
-  item7: Item | null;
-  item8: Item | null;
-  item9: Item | null;
+  [key: `item${number}`]: Item | null | undefined;
 };
 
 export type Quest = {
