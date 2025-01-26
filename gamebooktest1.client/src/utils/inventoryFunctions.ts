@@ -3,36 +3,38 @@ import { User } from "../UserContext";
 
 export const addItemToInventory = (data: {
   item: Item | undefined;
-  user: User | null;
+  currentInventory: Inventory | undefined;
   slotToAddTo?: number;
-  setUser: (user: User) => void;
+  setCurrentInventory: (curentInventory: Inventory | undefined) => void;
+  user: User | null;
 }) => {
-  if (data.user) {
+  if (data.user && data.currentInventory) {
     let slotToAdd;
-    let currentInventory = { ...data.user.gameState.inventoryState };
     if (data.slotToAddTo) {
       slotToAdd = data.slotToAddTo;
     } else {
-      slotToAdd = findFirstEmptySlot(currentInventory);
+      slotToAdd = findFirstEmptySlot(data.currentInventory);
     }
     if (slotToAdd === null) {
       console.log("Inventory is full");
       return;
     }
-    currentInventory[`item${slotToAdd}`] = data.item;
-    const updatedUser = {
-      ...data.user,
-      gameState: {
-        ...data.user.gameState,
-        inventoryState: currentInventory,
-      },
-    };
-    data.setUser(updatedUser);
-    console.log(currentInventory);
+    data.currentInventory[`item${slotToAdd}`] = data.item;
+
+    data.setCurrentInventory({
+      ...data.currentInventory,
+      [`item${slotToAdd}`]: data.item,
+    });
+    console.log("Item added to inventory", data.currentInventory);
   } else {
     //handle adding item to local storage :)
   }
 };
+
+const saveInventoryToDatabase = async (
+  inventory: Inventory,
+  userId: number
+) => {};
 
 const findFirstEmptySlot = (inventory: Inventory): number | null => {
   for (const key in inventory) {

@@ -64,12 +64,10 @@ function App() {
   ]);
 
   return (
-    <>
-      <UserProvider>
-        <RouterProvider router={router} />
-        <Toaster richColors />
-      </UserProvider>
-    </>
+    <UserProvider>
+      <RouterProvider router={router} />
+      <Toaster richColors />
+    </UserProvider>
   );
 }
 

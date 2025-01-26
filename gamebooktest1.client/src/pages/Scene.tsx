@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Scene, SceneCharacter } from "../types";
+import { Inventory, Item, Scene, SceneCharacter } from "../types";
 import "./Scene.css";
-import { useUser } from "../UserContext";
+import { User, useUser } from "../UserContext";
 import { InventoryComponent } from "../components/Inventory/Inventory";
 import { QuestContainer } from "../components/QuestContainer";
 import { fetchScene } from "../utils/fetchScene";
@@ -21,6 +21,24 @@ export const ScenePage = () => {
   const navigate = useNavigate();
   const [dialogIndex, setDialogIndex] = useState(0);
 
+  const [currentInventory, setCurrentInventory] = useState<
+    Inventory | undefined
+  >(user?.gameState.inventoryState);
+
+  useEffect(() => {
+    console.log("Current inventory", currentInventory);
+    if (user) {
+      const updatedUser = {
+        ...user,
+        gameState: {
+          ...user.gameState,
+          inventoryState: currentInventory,
+        },
+      };
+      setUser(updatedUser as User);
+      console.log("User updated", updatedUser);
+    }
+  }, [currentInventory]);
   // Fetch scene whenever id changes
   useEffect(() => {
     const newSceneId = parseInt(id || "1");
@@ -136,15 +154,6 @@ export const ScenePage = () => {
 
   const [showGameOver, setShowGameOver] = useState(false);
 
-  const addInventory = async () => {
-    addItemToInventory({
-      item: currentScene?.sceneItems[0].item,
-      user: user,
-      slotToAddTo: 9,
-      setUser: setUser,
-    });
-  };
-
   return (
     <>
       {showGameOver && (
@@ -180,7 +189,15 @@ export const ScenePage = () => {
         </div>
         {/* items */}
         {currentScene?.sceneItems?.map((sceneItem) => {
-          return <SceneItemComponent sceneItem={sceneItem} />;
+          return (
+            <SceneItemComponent
+              sceneItem={sceneItem}
+              currentInventory={currentInventory}
+              setCurrentInventory={setCurrentInventory}
+              currentScene={currentScene}
+              setCurrentScene={setCurrentScene}
+            />
+          );
         })}
         {/* characters */}
         {currentScene?.sceneCharacters?.map(
@@ -244,7 +261,6 @@ export const ScenePage = () => {
             </div>
           )}
       </div>
-      <button onClick={addInventory}>TestInventory</button>
     </>
   );
 };
