@@ -242,6 +242,7 @@ export const ScenePage = () => {
                       <button
                         key={dialogAnswer.dialogAnswerId}
                         onClick={() => {
+                          //martin rikal ze tady mam dat koment (je to mrdka)
                           if (currentScene?.isCheckpoint) {
                             saveDataOnCheckpoint(
                               user,
