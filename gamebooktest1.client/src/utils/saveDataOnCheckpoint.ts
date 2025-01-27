@@ -173,5 +173,53 @@ export const saveDataOnCheckpoint = async (
       console.error("Error updating inventory state:", error);
     }
     // questsState
+    /*
+    curl -X 'PUT' \
+  'https://localhost:7174/api/GameState/edit/QuestsState/4' \
+  -H 'accept: /' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'questsIds=1' \
+  -F 'questsIds=2'
+    */
+
+    try {
+      const formData = new FormData();
+      currentQuestState?.forEach((quest) => {
+        formData.append("questsIds", `${quest.questId}`);
+      });
+
+      const response = await fetch(
+        `/api/GameState/edit/QuestsState/${user.gameState.gameStateId}`,
+        {
+          method: "PUT",
+          headers: {
+            Accept: "*/*",
+          },
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      // Fetch the updated user data
+      const userResponse = await fetch(`/api/Users/${user.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "*/*",
+        },
+      });
+
+      if (!userResponse.ok) {
+        throw new Error(`HTTP error! Status: ${userResponse.status}`);
+      }
+
+      const updatedUser = await userResponse.json();
+      setUser(updatedUser as User);
+      toast.info("Hra uložena");
+      console.log("User data fetched successfully", updatedUser);
+    } catch (error) {
+      console.error("Error updating quests state:", error);
+    }
   }
 };

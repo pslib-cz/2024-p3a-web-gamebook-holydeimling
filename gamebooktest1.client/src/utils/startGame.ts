@@ -72,6 +72,7 @@ export const newGame = async (
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
+
       // Fetch the updated user data
       const userResponse = await fetch(`/api/Users/${user.id}`, {
         method: "GET",
@@ -89,6 +90,52 @@ export const newGame = async (
       console.log("User data fetched successfully", updatedUser);
     } catch (error) {
       console.error("Error updating inventory state:", error);
+    }
+
+    //delete all quests
+    /*
+    curl -X 'PUT' \
+  'https://localhost:7174/api/GameState/edit/QuestsState/13' \
+  -H 'accept: /' \
+  -H 'Content-Type: multipart/form-data'
+  */
+
+    try {
+      const formData = new FormData();
+      formData.append("questId", `${""}`);
+
+      const response = await fetch(
+        `/api/GameState/edit/QuestsState/${user.gameState.gameStateId}`,
+        {
+          method: "PUT",
+          headers: {
+            Accept: "*/*",
+          },
+          body: formData,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      // Fetch the updated user data
+      const userResponse = await fetch(`/api/Users/${user.id}`, {
+        method: "GET",
+        headers: {
+          Accept: "*/*",
+        },
+      });
+
+      if (!userResponse.ok) {
+        throw new Error(`HTTP error! Status: ${userResponse.status}`);
+      }
+
+      const updatedUser = await userResponse.json();
+      setUser(updatedUser as User);
+      console.log("User data fetched successfully", updatedUser);
+    } catch (error) {
+      console.error("Error updating quests state:", error);
     }
   }
 };

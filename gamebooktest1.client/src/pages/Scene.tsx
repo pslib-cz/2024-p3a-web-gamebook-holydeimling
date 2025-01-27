@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Inventory, Item, Scene, SceneCharacter } from "../types";
+import { Inventory, Item, Quest, Scene, SceneCharacter } from "../types";
 import "./Scene.css";
 import { User, useUser } from "../UserContext";
 import { InventoryComponent } from "../components/Inventory/Inventory";
@@ -12,6 +12,8 @@ import { GameOverScreen } from "../components/GameOverScreen";
 import { SceneCharacterComponent } from "../components/SceneCharacterComponent";
 import { SceneItemComponent } from "../components/SceneItemComponent";
 import { addItemToInventory } from "../utils/inventoryFunctions";
+import { getQuestFromDb } from "../utils/questsFunctions";
+import { WrongOrientationScreen } from "../components/WrongOrientationScreen";
 
 export const ScenePage = () => {
   const { user, setUser } = useUser();
@@ -24,6 +26,10 @@ export const ScenePage = () => {
   const [currentInventory, setCurrentInventory] = useState<
     Inventory | undefined
   >(user?.gameState.inventoryState);
+
+  const [currentQuests, setCurrentQuests] = useState<Quest[]>(
+    user?.gameState.questsState || []
+  );
 
   useEffect(() => {
     console.log("Current inventory", currentInventory);
@@ -70,6 +76,43 @@ export const ScenePage = () => {
     console.log("Scene id is correct", newSceneId);
   }, [id]); //this need to fix
 
+  //handle quests
+  useEffect(() => {
+    const fetchQuest = async () => {
+      if (
+        currentScene?.questToAddId !== null &&
+        currentScene?.questToAddId !== 0 &&
+        currentScene?.questToAddId !== undefined
+      ) {
+        try {
+          const quest = await getQuestFromDb(currentScene.questToAddId);
+          console.log("Quest", quest);
+          if (quest) {
+            setCurrentQuests((prev) => [...(prev || []), quest]);
+          }
+        } catch (error) {
+          console.error("Error fetching quest:", error);
+        }
+      }
+    };
+    const removeQuestLocaly = () => {
+      if (
+        currentScene?.questToRemoveId !== null &&
+        currentScene?.questToRemoveId !== 0 &&
+        currentScene?.questToRemoveId !== undefined
+      ) {
+        setCurrentQuests((prev) =>
+          prev?.filter(
+            (quest) => quest.questId !== currentScene.questToRemoveId
+          )
+        );
+      }
+    };
+
+    fetchQuest();
+    removeQuestLocaly();
+  }, [currentScene]);
+
   // Temporary scene ID increment for testing
   const handleButtonClick = () => {
     if (currentScene?.isCheckpoint) {
@@ -78,7 +121,7 @@ export const ScenePage = () => {
         setUser,
         sceneId,
         user?.gameState.inventoryState,
-        user?.gameState.questsState
+        currentQuests
       );
     }
     if (currentScene?.gameOver) {
@@ -117,15 +160,6 @@ export const ScenePage = () => {
     }
   };
 
-  useEffect(() => {
-    if (
-      currentScene?.questToAddId !== null ||
-      currentScene?.questToAddId !== 0
-    ) {
-      // Add quest to the user
-    }
-  }, [currentScene]);
-
   const [showPauseMenu, setShowPauseMenu] = useState(false);
 
   useEffect(() => {
@@ -154,8 +188,27 @@ export const ScenePage = () => {
 
   const [showGameOver, setShowGameOver] = useState(false);
 
+  const [showWrongOrientationDevice, setShowWrongOrientationDevice] =
+    useState(false);
+
+  useEffect(() => {
+    const handleOrientationChange = () => {
+      if (window.screen.orientation.type.includes("portrait")) {
+        setShowWrongOrientationDevice(true);
+      } else {
+        setShowWrongOrientationDevice(false);
+      }
+    };
+
+    window.addEventListener("orientationchange", handleOrientationChange);
+    return () => {
+      window.removeEventListener("orientationchange", handleOrientationChange);
+    };
+  }, []);
+
   return (
     <>
+      {showWrongOrientationDevice && <WrongOrientationScreen />}
       {showGameOver && (
         <GameOverScreen
           user={user}
@@ -170,7 +223,7 @@ export const ScenePage = () => {
         />
       )}
       <InventoryComponent currentInventory={user?.gameState.inventoryState} />
-      <QuestContainer questState={user?.gameState.questsState} />
+      <QuestContainer questState={currentQuests} />
       <div
         style={{
           backgroundImage: currentScene
@@ -236,13 +289,13 @@ export const ScenePage = () => {
                       <button
                         key={dialogAnswer.dialogAnswerId}
                         onClick={() => {
-                          if (currentScene?.isCheckpoint) {
+                          if (currentScene.isCheckpoint) {
                             saveDataOnCheckpoint(
                               user,
                               setUser,
                               sceneId,
                               user?.gameState.inventoryState,
-                              user?.gameState.questsState
+                              currentQuests
                             );
                           }
                           if (currentScene?.gameOver) {
