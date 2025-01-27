@@ -38,9 +38,7 @@ namespace GamebookTest1.Server.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateQuest(
             [FromForm] string questHeading,
-            [FromForm] string questContent,
-            [FromForm] bool isStoryQuest,
-            [FromForm] bool isCompleted
+            [FromForm] string questContent
             )
         {
             if (string.IsNullOrWhiteSpace(questHeading))
@@ -57,8 +55,6 @@ namespace GamebookTest1.Server.Controllers
             {
                 QuestHeading = questHeading,
                 QuestContent = questContent,
-                IsStoryQuest = isStoryQuest,
-                IsCompleted = isCompleted
             };
 
             _context.Quests.Add(quest);
@@ -70,9 +66,7 @@ namespace GamebookTest1.Server.Controllers
         public async Task<IActionResult> EditQuest(
             int id,
             [FromForm] string? questHeading,
-            [FromForm] string? questContent,
-            [FromForm] bool? isStoryQuest,
-            [FromForm] bool? isCompleted
+            [FromForm] string? questContent
         )
         {
             var quest = await _context.Quests.FindAsync(id);
@@ -90,16 +84,6 @@ namespace GamebookTest1.Server.Controllers
             if (!string.IsNullOrWhiteSpace(questContent))
             {
                 quest.QuestContent = questContent;
-            }
-
-            if (isStoryQuest.HasValue)
-            {
-                quest.IsStoryQuest = isStoryQuest.Value;
-            }
-
-            if (isCompleted.HasValue)
-            {
-                quest.IsCompleted = isCompleted.Value;
             }
 
             await _context.SaveChangesAsync();

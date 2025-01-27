@@ -12,11 +12,5 @@ namespace GamebookTest1.Server.Models
 
         [Required]
         public required string QuestContent { get; set; }
-
-        [Required]
-        public required bool IsStoryQuest { get; set; }
-
-        [Required]
-        public required bool IsCompleted { get; set; }
     }
 }
