@@ -98,7 +98,7 @@
               "RelativeDocumentMoniker": "GamebookTest1.Server\\Controllers\\GameStateController.cs",
               "ToolTip": "C:\\Users\\marti\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\GameStateController.cs",
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\GameStateController.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAIwIkAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-27T15:36:54.44Z",
               "EditorCaption": ""
@@ -249,8 +249,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\SceneItemController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T16:37:51.265Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-23T16:37:51.265Z"
             },
             {
               "$type": "Document",
@@ -262,8 +261,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\SceneController.cs",
               "ViewState": "AgIAAJUAAAAAAAAAAAAIwBwAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-23T16:23:55.594Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-23T16:23:55.594Z"
             }
           ]
         }

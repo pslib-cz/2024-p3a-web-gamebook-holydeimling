@@ -14,6 +14,9 @@ import { SceneItemComponent } from "../components/SceneItemComponent";
 import { addItemToInventory } from "../utils/inventoryFunctions";
 import { getQuestFromDb } from "../utils/questsFunctions";
 import { WrongOrientationScreen } from "../components/WrongOrientationScreen";
+import { Minigame1 } from "../components/Minigames/Minigame1";
+import { Minigame2 } from "../components/Minigames/Minigame2";
+import { Minigame3 } from "../components/Minigames/Minigame3";
 
 export const ScenePage = () => {
   const { user, setUser } = useUser();
@@ -22,6 +25,8 @@ export const ScenePage = () => {
   const [currentScene, setCurrentScene] = useState<Scene | null>(null); // State to store the fetched scene object
   const navigate = useNavigate();
   const [dialogIndex, setDialogIndex] = useState(0);
+
+  const [showMiniGame, setShowMiniGame] = useState(false);
 
   const [currentInventory, setCurrentInventory] = useState<
     Inventory | undefined
@@ -111,6 +116,12 @@ export const ScenePage = () => {
 
     fetchQuest();
     removeQuestLocaly();
+  }, [currentScene]);
+
+  useEffect(() => {
+    if (currentScene?.minigameId) {
+      setShowMiniGame(true);
+    }
   }, [currentScene]);
 
   // Temporary scene ID increment for testing
@@ -208,6 +219,13 @@ export const ScenePage = () => {
 
   return (
     <>
+      {showMiniGame && currentScene?.minigameId === 1 && (
+        <Minigame1 currentScene={currentScene} />
+      )}
+      {showMiniGame && currentScene?.minigameId === 2 && (
+        <Minigame2 currentScene={currentScene} />
+      )}
+      {showMiniGame && currentScene?.minigameId === 3 && <Minigame3 />}
       {showWrongOrientationDevice && <WrongOrientationScreen />}
       {showGameOver && (
         <GameOverScreen
