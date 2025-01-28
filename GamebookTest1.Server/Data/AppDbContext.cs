@@ -55,7 +55,10 @@ namespace GamebookTest1.Server.Data
 
             //scene relationships
             modelBuilder.Entity<Scene>().HasOne(s => s.BackgroundImage).WithMany(); // A Scene has many SceneCharacters
-            modelBuilder.Entity<Scene>().HasMany(s => s.SceneCharacters).WithOne(); // A Scene has many SceneItems
+            modelBuilder.Entity<Scene>()
+                .HasMany(s => s.SceneCharacters)
+                .WithMany()  // Allow many-to-many relationship
+                .UsingEntity(j => j.ToTable("SceneToSceneCharacter")); // Create junction table
             modelBuilder.Entity<Scene>().HasMany(s => s.SceneItems).WithOne(); // A Scene has many Dialogs
             modelBuilder.Entity<Scene>().HasMany(s => s.SceneDialogs).WithOne(); // A Scene has many Quests
 
