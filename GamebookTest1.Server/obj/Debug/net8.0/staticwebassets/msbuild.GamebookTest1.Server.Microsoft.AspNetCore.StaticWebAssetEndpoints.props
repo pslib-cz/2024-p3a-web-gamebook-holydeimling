@@ -612,6 +612,18 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-cbzD54xrR\u002BZCaxuDU1lxQ8W7PNzyrYrbhUqwHdNKJ1Y="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"14014"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022cbzD54xrR\u002BZCaxuDU1lxQ8W7PNzyrYrbhUqwHdNKJ1Y=\u0022"},{"Name":"Last-Modified","Value":"Tue, 17 Dec 2024 19:53:36 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GamebookTest1.Server/uploads/df0c4d55-820d-4daf-af20-5e891c9da93b.c8y29l7of7.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\df0c4d55-820d-4daf-af20-5e891c9da93b.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"c8y29l7of7"},{"Name":"integrity","Value":"sha256-zKbCIN\u002BsybhqOIKEORLWXMKTjRdSCyp7j0CVVkVfMPY="},{"Name":"label","Value":"_content/GamebookTest1.Server/uploads/df0c4d55-820d-4daf-af20-5e891c9da93b.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"134835"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022zKbCIN\u002BsybhqOIKEORLWXMKTjRdSCyp7j0CVVkVfMPY=\u0022"},{"Name":"Last-Modified","Value":"Mon, 27 Jan 2025 20:39:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/GamebookTest1.Server/uploads/df0c4d55-820d-4daf-af20-5e891c9da93b.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\df0c4d55-820d-4daf-af20-5e891c9da93b.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-zKbCIN\u002BsybhqOIKEORLWXMKTjRdSCyp7j0CVVkVfMPY="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"134835"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022zKbCIN\u002BsybhqOIKEORLWXMKTjRdSCyp7j0CVVkVfMPY=\u0022"},{"Name":"Last-Modified","Value":"Mon, 27 Jan 2025 20:39:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/GamebookTest1.Server/uploads/e5c5f053-e32e-40fe-ae8b-6b3475d73629.o755tj9lnf.png">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e5c5f053-e32e-40fe-ae8b-6b3475d73629.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
