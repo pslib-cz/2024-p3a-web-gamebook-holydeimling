@@ -8,10 +8,8 @@ import { UserProvider } from "./UserContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <UserProvider>
-      <DndProvider backend={HTML5Backend}>
-        <App />
-      </DndProvider>
-    </UserProvider>
+    <DndProvider backend={HTML5Backend}>
+      <App />
+    </DndProvider>
   </StrictMode>
 );

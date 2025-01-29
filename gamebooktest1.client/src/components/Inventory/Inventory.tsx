@@ -1,5 +1,5 @@
 import "./Inventory.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HomeScreenButton } from "../Home/HomeScreenButton";
 import { DraggableInventoryItem } from "./DraggableInventoryItem";
 import { DroppableInventorySlot } from "./DroppableInventorySlot";
@@ -28,6 +28,20 @@ export const InventoryComponent = ({ currentInventory }: InventoryProps) => {
     currentInventory?.item8?.itemImages[0].filePath,
     currentInventory?.item9?.itemImages[0].filePath,
   ]);
+
+  useEffect(() => {
+    setInventoryItemsData([
+      currentInventory?.item1?.itemImages[0].filePath,
+      currentInventory?.item2?.itemImages[0].filePath,
+      currentInventory?.item3?.itemImages[0].filePath,
+      currentInventory?.item4?.itemImages[0].filePath,
+      currentInventory?.item5?.itemImages[0].filePath,
+      currentInventory?.item6?.itemImages[0].filePath,
+      currentInventory?.item7?.itemImages[0].filePath,
+      currentInventory?.item8?.itemImages[0].filePath,
+      currentInventory?.item9?.itemImages[0].filePath,
+    ]);
+  }, [currentInventory]);
 
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [itemToDiscard, setItemToDiscard] = useState<number | null>(null);

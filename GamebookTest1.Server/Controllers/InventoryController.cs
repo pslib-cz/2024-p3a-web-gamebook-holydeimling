@@ -140,7 +140,178 @@ namespace GamebookTest1.Server.Controllers
             );
         }
 
-        [HttpPut("add-item/{inventoryId}")]
+        [HttpPut("edit/{id}")]
+        public async Task<IActionResult> EditInventory(
+            int id,
+            [FromForm] int? item1Id,
+            [FromForm] int? item2Id,
+            [FromForm] int? item3Id,
+            [FromForm] int? item4Id,
+            [FromForm] int? item5Id,
+            [FromForm] int? item6Id,
+            [FromForm] int? item7Id,
+            [FromForm] int? item8Id,
+            [FromForm] int? item9Id
+        )
+        {
+            var _inventory = await _context
+                .Inventories.Include(i => i.Item1)
+                .ThenInclude(a => a.ItemImages)
+                .Include(i => i.Item2)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item3)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item4)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item5)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item6)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item7)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item8)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item9)
+                .ThenInclude(i => i.ItemImages)
+                .FirstOrDefaultAsync(i => i.InventoryId == id);
+            if (_inventory == null)
+            {
+                return NotFound();
+            }
+
+            if (item1Id.HasValue)
+            {
+                var _item1 = await _context.Items.FindAsync(item1Id);
+                if (_item1 == null)
+                {
+                    return BadRequest("Item 1 not found.");
+                }
+                _inventory.Item1 = _item1;
+            }
+            else
+            {
+                _inventory.Item1 = null;
+            }
+
+            if (item2Id.HasValue)
+            {
+                var _item2 = await _context.Items.FindAsync(item2Id);
+                if (_item2 == null)
+                {
+                    return BadRequest("Item 2 not found.");
+                }
+                _inventory.Item2 = _item2;
+            }
+            else
+            {
+                _inventory.Item2 = null;
+            }
+
+            if (item3Id.HasValue)
+            {
+                var _item3 = await _context.Items.FindAsync(item3Id);
+                if (_item3 == null)
+                {
+                    return BadRequest("Item 3 not found.");
+                }
+                _inventory.Item3 = _item3;
+            }
+            else
+            {
+                _inventory.Item3 = null;
+            }
+
+            if (item4Id.HasValue)
+            {
+                var _item4 = await _context.Items.FindAsync(item4Id);
+                if (_item4 == null)
+                {
+                    return BadRequest("Item 4 not found.");
+                }
+                _inventory.Item4 = _item4;
+            }
+            else
+            {
+                _inventory.Item4 = null;
+            }
+
+            if (item5Id.HasValue)
+            {
+                var _item5 = await _context.Items.FindAsync(item5Id);
+                if (_item5 == null)
+                {
+                    return BadRequest("Item 5 not found.");
+                }
+                _inventory.Item5 = _item5;
+            }
+            else
+            {
+                _inventory.Item5 = null;
+            }
+
+            if (item6Id.HasValue)
+            {
+                var _item6 = await _context.Items.FindAsync(item6Id);
+                if (_item6 == null)
+                {
+                    return BadRequest("Item 6 not found.");
+                }
+                _inventory.Item6 = _item6;
+            }
+            else
+            {
+                _inventory.Item6 = null;
+            }
+
+            if (item7Id.HasValue)
+            {
+                var _item7 = await _context.Items.FindAsync(item7Id);
+                if (_item7 == null)
+                {
+                    return BadRequest("Item 7 not found.");
+                }
+                _inventory.Item7 = _item7;
+            }
+            else
+            {
+                _inventory.Item7 = null;
+            }
+
+            if (item8Id.HasValue)
+            {
+                var _item8 = await _context.Items.FindAsync(item8Id);
+                if (_item8 == null)
+                {
+                    return BadRequest("Item 8 not found.");
+                }
+                _inventory.Item8 = _item8;
+            }
+            else
+            {
+                _inventory.Item8 = null;
+            }
+
+            if (item9Id.HasValue)
+            {
+                var _item9 = await _context.Items.FindAsync(item9Id);
+                if (_item9 == null)
+                {
+                    return BadRequest("Item 9 not found.");
+                }
+                _inventory.Item9 = _item9;
+            }
+            else
+            {
+                _inventory.Item9 = null;
+            }
+
+            _context.Inventories.Update(_inventory);
+            await _context.SaveChangesAsync();
+
+            return Ok(_inventory);
+        }
+
+        [HttpPut("{inventoryId}/add-item/")]
         public async Task<IActionResult> EditInventoryById(
             int inventoryId,
             int itemNumber,
@@ -193,10 +364,32 @@ namespace GamebookTest1.Server.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return NoContent();
+
+            var inventory = await _context
+                .Inventories.Include(i => i.Item1)
+                .ThenInclude(a => a.ItemImages)
+                .Include(i => i.Item2)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item3)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item4)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item5)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item6)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item7)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item8)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item9)
+                .ThenInclude(i => i.ItemImages)
+                .FirstOrDefaultAsync(i => i.InventoryId == inventoryId);
+
+            return Ok(inventory);
         }
 
-        [HttpPut("remove-item/{inventoryId}")]
+        [HttpPut("{inventoryId}/remove-item/")]
         public async Task<IActionResult> RemoveItemFromInventory(int inventoryId, int itemNumber)
         {
             var _inventory = await _context.Inventories.FindAsync(inventoryId);
@@ -239,7 +432,28 @@ namespace GamebookTest1.Server.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return NoContent();
+            var inventory = await _context
+                .Inventories.Include(i => i.Item1)
+                .ThenInclude(a => a.ItemImages)
+                .Include(i => i.Item2)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item3)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item4)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item5)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item6)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item7)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item8)
+                .ThenInclude(i => i.ItemImages)
+                .Include(i => i.Item9)
+                .ThenInclude(i => i.ItemImages)
+                .FirstOrDefaultAsync(i => i.InventoryId == inventoryId);
+
+            return Ok(inventory);
         }
 
         [HttpDelete("{id}")]

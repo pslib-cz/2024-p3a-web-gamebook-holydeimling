@@ -1,3 +1,5 @@
+import { Quest } from "../types";
+
 //ZKONTROLOVAT ZDA FUNGUJE
 export const addQuestToGameState = async (
   gameStateId: number,
@@ -55,6 +57,28 @@ export const deleteQuestFromGameState = async (
     return result;
   } catch (error) {
     console.error("Error deleting quest:", error);
+    throw error;
+  }
+};
+
+export const getQuestFromDb = async (questId: number) => {
+  try {
+    const response = await fetch(`/api/Quest/${questId}`, {
+      method: "GET",
+      headers: {
+        Accept: "*/*",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log("Quest fetched successfully", result);
+    return result as Quest;
+  } catch (error) {
+    console.error("Error fetching quest:", error);
     throw error;
   }
 };

@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Scene } from "../types";
+import { Inventory, Item, Quest, Scene, SceneCharacter } from "../types";
 import "./Scene.css";
-import { useUser } from "../UserContext";
+import { User, useUser } from "../UserContext";
 import { InventoryComponent } from "../components/Inventory/Inventory";
 import { QuestContainer } from "../components/QuestContainer";
 import { fetchScene } from "../utils/fetchScene";
 import { saveDataOnCheckpoint } from "../utils/saveDataOnCheckpoint";
 import { PauseScreen } from "../components/PauseScreen";
-import { loadGame } from "../utils/startGame";
 import { GameOverScreen } from "../components/GameOverScreen";
+import { SceneCharacterComponent } from "../components/SceneCharacterComponent";
+import { SceneItemComponent } from "../components/SceneItemComponent";
+import { addItemToInventory } from "../utils/inventoryFunctions";
+import { getQuestFromDb } from "../utils/questsFunctions";
+import { WrongOrientationScreen } from "../components/WrongOrientationScreen";
+import { Minigame1 } from "../components/Minigames/Minigame1";
+import { Minigame2 } from "../components/Minigames/Minigame2";
+import { Minigame3 } from "../components/Minigames/Minigame3";
 
 export const ScenePage = () => {
   const { user, setUser } = useUser();
@@ -19,6 +26,30 @@ export const ScenePage = () => {
   const navigate = useNavigate();
   const [dialogIndex, setDialogIndex] = useState(0);
 
+  const [showMiniGame, setShowMiniGame] = useState(false);
+
+  const [currentInventory, setCurrentInventory] = useState<
+    Inventory | undefined
+  >(user?.gameState.inventoryState);
+
+  const [currentQuests, setCurrentQuests] = useState<Quest[]>(
+    user?.gameState.questsState || []
+  );
+
+  useEffect(() => {
+    console.log("Current inventory", currentInventory);
+    if (user) {
+      const updatedUser = {
+        ...user,
+        gameState: {
+          ...user.gameState,
+          inventoryState: currentInventory,
+        },
+      };
+      setUser(updatedUser as User);
+      console.log("User updated", updatedUser);
+    }
+  }, [currentInventory]);
   // Fetch scene whenever id changes
   useEffect(() => {
     const newSceneId = parseInt(id || "1");
@@ -50,6 +81,49 @@ export const ScenePage = () => {
     console.log("Scene id is correct", newSceneId);
   }, [id]); //this need to fix
 
+  //handle quests
+  useEffect(() => {
+    const fetchQuest = async () => {
+      if (
+        currentScene?.questToAddId !== null &&
+        currentScene?.questToAddId !== 0 &&
+        currentScene?.questToAddId !== undefined
+      ) {
+        try {
+          const quest = await getQuestFromDb(currentScene.questToAddId);
+          console.log("Quest", quest);
+          if (quest) {
+            setCurrentQuests((prev) => [...(prev || []), quest]);
+          }
+        } catch (error) {
+          console.error("Error fetching quest:", error);
+        }
+      }
+    };
+    const removeQuestLocaly = () => {
+      if (
+        currentScene?.questToRemoveId !== null &&
+        currentScene?.questToRemoveId !== 0 &&
+        currentScene?.questToRemoveId !== undefined
+      ) {
+        setCurrentQuests((prev) =>
+          prev?.filter(
+            (quest) => quest.questId !== currentScene.questToRemoveId
+          )
+        );
+      }
+    };
+
+    fetchQuest();
+    removeQuestLocaly();
+  }, [currentScene]);
+
+  useEffect(() => {
+    if (currentScene?.minigameId) {
+      setShowMiniGame(true);
+    }
+  }, [currentScene]);
+
   // Temporary scene ID increment for testing
   const handleButtonClick = () => {
     if (currentScene?.isCheckpoint) {
@@ -58,7 +132,7 @@ export const ScenePage = () => {
         setUser,
         sceneId,
         user?.gameState.inventoryState,
-        user?.gameState.questsState
+        currentQuests
       );
     }
     if (currentScene?.gameOver) {
@@ -97,15 +171,6 @@ export const ScenePage = () => {
     }
   };
 
-  useEffect(() => {
-    if (
-      currentScene?.questToAddId !== null ||
-      currentScene?.questToAddId !== 0
-    ) {
-      // Add quest to the user
-    }
-  }, [currentScene]);
-
   const [showPauseMenu, setShowPauseMenu] = useState(false);
 
   useEffect(() => {
@@ -134,8 +199,34 @@ export const ScenePage = () => {
 
   const [showGameOver, setShowGameOver] = useState(false);
 
+  const [showWrongOrientationDevice, setShowWrongOrientationDevice] =
+    useState(false);
+
+  useEffect(() => {
+    const handleOrientationChange = () => {
+      if (window.screen.orientation.type.includes("portrait")) {
+        setShowWrongOrientationDevice(true);
+      } else {
+        setShowWrongOrientationDevice(false);
+      }
+    };
+
+    window.addEventListener("orientationchange", handleOrientationChange);
+    return () => {
+      window.removeEventListener("orientationchange", handleOrientationChange);
+    };
+  }, []);
+
   return (
     <>
+      {showMiniGame && currentScene?.minigameId === 1 && (
+        <Minigame1 currentScene={currentScene} />
+      )}
+      {showMiniGame && currentScene?.minigameId === 2 && (
+        <Minigame2 currentScene={currentScene} />
+      )}
+      {showMiniGame && currentScene?.minigameId === 3 && <Minigame3 />}
+      {showWrongOrientationDevice && <WrongOrientationScreen />}
       {showGameOver && (
         <GameOverScreen
           user={user}
@@ -150,7 +241,7 @@ export const ScenePage = () => {
         />
       )}
       <InventoryComponent currentInventory={user?.gameState.inventoryState} />
-      <QuestContainer questState={user?.gameState.questsState} />
+      <QuestContainer questState={currentQuests} />
       <div
         style={{
           backgroundImage: currentScene
@@ -170,47 +261,21 @@ export const ScenePage = () => {
         {/* items */}
         {currentScene?.sceneItems?.map((sceneItem) => {
           return (
-            <div key={sceneItem.sceneItemId}>
-              <h3>{sceneItem.item.itemName}</h3>
-              <img
-                key={sceneItem.sceneItemId}
-                src={`/${sceneItem.item.itemImages[0].filePath}`}
-                alt={sceneItem.item.itemName}
-                style={{
-                  top: `${sceneItem.position.y}%`,
-                  left: `${sceneItem.position.x}%`,
-                  width: `${sceneItem.size.width}%`,
-                  height: `${sceneItem.size.height}%`,
-                }}
-                className="scene__image scene-item"
-              />
-            </div>
+            <SceneItemComponent
+              sceneItem={sceneItem}
+              currentInventory={currentInventory}
+              setCurrentInventory={setCurrentInventory}
+              currentScene={currentScene}
+              setCurrentScene={setCurrentScene}
+            />
           );
         })}
         {/* characters */}
-        {currentScene?.sceneCharacters?.map((sceneCharacter) => {
-          return (
-            <div key={sceneCharacter.sceneCharacterId}>
-              <h3>
-                {sceneCharacter.character.firstName}{" "}
-                {sceneCharacter.character.nickname}{" "}
-                {sceneCharacter.character.lastName}
-              </h3>
-              <img
-                key={sceneCharacter.sceneCharacterId}
-                src={`/${sceneCharacter.character.characterImages[0].filePath}`}
-                alt={sceneCharacter.character.firstName}
-                style={{
-                  top: `${sceneCharacter.position.y}%`,
-                  left: `${sceneCharacter.position.x}%`,
-                  width: `${sceneCharacter.size.width}%`,
-                  height: `${sceneCharacter.size.height}%`,
-                }}
-                className="scene__image scene-character"
-              />
-            </div>
-          );
-        })}
+        {currentScene?.sceneCharacters?.map(
+          (sceneCharacter: SceneCharacter) => {
+            return <SceneCharacterComponent sceneCharacter={sceneCharacter} />;
+          }
+        )}
         {/* dialogs*/}
         {currentScene?.sceneDialogs?.length !== undefined &&
           currentScene.sceneDialogs.length > 0 && (
@@ -249,7 +314,7 @@ export const ScenePage = () => {
                               setUser,
                               sceneId,
                               user?.gameState.inventoryState,
-                              user?.gameState.questsState
+                              currentQuests
                             );
                           }
                           if (currentScene?.gameOver) {

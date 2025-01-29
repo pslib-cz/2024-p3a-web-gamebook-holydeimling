@@ -13,6 +13,7 @@ import {
   BackofficeCategoryRouter,
 } from "./pages/BackofficeCategoryPage"; // Import the category page
 import { Toaster } from "sonner";
+import { UserProvider } from "./UserContext";
 
 function App() {
   const router = createBrowserRouter([
@@ -63,10 +64,10 @@ function App() {
   ]);
 
   return (
-    <>
+    <UserProvider>
       <RouterProvider router={router} />
       <Toaster richColors />
-    </>
+    </UserProvider>
   );
 }
 
