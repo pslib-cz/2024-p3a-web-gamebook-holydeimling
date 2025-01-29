@@ -2,7 +2,7 @@ import "./QuestContainer.css";
 import { useState } from "react";
 import questIcon from "../assets/quest.png";
 import { Quest } from "../types";
-import { QuestComponent } from "./Quest";
+import  { QuestComponent} from "./Quest";
 
 interface QuestContainerProps {
   questState: Quest[] | null | undefined;

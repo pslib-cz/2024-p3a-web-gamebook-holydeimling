@@ -12,6 +12,7 @@
   min-width: 400px;
   max-width: 800px;
   font-family: "Joan";
+  z-index: 100;
 }
 
 .quest__heading{

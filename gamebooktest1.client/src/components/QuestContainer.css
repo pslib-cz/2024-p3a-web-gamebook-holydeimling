@@ -5,8 +5,12 @@
   display: flex;
   gap: 1rem;
   width: 800px;
-  height: 10vh;
+  height: 15vh;
   overflow: hidden;
+}
+
+.quest-system__container.expand{
+  overflow: visible;
 }
 
 .quests__icon{
@@ -16,6 +20,7 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
+  cursor: pointer;
 }
 
 .quests__container{
@@ -26,8 +31,10 @@
   flex-direction: column;
   gap: 1rem;
   transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
+  display: none;
+  transition: transform display 0.3s ease-in-out;
 }
 .quests__container.show {
   transform: translateX(0);
+  display: flex;
 }

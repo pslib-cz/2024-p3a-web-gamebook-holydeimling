@@ -14,9 +14,9 @@ import { SceneItemComponent } from "../components/SceneItemComponent";
 import { addItemToInventory } from "../utils/inventoryFunctions";
 import { getQuestFromDb } from "../utils/questsFunctions";
 import { WrongOrientationScreen } from "../components/WrongOrientationScreen";
-import { Minigame1 } from "../components/Minigames/Minigame1";
-import { Minigame2 } from "../components/Minigames/Minigame2";
-import { Minigame3 } from "../components/Minigames/Minigame3";
+import { Minigame1 } from "../components/minigames/Minigame1";
+import { Minigame2 } from "../components/minigames/Minigame2";
+import { Minigame3 } from "../components/minigames/Minigame3";
 
 export const ScenePage = () => {
   const { user, setUser } = useUser();
@@ -116,7 +116,7 @@ export const ScenePage = () => {
 
     fetchQuest();
     removeQuestLocaly();
-  }, [currentScene]);
+  }, [currentScene?.sceneId]);
 
   useEffect(() => {
     if (currentScene?.minigameId) {

@@ -47,10 +47,11 @@ export const SceneItemComponent = ({
         src={`/${sceneItem.item.itemImages[0].filePath}`}
         alt={sceneItem.item.itemName}
         style={{
-          top: `${sceneItem.position.y}px`, //předělat na %
-          left: `${sceneItem.position.x}px`, //předělat na %
-          width: `${sceneItem.size.width}px`, //předělat na %
-          height: `${sceneItem.size.height}px`, //předělat na %
+          top: `${sceneItem.position.y}%`, //předělat na %
+          left: `${sceneItem.position.x}%`, //předělat na %
+          width: `${sceneItem.size.width}%`, //předělat na %
+          height: `${sceneItem.size.height}%`, //předělat na %
+          zIndex: 3,
         }}
         className="scene__image scene-item"
       />
