@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import packageImage from "../../assets/Mini/cartonBox.png"; //upravit cesty jakmile obrazek
 import { Scene } from "../../types";
 import { useNavigate } from "react-router-dom";
 import truckImage from "../../assets/Mini/carPlayer.png"; //upravit cesty jakmile obrazek
 import playerImage from "../../assets/Mini/testMainCharacter.png"; //upravit cesty jakmile obrazek
 import roadTexture from "../../assets/Mini/road.jpg";
+import arrowsIcon from "../../assets/arrowsIcon.png";
+import "./Minigame1.css";
 
 interface Package {
   id: number;
@@ -47,20 +49,19 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
   const [showMinigameDone, setShowMinigameDone] = useState<boolean>(false);
 
   const navigate = useNavigate();
-
-  const pressedKeys = new Set<string>();
+  const pressedKeys = useRef<Set<string>>(new Set()); // Changed to useRef
 
   // Player movement
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (gameOver || showMinigameDone) return;
-      pressedKeys.add(e.key);
+      pressedKeys.current.add(e.key);
     },
     [gameOver, showMinigameDone]
   );
 
   const handleKeyUp = useCallback((e: KeyboardEvent) => {
-    pressedKeys.delete(e.key);
+    pressedKeys.current.delete(e.key);
   }, []);
 
   useEffect(() => {
@@ -69,24 +70,23 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
 
       setPlayerPos((prev) => {
         const newPos = { ...prev };
-        if (pressedKeys.has("ArrowUp")) {
+        if (pressedKeys.current.has("ArrowUp")) {
           newPos.y = Math.max(0, prev.y - MOVE_SPEED);
         }
-        if (pressedKeys.has("ArrowDown")) {
+        if (pressedKeys.current.has("ArrowDown")) {
           newPos.y = Math.min(GAME_HEIGHT - PLAYER_SIZE, prev.y + MOVE_SPEED);
         }
-        if (pressedKeys.has("ArrowLeft")) {
+        if (pressedKeys.current.has("ArrowLeft")) {
           newPos.x = Math.max(0, prev.x - MOVE_SPEED);
         }
-        if (pressedKeys.has("ArrowRight")) {
+        if (pressedKeys.current.has("ArrowRight")) {
           newPos.x = Math.min(GAME_WIDTH - PLAYER_SIZE, prev.x + MOVE_SPEED);
         }
         return newPos;
       });
     };
 
-    const interval = setInterval(movePlayer, 16); // Update player position every 16ms
-
+    const interval = setInterval(movePlayer, 16);
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
 
@@ -290,6 +290,7 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
               borderRadius: "10px",
               color: "white",
               textAlign: "center",
+              zIndex: 3,
             }}
           >
             <h2>Time's Up!</h2>
@@ -310,6 +311,16 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
             </button>
           </div>
         )}
+
+        <div className="minigame1__instructions">
+          <h2>Návod</h2>
+          <p>
+            Ovládání: Šipky doleva, doprava, nahoru a dolů
+            <br />
+            Cíl: Sebrat 10 balíčků a doručit je k autu.
+          </p>
+          <img src={arrowsIcon} alt="Šipky" />
+        </div>
       </div>
     </div>
   );

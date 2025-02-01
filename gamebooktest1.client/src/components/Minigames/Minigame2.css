@@ -7,3 +7,10 @@
     width: 100vw;
     background-color: #f5f5f5;
 }
+
+.minigame2__instructions{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+}

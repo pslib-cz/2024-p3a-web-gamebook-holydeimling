@@ -36,6 +36,7 @@ export const ScenePage = () => {
     user?.gameState.questsState || []
   );
 
+  // Save the inventory to the user object whenever it changes
   useEffect(() => {
     console.log("Current inventory", currentInventory);
     if (user) {
@@ -122,25 +123,7 @@ export const ScenePage = () => {
     if (currentScene?.minigameId) {
       setShowMiniGame(true);
     }
-  }, [currentScene]);
-
-  // Temporary scene ID increment for testing
-  const handleButtonClick = () => {
-    if (currentScene?.isCheckpoint) {
-      saveDataOnCheckpoint(
-        user,
-        setUser,
-        sceneId,
-        user?.gameState.inventoryState,
-        currentQuests
-      );
-    }
-    if (currentScene?.gameOver) {
-      setShowGameOver(true);
-    } else {
-      navigate(`/scene/${sceneId + 1}`); // Navigate to the next scene if no game over
-    }
-  };
+  }, [currentScene?.minigameId]);
 
   // Handle continue click
   const handleContinueClick = () => {
@@ -255,30 +238,28 @@ export const ScenePage = () => {
         }}
         className="scene-background__image"
       >
-        <h1>Scene id: {sceneId}</h1>
-        <h2>Scene Data</h2>
-
-        <div>
-          <button onClick={handleButtonClick}>Change Scene</button>
-        </div>
         {/* items */}
-        {currentScene?.sceneItems?.map((sceneItem) => {
-          return (
-            <SceneItemComponent
-              sceneItem={sceneItem}
-              currentInventory={currentInventory}
-              setCurrentInventory={setCurrentInventory}
-              currentScene={currentScene}
-              setCurrentScene={setCurrentScene}
-            />
-          );
-        })}
+        {currentScene?.sceneItems &&
+          currentScene?.sceneItems?.map((sceneItem) => {
+            return (
+              <SceneItemComponent
+                sceneItem={sceneItem}
+                currentInventory={currentInventory}
+                setCurrentInventory={setCurrentInventory}
+                currentScene={currentScene}
+                setCurrentScene={setCurrentScene}
+              />
+            );
+          })}
         {/* characters */}
-        {currentScene?.sceneCharacters?.map(
-          (sceneCharacter: SceneCharacter) => {
-            return <SceneCharacterComponent sceneCharacter={sceneCharacter} />;
-          }
-        )}
+        {currentScene?.sceneCharacters &&
+          currentScene?.sceneCharacters?.map(
+            (sceneCharacter: SceneCharacter) => {
+              return (
+                <SceneCharacterComponent sceneCharacter={sceneCharacter} />
+              );
+            }
+          )}
         {/* dialogs*/}
         {currentScene?.sceneDialogs?.length !== undefined &&
           currentScene.sceneDialogs.length > 0 && (
@@ -298,7 +279,10 @@ export const ScenePage = () => {
               {!showDoneDialog && (
                 <>
                   <button
-                    onClick={() => setShowDoneDialog(true)}
+                    onClick={() => {
+                      setShowDoneDialog(true);
+                      setIsTypingComplete(true);
+                    }}
                     style={{ position: "absolute", right: "0", top: "0" }}
                   >
                     Skip Dialog
@@ -309,11 +293,10 @@ export const ScenePage = () => {
                     onInit={(typewriter) => {
                       typewriter
                         .typeString(currentScene.sceneDialogs[dialogIndex].text)
+                        .start()
+                        .pauseFor(500)
                         .callFunction(() => {
                           setIsTypingComplete(true);
-                        })
-                        .start()
-                        .callFunction(() => {
                           setShowDoneDialog(true);
                         });
                     }}
@@ -340,21 +323,23 @@ export const ScenePage = () => {
                         (dialogAnswer) => (
                           <button
                             key={dialogAnswer.dialogAnswerId}
+                            style={{ width: "auto", padding: "10px 24px" }}
                             onClick={() => {
                               //martin rikal ze tady mam dat koment (je to mrdka)
-                              if (currentScene?.isCheckpoint) {
-                                saveDataOnCheckpoint(
-                                  user,
-                                  setUser,
-                                  sceneId,
-                                  user?.gameState.inventoryState,
-                                  currentQuests
-                                );
-                              }
+                              //zde mozna hodit game over jako if stejne jak checkpoint
                               if (currentScene?.gameOver) {
                                 setShowGameOver(true);
                               } else {
                                 if (dialogAnswer.nextSceneId) {
+                                  if (currentScene?.isCheckpoint) {
+                                    saveDataOnCheckpoint(
+                                      user,
+                                      setUser,
+                                      sceneId,
+                                      user?.gameState.inventoryState,
+                                      currentQuests
+                                    );
+                                  }
                                   navigate(
                                     `/scene/${dialogAnswer.nextSceneId}`
                                   );
@@ -363,14 +348,14 @@ export const ScenePage = () => {
                                   setIsTypingComplete(false);
                                 } else if (dialogAnswer.nextDialogId) {
                                   // Find the index of the next dialog within the current scene
+                                  setShowDoneDialog(false);
+                                  setIsTypingComplete(false);
                                   const nextDialogIndex =
                                     currentScene.sceneDialogs.findIndex(
                                       (dialog) =>
                                         dialog.dialogId ===
                                         dialogAnswer.nextDialogId
                                     );
-                                  setShowDoneDialog(false);
-                                  setIsTypingComplete(false);
                                   if (nextDialogIndex !== -1) {
                                     // Update the dialogIndex to render the next dialog
                                     setDialogIndex(nextDialogIndex);
@@ -393,8 +378,6 @@ export const ScenePage = () => {
                   )}
                 </>
               )}
-
-              {/* here use typewriter */}
             </div>
           )}
       </div>

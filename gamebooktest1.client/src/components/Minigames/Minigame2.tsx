@@ -3,6 +3,7 @@ import carEnemyImage from "../../assets/Mini/carEnemy.png";
 import { Scene } from "../../types";
 import { useNavigate } from "react-router-dom";
 import carPlayer from "../../assets/Mini/carPlayer.png";
+import arrowsIcon from "../../assets/arrowsIcon.png";
 
 interface ObstacleType {
   id: number;
@@ -282,6 +283,15 @@ export const Minigame2 = ({ currentScene }: Minigame2Props) => {
           </button>
         </div>
       )}
+      <div className="minigame2__instructions">
+        <h2>Návod</h2>
+        <p>
+          Ovládání: Šipky doleva a doprava
+          <br />
+          Cíl: Ujet 7500 bodů
+        </p>
+        <img src={arrowsIcon} alt="Šipky" />
+      </div>
     </div>
   );
 };
