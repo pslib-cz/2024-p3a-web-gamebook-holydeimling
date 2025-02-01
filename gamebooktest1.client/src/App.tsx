@@ -14,6 +14,7 @@ import {
 } from "./pages/BackofficeCategoryPage"; // Import the category page
 import { Toaster } from "sonner";
 import { UserProvider } from "./UserContext";
+import { AboutPage } from "./pages/AboutPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -60,6 +61,10 @@ function App() {
           ],
         },
       ],
+    },
+    {
+      path: "/about",
+      element: <AboutPage />,
     },
   ]);
 

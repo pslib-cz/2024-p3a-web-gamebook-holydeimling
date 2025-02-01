@@ -13,6 +13,18 @@ export const HomePage = () => {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (user) {
+      if (user.userRole === "Admin") {
+        setDataToRender(homeScreenButtonsDataAdminLoggedIn);
+      } else {
+        setDataToRender(homeScreenButtonsDataLoggedIn);
+      }
+    } else {
+      setDataToRender(homeScreenButtonsData);
+    }
+  }, []);
+
   const [homeScreenButtonsData] = useState([
     {
       text: "Hrát",
@@ -28,7 +40,7 @@ export const HomePage = () => {
     },
     {
       text: "Zásluhy",
-      onClick: () => console.log("Zásluhy"),
+      onClick: () => navigate("/about"),
     },
   ]);
 
@@ -41,7 +53,7 @@ export const HomePage = () => {
     },
     {
       text: "Zásluhy",
-      onClick: () => console.log("Options"),
+      onClick: () => navigate("/about"),
     },
     {
       text: "Odhlásit se",

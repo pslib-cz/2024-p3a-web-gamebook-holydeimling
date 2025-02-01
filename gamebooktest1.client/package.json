@@ -17,7 +17,8 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.0.2",
-    "sonner": "^1.7.1"
+    "sonner": "^1.7.1",
+    "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
