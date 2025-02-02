@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/HmqPrl6GL58CJr1pskxdbtrbyxN7YVA5j81VIL5oxw=",
+  "Hash": "JNkPkOM35bKNm2qhZj3UCigAlfjyvgn0z7L71BzvgPs=",
   "Source": "GamebookTest1.Server",
   "BasePath": "_content/GamebookTest1.Server",
   "Mode": "Default",
@@ -720,6 +720,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\89711867-63e5-4d2b-8c7f-0a15fad7bccc.png"
+    },
+    {
+      "Identity": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\8cbbff87-9255-4875-bbc2-942d9a736bc6.png",
+      "SourceId": "GamebookTest1.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\",
+      "BasePath": "_content/GamebookTest1.Server",
+      "RelativePath": "uploads/8cbbff87-9255-4875-bbc2-942d9a736bc6#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "jtd90vwzqz",
+      "Integrity": "N0obqkjfGgIJY4tnPZ8HRSL5jViPK37nQCGer0K1KJE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\8cbbff87-9255-4875-bbc2-942d9a736bc6.png"
     },
     {
       "Identity": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\8cbe046d-afbc-4cb5-a673-68bcb85516e3.png",
@@ -3932,6 +3953,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-RqaAe4gxcpG7pg6IO7iHwTE8C6X/7Ir1Q3MOwRNT3lc="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/8cbbff87-9255-4875-bbc2-942d9a736bc6.jtd90vwzqz.png",
+      "AssetFile": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\8cbbff87-9255-4875-bbc2-942d9a736bc6.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "162715"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N0obqkjfGgIJY4tnPZ8HRSL5jViPK37nQCGer0K1KJE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Feb 2025 20:58:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jtd90vwzqz"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/8cbbff87-9255-4875-bbc2-942d9a736bc6.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-N0obqkjfGgIJY4tnPZ8HRSL5jViPK37nQCGer0K1KJE="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/8cbbff87-9255-4875-bbc2-942d9a736bc6.png",
+      "AssetFile": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\8cbbff87-9255-4875-bbc2-942d9a736bc6.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "162715"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"N0obqkjfGgIJY4tnPZ8HRSL5jViPK37nQCGer0K1KJE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Feb 2025 20:58:15 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-N0obqkjfGgIJY4tnPZ8HRSL5jViPK37nQCGer0K1KJE="
         }
       ]
     },
