@@ -2,7 +2,8 @@ import { Scene } from "../types";
 
 export const fetchScene = async (
   id: number,
-  setScene: (scene: Scene) => void
+  setScene: (scene: Scene) => void,
+  setShowGameOutro: (showGameOutro: boolean) => void
 ) => {
   try {
     const response = await fetch(`/api/Scene/${id}`, {
@@ -13,6 +14,12 @@ export const fetchScene = async (
     });
 
     if (!response.ok) {
+      if (response.status === 404) {
+        setShowGameOutro(true);
+        console.log("Scene not found, showing game outro");
+        return;
+      }
+
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 

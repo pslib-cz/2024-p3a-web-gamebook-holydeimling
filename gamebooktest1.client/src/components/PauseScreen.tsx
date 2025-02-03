@@ -16,7 +16,7 @@ export const PauseScreen = ({
     <div className="pause-screen__container">
       <h1>
         {user
-          ? `Tvůj postup ve hře bude uložen do poslední úspěšné scény. Scéna: ${user?.gameState.checkpointSceneId}`
+          ? `Tvůj postup ve hře bude uložen do poslední uložené scény. Scéna: ${user?.gameState.checkpointSceneId}`
           : `Tvůj postup ve hře bude ztracen.`}
       </h1>
       <HomeScreenButton text="Pokračovat" onClick={handleResume} />

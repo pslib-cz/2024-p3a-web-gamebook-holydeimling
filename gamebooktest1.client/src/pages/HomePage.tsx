@@ -12,6 +12,7 @@ import { startSceneId } from "../utils/constants";
 export const HomePage = () => {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -39,8 +40,8 @@ export const HomePage = () => {
       },
     },
     {
-      text: "Zásluhy",
-      onClick: () => navigate("/about"),
+      text: "O hře",
+      onClick: () => navigate("/about/story"),
     },
   ]);
 
@@ -52,8 +53,8 @@ export const HomePage = () => {
       },
     },
     {
-      text: "Zásluhy",
-      onClick: () => navigate("/about"),
+      text: "O hře",
+      onClick: () => navigate("/about/story"),
     },
     {
       text: "Odhlásit se",
@@ -114,6 +115,7 @@ export const HomePage = () => {
       text: "Nová hra",
       onClick: async () => {
         await newGame(user, setUser);
+        setLoading(true);
         navigate(`/scene/${startSceneId}`);
       },
     },
@@ -130,6 +132,7 @@ export const HomePage = () => {
           return;
         }
         await loadGame(user, setUser);
+
         navigate(`/scene/${user?.gameState.checkpointSceneId || 1}`);
       },
     },

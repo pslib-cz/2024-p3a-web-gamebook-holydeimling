@@ -1,0 +1,38 @@
+.about-page__header__container{
+  background-color: var(--backgroudColor);
+  margin: 0;
+  padding: 0;
+}
+
+.about-page__header__container nav{
+  text-decoration: none;
+}
+
+.about-page__header__container ul{
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+}
+
+.about-page__header__container li {
+  padding: 12px 24px;
+}
+
+.about-page__header__container a{
+  text-decoration: none;
+  color: var(--textColor);
+  font-size: x-large;
+  transition:  .2 ease-in-out;
+}
+
+.about-page__header__container a:hover{
+  color: var(--borderColor);
+  transition:  .2 ease-in-out;
+}
+
+.active {
+  font-weight: bold;
+  color: var(--borderColor) !important
+}

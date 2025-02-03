@@ -17,6 +17,8 @@ import { Minigame1 } from "../components/Minigames/Minigame1";
 import { Minigame2 } from "../components/Minigames/Minigame2";
 import { Minigame3 } from "../components/Minigames/Minigame3";
 import Typewriter from "typewriter-effect";
+import { Minigame4 } from "../components/Minigames/Minigame4";
+import { GameOutro } from "../components/GameOutro";
 
 export const ScenePage = () => {
   const { user, setUser } = useUser();
@@ -35,6 +37,8 @@ export const ScenePage = () => {
   const [currentQuests, setCurrentQuests] = useState<Quest[]>(
     user?.gameState.questsState || []
   );
+
+  const [showGameOutro, setShowGameOutro] = useState(false);
 
   // Save the inventory to the user object whenever it changes
   useEffect(() => {
@@ -78,7 +82,7 @@ export const ScenePage = () => {
     } */
 
     setSceneId(newSceneId);
-    fetchScene(newSceneId, setCurrentScene);
+    fetchScene(newSceneId, setCurrentScene, setShowGameOutro);
     console.log("Scene id is correct", newSceneId);
   }, [id]); //this need to fix
 
@@ -205,13 +209,19 @@ export const ScenePage = () => {
 
   return (
     <>
+      {showGameOutro && <GameOutro />}
       {showMiniGame && currentScene?.minigameId === 1 && (
         <Minigame1 currentScene={currentScene} />
       )}
       {showMiniGame && currentScene?.minigameId === 2 && (
         <Minigame2 currentScene={currentScene} />
       )}
-      {showMiniGame && currentScene?.minigameId === 3 && <Minigame3 />}
+      {showMiniGame && currentScene?.minigameId === 3 && (
+        <Minigame3 currentScene={currentScene} />
+      )}
+      {showMiniGame && currentScene?.minigameId === 4 && (
+        <Minigame4 currentScene={currentScene} />
+      )}
       {showWrongOrientationDevice && <WrongOrientationScreen />}
       {showGameOver && (
         <GameOverScreen
@@ -326,7 +336,7 @@ export const ScenePage = () => {
                             style={{ width: "auto", padding: "10px 24px" }}
                             onClick={() => {
                               //martin rikal ze tady mam dat koment (je to mrdka)
-                              //zde mozna hodit game over jako if stejne jak checkpoint
+                              //zde mozna hodit game over jako if stejne jak checkpoin
                               if (currentScene?.gameOver) {
                                 setShowGameOver(true);
                               } else {
@@ -361,11 +371,11 @@ export const ScenePage = () => {
                                     setDialogIndex(nextDialogIndex);
                                   }
                                 } else {
+                                  setShowDoneDialog(false);
+                                  setIsTypingComplete(false);
                                   navigate(
                                     `/scene/${dialogAnswer.nextSceneId}`
                                   );
-                                  setShowDoneDialog(false);
-                                  setIsTypingComplete(false);
                                 }
                               }
                             }}

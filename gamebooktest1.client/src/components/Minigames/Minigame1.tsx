@@ -3,7 +3,7 @@ import packageImage from "../../assets/Mini/cartonBox.png"; //upravit cesty jakm
 import { Scene } from "../../types";
 import { useNavigate } from "react-router-dom";
 import truckImage from "../../assets/Mini/carPlayer.png"; //upravit cesty jakmile obrazek
-import playerImage from "../../assets/Mini/testMainCharacter.png"; //upravit cesty jakmile obrazek
+import playerImage from "../../assets/Mini/mainCharacter.png"; //upravit cesty jakmile obrazek
 import roadTexture from "../../assets/Mini/road.jpg";
 import arrowsIcon from "../../assets/arrowsIcon.png";
 import "./Minigame1.css";
@@ -26,7 +26,7 @@ type MinigameTruckProps = {
 export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
   const GAME_WIDTH = window.innerWidth;
   const GAME_HEIGHT = window.innerHeight;
-  const PLAYER_SIZE = 200;
+  const PLAYER_SIZE = 250;
   const PACKAGE_SIZE = 80;
   const TRUCK_SIZE = 250;
   const MOVE_SPEED = 10;
@@ -41,6 +41,7 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
     x: 50,
     y: GAME_HEIGHT / 2 - TRUCK_SIZE / 2,
   });
+  const [gameStarted, setGameStarted] = useState(false);
   const [packages, setPackages] = useState<Package[]>([]);
   const [carryingPackage, setCarryingPackage] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
@@ -51,13 +52,24 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
   const navigate = useNavigate();
   const pressedKeys = useRef<Set<string>>(new Set()); // Changed to useRef
 
+  const checkCollision = (
+    rect1: { x: number; y: number; width: number; height: number },
+    rect2: { x: number; y: number; width: number; height: number }
+  ) => {
+    return (
+      rect1.x < rect2.x + rect2.width &&
+      rect1.x + rect1.width > rect2.x &&
+      rect1.y < rect2.y + rect2.height &&
+      rect1.y + rect1.height > rect2.y
+    );
+  };
   // Player movement
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (gameOver || showMinigameDone) return;
+      if (gameOver || showMinigameDone || !gameStarted) return;
       pressedKeys.current.add(e.key);
     },
-    [gameOver, showMinigameDone]
+    [gameOver, showMinigameDone, gameStarted]
   );
 
   const handleKeyUp = useCallback((e: KeyboardEvent) => {
@@ -66,7 +78,7 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
 
   useEffect(() => {
     const movePlayer = () => {
-      if (gameOver || showMinigameDone) return;
+      if (gameOver || showMinigameDone || !gameStarted) return;
 
       setPlayerPos((prev) => {
         const newPos = { ...prev };
@@ -82,6 +94,26 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
         if (pressedKeys.current.has("ArrowRight")) {
           newPos.x = Math.min(GAME_WIDTH - PLAYER_SIZE, prev.x + MOVE_SPEED);
         }
+
+        // Check collision with truck
+        const playerRect = {
+          x: newPos.x,
+          y: newPos.y,
+          width: PLAYER_SIZE / 3.22,
+          height: PLAYER_SIZE,
+        };
+
+        const truckRect = {
+          x: truckPos.x,
+          y: truckPos.y,
+          width: TRUCK_SIZE / 2.4,
+          height: TRUCK_SIZE,
+        };
+
+        if (checkCollision(playerRect, truckRect)) {
+          return prev; // Prevent movement into truck
+        }
+
         return newPos;
       });
     };
@@ -95,11 +127,16 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [gameOver, showMinigameDone, handleKeyDown, handleKeyUp]);
-
+  }, [gameOver, showMinigameDone, handleKeyDown, handleKeyUp, gameStarted]);
   // Generate packages
   useEffect(() => {
-    if (gameOver || showMinigameDone || packages.length >= MAX_PACKAGES) return;
+    if (
+      gameOver ||
+      showMinigameDone ||
+      packages.length >= MAX_PACKAGES ||
+      !gameStarted
+    )
+      return;
 
     const spawnPackage = () => {
       const newPackage = {
@@ -112,11 +149,11 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
 
     const packageInterval = setInterval(spawnPackage, 3000);
     return () => clearInterval(packageInterval);
-  }, [packages.length, gameOver, showMinigameDone]);
+  }, [packages.length, gameOver, showMinigameDone, gameStarted]);
 
   // Check collisions
   useEffect(() => {
-    if (gameOver || showMinigameDone) return;
+    if (gameOver || showMinigameDone || !gameStarted) return;
 
     // Check package pickup
     if (!carryingPackage) {
@@ -142,11 +179,18 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
         setCarryingPackage(false);
       }
     }
-  }, [playerPos, packages, carryingPackage, gameOver, showMinigameDone]);
+  }, [
+    playerPos,
+    packages,
+    carryingPackage,
+    gameOver,
+    showMinigameDone,
+    gameStarted,
+  ]);
 
   // Timer
   useEffect(() => {
-    if (gameOver || showMinigameDone) return;
+    if (gameOver || showMinigameDone || !gameStarted) return;
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
@@ -160,7 +204,7 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [gameOver, showMinigameDone]);
+  }, [gameOver, showMinigameDone, gameStarted]);
 
   // Event listeners
   useEffect(() => {
@@ -188,140 +232,194 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
 
   return (
     <div className="minigame1__containe">
-      <div
-        style={{
-          position: "relative",
-          width: GAME_WIDTH,
-          height: GAME_HEIGHT,
-          backgroundColor: "#33333",
-          overflow: "hidden",
-          backgroundImage: `url(${roadTexture})`,
-        }}
-      >
-        {/* Truck */}
-        <div
-          style={{
-            position: "absolute",
-            left: truckPos.x,
-            top: truckPos.y,
-            width: TRUCK_SIZE,
-            height: TRUCK_SIZE,
-            backgroundImage: `url(${truckImage})`,
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            zIndex: 2,
-          }}
-        />
-
-        {/* Player */}
-        <div
-          style={{
-            position: "absolute",
-            left: playerPos.x,
-            top: playerPos.y,
-            width: PLAYER_SIZE,
-            height: PLAYER_SIZE,
-            backgroundImage: `url(${playerImage})`,
-            backgroundSize: "contain",
-            transform: `scaleX(${playerPos.x < GAME_WIDTH / 2 ? 1 : -1})`,
-            transition: "left 0.1s, top 0.1s",
-            zIndex: 1,
-          }}
-        >
-          {/* Package indicator */}
-          {carryingPackage && (
+      {!gameStarted ? (
+        <div className="start-screen">
+          <div className="instructions-container">
+            <h2>Collect packages</h2>
+            <div className="instructions-content">
+              <div className="controls-section">
+                <h3>Controls:</h3>
+                <img src={arrowsIcon} alt="Arrow keys" className="arrows-img" />
+              </div>
+              <div className="objective-section">
+                <h3>Objective:</h3>
+                <ul>
+                  <li>Pick up packages</li>
+                  <li>Load packages into car</li>
+                  <li>You need to load car with 10 packages in 1 minute </li>
+                  <li>Use left/right/up/down arrows to change lanes</li>
+                </ul>
+              </div>
+            </div>
+            <button
+              className="start-button"
+              onClick={() => setGameStarted(true)}
+            >
+              Start Game
+            </button>
+          </div>
+        </div>
+      ) : (
+        <>
+          {" "}
+          <div
+            style={{
+              position: "relative",
+              width: GAME_WIDTH,
+              height: GAME_HEIGHT,
+              backgroundColor: "#33333",
+              overflow: "hidden",
+              backgroundImage: `url(${roadTexture})`,
+            }}
+          >
+            {/* Truck */}
             <div
               style={{
                 position: "absolute",
-                top: -15,
-                right: -10,
-                width: 40,
-                height: 40,
-                backgroundImage: `url(${packageImage})`,
+                left: truckPos.x,
+                top: truckPos.y,
+                width: TRUCK_SIZE / 2.4,
+                height: TRUCK_SIZE,
+                backgroundImage: `url(${truckImage})`,
                 backgroundSize: "contain",
+                zIndex: 2,
               }}
             />
-          )}
-        </div>
 
-        {/* Packages */}
-        {packages.map((pkg) => (
-          <div
-            key={pkg.id}
-            style={{
-              position: "absolute",
-              left: pkg.x,
-              top: pkg.y,
-              width: PACKAGE_SIZE,
-              height: PACKAGE_SIZE,
-              backgroundImage: `url(${packageImage})`,
-              backgroundSize: "contain",
-            }}
-          />
-        ))}
-
-        {/* Game Info */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 10,
-            left: 10,
-            padding: "10px",
-            borderRadius: "5px",
-            display: "flex",
-            gap: "20px",
-            backgroundColor: "white",
-          }}
-        >
-          <div>Time: {timeLeft}s</div>
-          <div>Score: {score}</div>
-        </div>
-
-        {/* Completion Screen */}
-        {showMinigameDone && (
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              backgroundColor: "rgba(0,0,0,0.8)",
-              padding: "2rem",
-              borderRadius: "10px",
-              color: "white",
-              textAlign: "center",
-              zIndex: 3,
-            }}
-          >
-            <h2>Time's Up!</h2>
-            <p>Final Score: {score}</p>
-            <button
-              onClick={score > 1000 ? handleNextScene : handleGameReset}
+            {/* Player */}
+            <div
               style={{
-                padding: "10px 20px",
-                fontSize: "1rem",
-                marginTop: "1rem",
-                backgroundColor: "#4CAF50",
-                border: "none",
-                borderRadius: "5px",
-                color: "white",
+                position: "absolute",
+                left: playerPos.x,
+                top: playerPos.y,
+                width: PLAYER_SIZE / 3.22,
+                height: PLAYER_SIZE,
+                backgroundImage: `url(${playerImage})`,
+                backgroundSize: "contain",
+                transform: `scaleX(${playerPos.x < GAME_WIDTH / 2 ? 1 : -1})`,
+                transition: "left 0.1s, top 0.1s",
+                zIndex: 1,
               }}
             >
-              {score > 1000 ? "Pokračovat" : "Nepovedlo se, zkus to znovu"}
-            </button>
-          </div>
-        )}
+              {/* Package indicator */}
+              {carryingPackage && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 80,
+                    right: 0,
+                    width: PACKAGE_SIZE,
+                    height: PACKAGE_SIZE,
+                    backgroundImage: `url(${packageImage})`,
+                    backgroundSize: "contain",
+                  }}
+                />
+              )}
+            </div>
 
-        <div className="minigame1__instructions">
-          <h2>Návod</h2>
-          <p>
-            Ovládání: Šipky doleva, doprava, nahoru a dolů
-            <br />
-            Cíl: Sebrat 10 balíčků a doručit je k autu.
-          </p>
-          <img src={arrowsIcon} alt="Šipky" />
-        </div>
-      </div>
+            {/* Packages */}
+            {packages.map((pkg) => (
+              <div
+                key={pkg.id}
+                style={{
+                  position: "absolute",
+                  left: pkg.x,
+                  top: pkg.y,
+                  width: PACKAGE_SIZE,
+                  height: PACKAGE_SIZE,
+                  backgroundImage: `url(${packageImage})`,
+                  backgroundSize: "contain",
+                }}
+              />
+            ))}
+
+            {/* Game Info */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 10,
+                left: 10,
+                padding: "10px",
+                borderRadius: "5px",
+                display: "flex",
+                gap: "20px",
+                backgroundColor: "white",
+              }}
+            >
+              <div>Time: {timeLeft}s</div>
+              <div>Score: {score}</div>
+            </div>
+
+            {/* Completion Screen */}
+            {showMinigameDone && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  backgroundColor: "rgba(0,0,0,0.8)",
+                  padding: "2rem",
+                  borderRadius: "10px",
+                  color: "white",
+                  textAlign: "center",
+                  zIndex: 3,
+                }}
+              >
+                <h2>Time's Up!</h2>
+                <p>Final Score: {score}</p>
+                <button
+                  onClick={score > 1000 ? handleNextScene : handleGameReset}
+                  style={{
+                    padding: "10px 20px",
+                    fontSize: "1rem",
+                    marginTop: "1rem",
+                    backgroundColor: "#4CAF50",
+                    border: "none",
+                    borderRadius: "5px",
+                    color: "white",
+                  }}
+                >
+                  {score > 1000 ? "Pokračovat" : "Nepovedlo se, zkus to znovu"}
+                </button>
+              </div>
+            )}
+            {/* Mobile Controls */}
+            <div className="mobile-controls">
+              <div className="d-pad">
+                <button
+                  className="control-btn up"
+                  onTouchStart={() => pressedKeys.current.add("ArrowUp")}
+                  onTouchEnd={() => pressedKeys.current.delete("ArrowUp")}
+                >
+                  &#x2191;
+                </button>
+                <button
+                  className="control-btn down"
+                  onTouchStart={() => pressedKeys.current.add("ArrowDown")}
+                  onTouchEnd={() => pressedKeys.current.delete("ArrowDown")}
+                >
+                  &#x2193;
+                </button>
+                <button
+                  className="control-btn left"
+                  onTouchStart={() => pressedKeys.current.add("ArrowLeft")}
+                  onTouchEnd={() => pressedKeys.current.delete("ArrowLeft")}
+                >
+                  &#x2190;
+                </button>
+                <button
+                  className="control-btn right"
+                  onTouchStart={() => pressedKeys.current.add("ArrowRight")}
+                  onTouchEnd={() => pressedKeys.current.delete("ArrowRight")}
+                >
+                  &#x2192;
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

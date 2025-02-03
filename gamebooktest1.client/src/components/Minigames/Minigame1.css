@@ -21,3 +21,147 @@
     height: 20vh;
     object-fit: cover;
 }
+
+/* Mobile Controls */
+.mobile-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    touch-action: manipulation;
+    z-index: 4;
+  }
+  
+  .d-pad {
+    position: relative;
+    width: 150px;
+    height: 150px;
+  }
+  
+  .control-btn {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    touch-action: none;
+    opacity: 0.8;
+  }
+  
+  .control-btn:active {
+    opacity: 1;
+    background: white;
+  }
+  
+  .control-btn.up {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .control-btn.down {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .control-btn.left {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .control-btn.right {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  @media (hover: hover) and (pointer: fine) {
+    /* Hide mobile controls on desktop */
+    .mobile-controls {
+      display: none;
+    }
+  }
+
+  .start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .instructions-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 600px;
+    text-align: center;
+  }
+
+  .instructions-content {
+    display: flex;
+    gap: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  .controls-section, .objective-section {
+    flex: 1;
+    padding: 1rem;
+  }
+
+  .arrows-img {
+    width: 200px;
+    margin: 1rem 0;
+  }
+
+  .mobile-controls-preview {
+    display: none;
+  }
+
+  .start-button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .start-button:hover {
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .instructions-content {
+      flex-direction: column;
+    }
+    
+    .arrows-img {
+      display: none;
+    }
+    
+    .mobile-controls-preview {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    
+    .control-btn.demo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #ddd;
+      border: none;
+      font-size: 1.5rem;
+    }
+  }
