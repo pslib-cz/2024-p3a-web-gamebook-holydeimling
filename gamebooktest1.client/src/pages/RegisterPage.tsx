@@ -6,6 +6,7 @@ import { HomeScreenLogo } from "../components/Home/HomeScreenLogo";
 import "./RegisterPage.css";
 import axios from "axios";
 import { toast } from "sonner";
+import { Radio } from "../components/Radio";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
@@ -71,6 +72,7 @@ export const RegisterPage = () => {
         />
         <HomeScreenButton text="Zpět" onClick={() => navigate("/")} />
       </div>
+      <Radio y={10} x={10} />
     </main>
   );
 };

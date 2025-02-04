@@ -34,14 +34,14 @@ export const HomePage = () => {
       },
     },
     {
+      text: "O hře",
+      onClick: () => navigate("/about/story"),
+    },
+    {
       text: "Přihlášení",
       onClick: () => {
         setDataToRender(loginScreenButtonsData);
       },
-    },
-    {
-      text: "O hře",
-      onClick: () => navigate("/about/story"),
     },
   ]);
 
@@ -170,26 +170,7 @@ export const HomePage = () => {
           <HomeScreenButton key={index} {...buttonData} />
         ))}
       </div>
-      {user && (
-        <>
-          <span>id: {user.id} </span>
-          <br />
-          <span>email: {user.email} </span>
-          <br />
-          <span>role: {user.userRole} </span>
-          <br />
-          <span>name: {user.userName} </span>
-          <br />
-          <span>checkpointId {user.gameState?.checkpointSceneId} </span>
-          <br />
-          <span>gamestate id {user.gameState?.gameStateId} </span>
-          <br />
-          <span>
-            inventoryState {user.gameState?.inventoryState?.inventoryId}{" "}
-          </span>
-          <Radio y={5} x={20} width={100} height={100} />
-        </>
-      )}
+      <Radio y={10} x={10} />
       <Toaster richColors />
     </main>
   );

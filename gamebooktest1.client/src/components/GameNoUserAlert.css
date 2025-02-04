@@ -1,0 +1,52 @@
+.alert__container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  height: 100vh;
+  width: 100vw;
+}
+
+.alert__container button{
+  cursor: pointer;
+}
+
+.in-game-menu__buttons{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.in-game-menu__button {
+  padding: 16px 24px;
+  width: 350px;
+  margin: 8px;
+  font-family: "Joan";
+  font-size: 24px;
+  background-color: var(--backgroudColor);
+  color: var(--textColor);
+  border: 2px solid var(--borderColor);
+  border-radius: 12px;
+  filter: drop-shadow(0px 4px 4px var(--borderColor));
+  cursor: pointer;
+  transition: .2s ease-in-out;
+}
+
+.in-game-menu__button:hover {
+  background-color: var(--borderColor);
+  color: var(--backgroudColor);
+  border: 2px solid var(--backgroudColor);
+  filter: drop-shadow(0px 4px 4px var(--backgroudColor));
+}
+
+.in-game-menu__button:active {
+  color: var(--textColor);
+}

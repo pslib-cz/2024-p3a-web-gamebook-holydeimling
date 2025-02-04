@@ -19,6 +19,7 @@ import { Minigame3 } from "../components/Minigames/Minigame3";
 import Typewriter from "typewriter-effect";
 import { Minigame4 } from "../components/Minigames/Minigame4";
 import { GameOutro } from "../components/GameOutro";
+import { GameNoUserAlert } from "../components/GameNoUserAlert";
 
 export const ScenePage = () => {
   const { user, setUser } = useUser();
@@ -39,6 +40,7 @@ export const ScenePage = () => {
   );
 
   const [showGameOutro, setShowGameOutro] = useState(false);
+  const [showGameNoUserAlert, setShowGameNoUserAlert] = useState(false);
 
   // Save the inventory to the user object whenever it changes
   useEffect(() => {
@@ -56,35 +58,49 @@ export const ScenePage = () => {
     }
   }, [currentInventory]);
   // Fetch scene whenever id changes
+  // ... existing code ...
   useEffect(() => {
     const newSceneId = parseInt(id || "1");
-    /* 
+
     if (currentScene) {
+      const prevSceneId = currentScene.sceneId;
       const allPossibleIdsFromCurrentScene = currentScene.sceneDialogs
         ?.map((dialog) =>
           dialog.dialogAnswers.map((answer) => answer.nextSceneId)
         )
         .flat();
 
-      console.log(
-        "All possible ids from the current scene",
-        allPossibleIdsFromCurrentScene
-      );
+      // Save the current scene ID to local storage
+      localStorage.setItem("lastValidSceneId", JSON.stringify(prevSceneId));
 
+      // Check if the new scene ID is valid
       if (
-        allPossibleIdsFromCurrentScene &&
         !allPossibleIdsFromCurrentScene.includes(newSceneId) &&
-        newSceneId !== sceneId + 1
+        newSceneId !== prevSceneId + 1
       ) {
-        console.log("Scene id is incorrect", newSceneId);
-        navigate(`/`);
+        console.log("Scene id is incorrect, redirecting to last valid scene");
+        const lastValidSceneId = JSON.parse(
+          localStorage.getItem("lastValidSceneId") || "1"
+        );
+        navigate(`/scene/${lastValidSceneId}`); // Redirect to the last valid scene
+        return; // Exit the effect to prevent further execution
       }
-    } */
+    }
 
-    setSceneId(newSceneId);
-    fetchScene(newSceneId, setCurrentScene, setShowGameOutro);
-    console.log("Scene id is correct", newSceneId);
-  }, [id]); //this need to fix
+    // If currentScene is null, we are fetching the first scene
+    if (!currentScene || currentScene.sceneId !== newSceneId) {
+      setSceneId(newSceneId);
+      fetchScene(newSceneId, setCurrentScene, setShowGameOutro);
+      console.log("Scene id is correct", newSceneId);
+    }
+  }, [id, currentScene]); // Add currentScene to dependencies
+  // ... existing code ...
+
+  useEffect(() => {
+    if (!user && id === "1") {
+      setShowGameNoUserAlert(true);
+    }
+  }, [user, currentScene, id]);
 
   //handle quests
   useEffect(() => {
@@ -209,6 +225,9 @@ export const ScenePage = () => {
 
   return (
     <>
+      {showGameNoUserAlert && (
+        <GameNoUserAlert setShowGameNoUserAlert={setShowGameNoUserAlert} />
+      )}
       {showGameOutro && <GameOutro />}
       {showMiniGame && currentScene?.minigameId === 1 && (
         <Minigame1 currentScene={currentScene} />
@@ -238,7 +257,6 @@ export const ScenePage = () => {
       )}
       {!showGameOutro && (
         <>
-          {" "}
           <InventoryComponent
             currentInventory={user?.gameState.inventoryState}
           />
@@ -261,6 +279,7 @@ export const ScenePage = () => {
           currentScene?.sceneItems?.map((sceneItem) => {
             return (
               <SceneItemComponent
+                key={sceneItem.sceneItemId}
                 sceneItem={sceneItem}
                 currentInventory={currentInventory}
                 setCurrentInventory={setCurrentInventory}
@@ -274,7 +293,10 @@ export const ScenePage = () => {
           currentScene?.sceneCharacters?.map(
             (sceneCharacter: SceneCharacter) => {
               return (
-                <SceneCharacterComponent sceneCharacter={sceneCharacter} />
+                <SceneCharacterComponent
+                  key={sceneCharacter.sceneCharacterId}
+                  sceneCharacter={sceneCharacter}
+                />
               );
             }
           )}
@@ -297,11 +319,11 @@ export const ScenePage = () => {
               {!showDoneDialog && (
                 <>
                   <button
+                    className="skip-dialog__button"
                     onClick={() => {
                       setShowDoneDialog(true);
                       setIsTypingComplete(true);
                     }}
-                    style={{ position: "absolute", right: "0", top: "0" }}
                   >
                     Skip Dialog
                   </button>
@@ -340,8 +362,8 @@ export const ScenePage = () => {
                       {currentScene.sceneDialogs[dialogIndex].dialogAnswers.map(
                         (dialogAnswer) => (
                           <button
+                            className="dialog-system__button"
                             key={dialogAnswer.dialogAnswerId}
-                            style={{ width: "auto", padding: "10px 24px" }}
                             onClick={() => {
                               //martin rikal ze tady mam dat koment (je to mrdka)
                               //zde mozna hodit game over jako if stejne jak checkpoin

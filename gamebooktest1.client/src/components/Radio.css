@@ -1,0 +1,141 @@
+
+
+.radioBody {
+  width: 400px;
+  height: 200px;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.display {
+  background: #1a2f1a;
+  padding: 10px;
+  border-radius: 4px;
+  color: #7fff00;
+  text-align: center;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px #7fff00;
+  border: 2px solid #2d4a2d;
+  animation: glow 2s infinite alternate;
+}
+
+.volumeControl {
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+  top: 50%;
+}
+
+.trackControls{
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+  top: 50%;
+}
+
+.powerSwitch {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background: #4a4a4a;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.powerSlider {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: #666;
+  border-radius: 15px;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.powerSlider.on {
+  left: 30px;
+  background: #ff4444;
+}
+
+.volumeKnob {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.volumeInput {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.knob {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #4a4a4a;
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 2px 4px rgba(0,0,0,0.3),
+    0 2px 4px rgba(0,0,0,0.3);
+}
+
+.knobPointer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 20px;
+  background: #ff4444;
+  transform-origin: bottom center;
+  transition: transform 0.1s;
+}
+
+.speakerGrille {
+  flex: 1;
+  background: 
+    repeating-linear-gradient(
+      to right,
+      #3a3329,
+      #3a3329 3px,
+      #504739 3px,
+      #504739 6px
+    );
+  border-radius: 4px;
+  margin: 10px 0;
+  border: 2px solid #2d2d2d;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.branding {
+  text-align: center;
+  color: #d0c6b0;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #7fff00;
+  }
+  to {
+    text-shadow: 0 0 15px #7fff00;
+  }
+}
+
+@media screen and (max-width: 800px) {
+.radioContainer{
+  display: none;
+}
+  
+}

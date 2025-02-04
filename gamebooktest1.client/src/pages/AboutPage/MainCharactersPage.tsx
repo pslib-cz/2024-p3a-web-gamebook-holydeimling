@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Character } from "../../types";
 import { CharactersPageSection } from "../../components/CharactersPageSection";
+import "./StoryPage.css";
 
 export const MainCharactersPage = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -26,7 +27,7 @@ export const MainCharactersPage = () => {
   }, []);
 
   return (
-    <>
+    <div className="story-page">
       <h1>Důležité postavy a jejich příběhy</h1>
       {characters.map((character, index) => (
         <CharactersPageSection
@@ -35,6 +36,6 @@ export const MainCharactersPage = () => {
           className={index % 2 === 1 ? "row-reverse" : ""}
         />
       ))}
-    </>
+    </div>
   );
 };

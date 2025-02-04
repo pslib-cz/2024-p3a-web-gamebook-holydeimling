@@ -7,6 +7,7 @@ import "./LoginPage.css";
 import axios from "axios";
 import { User, useUser } from "../UserContext";
 import { toast, Toaster } from "sonner";
+import { Radio } from "../components/Radio";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ export const LoginPage = () => {
         />
         <HomeScreenButton text="Zpět" onClick={() => navigate("/")} />
       </div>
+      <Radio y={10} x={10} />
     </main>
   );
 };

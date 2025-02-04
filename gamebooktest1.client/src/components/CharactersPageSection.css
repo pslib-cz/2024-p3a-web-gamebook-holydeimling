@@ -5,11 +5,19 @@
   justify-content: center;
   padding: 0;
   font-size: x-large;
-  max-width: 80%;
   margin: 0 auto;
+  text-align: center;
 }
 
 .row-reverse {
   display: flex;
   flex-direction: row-reverse;
+}
+
+@media screen and (max-width: 1161px) {
+  .characters-page__section {
+    flex-direction: column;
+    width: 100%;
+  }
+
 }

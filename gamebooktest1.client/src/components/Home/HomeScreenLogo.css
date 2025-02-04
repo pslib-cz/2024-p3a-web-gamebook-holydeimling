@@ -50,3 +50,19 @@
   position: relative;
   top: -13px;
 }
+
+@media screen and (max-width: 800px) {
+  .logo {
+    --logoWidth: 100%;
+  }
+  .text {
+    width: 100%;
+  }
+  .main-text {
+    font-size: 100px;
+  }
+  .subtitle {
+    font-size: 18px;
+  }
+  
+}

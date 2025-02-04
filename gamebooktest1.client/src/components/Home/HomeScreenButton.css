@@ -10,6 +10,7 @@
   filter: drop-shadow(0px 4px 4px var(--borderColor));
   cursor: pointer;
   transition: .2s ease-in-out;
+  z-index: 1000;
 }
 
 .button__container:hover {
@@ -18,4 +19,9 @@
   color: var(--backgroudColor);
   border: 2px solid var(--backgroudColor);
   filter: drop-shadow(0px 4px 4px var(--backgroudColor));
+}
+
+.button__container:active {
+  color: var(--textColor);
+  transition: none;
 }

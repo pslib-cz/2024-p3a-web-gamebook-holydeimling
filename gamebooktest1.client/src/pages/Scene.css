@@ -28,9 +28,9 @@
   font-size: 18px;
 }
 
-.dialog-system button {
-  width: 150px;
-  padding: 8px;
+.dialog-system__button, .skip-dialog__button {
+  padding: 10px 24px;
+  width: auto;
   margin: 8px;
   font-family: "Joan";
   font-size: 16px;
@@ -43,11 +43,15 @@
   transition: .2s ease-in-out;
 }
 
-.dialog-system button:hover {
+.dialog-system__button:hover, .skip-dialog__button:hover {
   background-color: var(--borderColor);
   color: var(--backgroudColor);
   border: 2px solid var(--backgroudColor);
   filter: drop-shadow(0px 4px 4px var(--backgroudColor));
+}
+
+.dialog-system__button:active, .skip-dialog__button:active {
+  color: var(--textColor);
 }
 
 
@@ -101,4 +105,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.skip-dialog__button{
+  position: absolute;
+  right: 0;
+  top: 0;
 }
