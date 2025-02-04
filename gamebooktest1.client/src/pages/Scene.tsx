@@ -236,8 +236,16 @@ export const ScenePage = () => {
           handleExitToMainMenu={HandleToMainMenu}
         />
       )}
-      <InventoryComponent currentInventory={user?.gameState.inventoryState} />
-      <QuestContainer questState={currentQuests} />
+      {!showGameOutro && (
+        <>
+          {" "}
+          <InventoryComponent
+            currentInventory={user?.gameState.inventoryState}
+          />
+          <QuestContainer questState={currentQuests} />
+        </>
+      )}
+
       <div
         style={{
           backgroundImage: currentScene
