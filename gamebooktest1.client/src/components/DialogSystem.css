@@ -1,0 +1,54 @@
+.dialog-system{
+  border: 2px solid var(--borderColor);
+  border-radius: 12px;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--backgroudColor);
+  padding: 20px;
+  width: 80%;
+  max-width: 1000px;
+  max-height: 300px;
+  z-index: 100;
+  filter: drop-shadow(0px 4px 4px var(--borderColor));
+  font-family: "Joan";
+  color: var(--textColor);
+}
+
+.dialog-system h3 {
+  font-size: 24px;
+}
+
+.dialog-system p {
+  font-size: 18px;
+}
+
+
+.dialog-system__character__container{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--borderColor);
+  margin-right: 15px;
+  float: left;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  position: relative;
+}
+.dialog-system__character {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 200%;
+  object-fit: cover;
+  float: top;
+  scale: 5;
+  filter: drop-shadow(0px 4px 4px var(--borderColor));
+}
+
+.dialog-system-skip__button__container{
+  position: absolute;
+  right: 0;
+  top: 0;
+}

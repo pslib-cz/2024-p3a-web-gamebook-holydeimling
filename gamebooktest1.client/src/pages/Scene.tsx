@@ -26,6 +26,8 @@ import Typewriter from "typewriter-effect";
 import { Minigame4 } from "../components/Minigames/Minigame4";
 import { GameOutro } from "../components/GameOutro";
 import { GameNoUserAlert } from "../components/GameNoUserAlert";
+import { DialogSystemButton } from "../components/DialogSystemButton";
+import { DialogSystem } from "../components/DialogSystem";
 
 export const ScenePage = () => {
   const { user, setUser } = useUser();
@@ -238,41 +240,39 @@ export const ScenePage = () => {
     { id: 4, component: Minigame4 },
   ];
 
-  const handleDialogAnswerClick = (data: {
-    dialogAnswer: DialogAnswer;
-    currentScene: Scene;
-  }) => {
-    if (currentScene?.gameOver) {
-      setShowGameOver(true);
-    } else {
-      if (data.dialogAnswer.nextSceneId) {
-        if (currentScene?.isCheckpoint) {
-          saveDataOnCheckpoint(
-            user,
-            setUser,
-            sceneId,
-            user?.gameState.inventoryState,
-            currentQuests
-          );
-        }
-        navigate(`/scene/${data.dialogAnswer.nextSceneId}`);
-        setDialogIndex(0);
-        setShowDoneDialog(false);
-        setIsTypingComplete(false);
-      } else if (data.dialogAnswer.nextDialogId) {
-        // Find the index of the next dialog within the current scene
-        setShowDoneDialog(false);
-        setIsTypingComplete(false);
-        const nextDialogIndex = data.currentScene.sceneDialogs.findIndex(
-          (dialog) => dialog.dialogId === data.dialogAnswer.nextDialogId
+  const handleDialogAnswerClick = (dialogAnswer: DialogAnswer) => {
+    if (dialogAnswer.nextSceneId) {
+      if (currentScene?.isCheckpoint) {
+        saveDataOnCheckpoint(
+          user,
+          setUser,
+          sceneId,
+          user?.gameState.inventoryState,
+          currentQuests
         );
-        if (nextDialogIndex !== -1) {
-          // Update the dialogIndex to render the next dialog
-          setDialogIndex(nextDialogIndex);
-        }
+      }
+      navigate(`/scene/${dialogAnswer.nextSceneId}`);
+      setDialogIndex(0);
+    } else if (dialogAnswer.nextDialogId) {
+      const nextDialogIndex = currentScene?.sceneDialogs.findIndex(
+        (dialog) => dialog.dialogId === dialogAnswer.nextDialogId
+      );
+      if (nextDialogIndex !== -1) {
+        setDialogIndex(nextDialogIndex ? nextDialogIndex : dialogIndex + 1);
       }
     }
   };
+
+  useEffect(() => {
+    if (
+      currentScene?.sceneDialogs &&
+      dialogIndex >= currentScene.sceneDialogs.length
+    ) {
+      setDialogIndex(0);
+    }
+  }, [currentScene, dialogIndex]);
+
+  const [showInventory, setShowInventory] = useState<boolean>(false);
   return (
     <>
       {showGameNoUserAlert && (
@@ -298,16 +298,22 @@ export const ScenePage = () => {
           setShowGameOver={setShowGameOver}
         />
       )}
-      {showPauseMenu && (
-        <PauseScreen
-          handleResume={handleResumeClick}
-          handleExitToMainMenu={HandleToMainMenu}
-        />
-      )}
+      {showPauseMenu &&
+        !showGameOver &&
+        !showGameNoUserAlert &&
+        !showWrongOrientationDevice &&
+        !showInventory && (
+          <PauseScreen
+            handleResume={handleResumeClick}
+            handleExitToMainMenu={HandleToMainMenu}
+          />
+        )}
       {!showGameOutro && (
         <>
           <InventoryComponent
             currentInventory={user?.gameState.inventoryState}
+            showInventory={showInventory}
+            setShowInventory={setShowInventory}
           />
           <QuestContainer questState={currentQuests} />
         </>
@@ -325,6 +331,7 @@ export const ScenePage = () => {
       >
         {/* items */}
         {currentScene?.sceneItems &&
+          currentScene?.sceneItems &&
           currentScene?.sceneItems?.map((sceneItem) => {
             return (
               <SceneItemComponent
@@ -339,6 +346,7 @@ export const ScenePage = () => {
           })}
         {/* characters */}
         {currentScene?.sceneCharacters &&
+          currentScene?.sceneCharacters &&
           currentScene?.sceneCharacters?.map(
             (sceneCharacter: SceneCharacter) => {
               return (
@@ -350,7 +358,18 @@ export const ScenePage = () => {
             }
           )}
         {/* dialogs*/}
-        {currentScene?.sceneDialogs?.length !== undefined &&
+        {/* ... scene items and characters */}
+        {currentScene?.sceneDialogs &&
+          currentScene.sceneDialogs.length > 0 &&
+          dialogIndex < currentScene.sceneDialogs.length && (
+            <DialogSystem
+              currentScene={currentScene}
+              dialogIndex={dialogIndex}
+              onContinue={handleContinueClick}
+              onAnswerClick={handleDialogAnswerClick}
+            />
+          )}
+        {/*         {currentScene?.sceneDialogs?.length !== undefined &&
           currentScene.sceneDialogs.length > 0 && (
             <div className="dialog-system">
               <div className="dialog-system__character__container">
@@ -367,15 +386,15 @@ export const ScenePage = () => {
               </h3>
               {!showDoneDialog && (
                 <>
-                  <button
-                    className="skip-dialog__button"
-                    onClick={() => {
-                      setShowDoneDialog(true);
-                      setIsTypingComplete(true);
-                    }}
-                  >
-                    Skip Dialog
-                  </button>
+                  <div style={{ position: "absolute", top: "0", right: "0" }}>
+                    <DialogSystemButton
+                      text="Skip Dialog"
+                      onClick={() => {
+                        setShowDoneDialog(true);
+                        setIsTypingComplete(true);
+                      }}
+                    />
+                  </div>
                   <Typewriter
                     key={currentScene.sceneDialogs[dialogIndex].dialogId}
                     options={{ delay: 50, skipAddStyles: true }}
@@ -397,26 +416,20 @@ export const ScenePage = () => {
                   <p>{currentScene.sceneDialogs[dialogIndex].text}</p>
                   {currentScene.sceneDialogs[dialogIndex].dialogAnswers
                     .length <= 0 ? (
-                    <button
+                    <DialogSystemButton
                       onClick={() => {
                         handleContinueClick();
                         setShowDoneDialog(false);
                         setIsTypingComplete(false);
                       }}
-                      className="dialog-system__button"
-                    >
-                      Continue
-                    </button>
+                      text="Pokračovat"
+                    />
                   ) : (
                     <div>
                       {currentScene.sceneDialogs[dialogIndex].dialogAnswers.map(
                         (dialogAnswer) => (
-                          <button
-                            className="dialog-system__button"
-                            key={dialogAnswer.dialogAnswerId}
+                          <DialogSystemButton
                             onClick={() => {
-                              //martin rikal ze tady mam dat koment (je to mrdka)
-                              //zde mozna hodit game over jako if stejne jak checkpoin
                               if (currentScene?.gameOver) {
                                 setShowGameOver(true);
                               } else {
@@ -459,9 +472,8 @@ export const ScenePage = () => {
                                 }
                               }
                             }}
-                          >
-                            {dialogAnswer.answerText}
-                          </button>
+                            text={dialogAnswer.answerText}
+                          />
                         )
                       )}
                     </div>
@@ -469,7 +481,18 @@ export const ScenePage = () => {
                 </>
               )}
             </div>
-          )}
+          )} */}
+
+        <div
+          style={{
+            backgroundImage: currentScene
+              ? `url(/${currentScene.backgroundImage.filePath})`
+              : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          className="scene-background__image"
+        ></div>
       </div>
     </>
   );

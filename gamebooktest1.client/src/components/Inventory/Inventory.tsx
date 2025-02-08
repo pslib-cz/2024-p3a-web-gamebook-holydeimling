@@ -11,10 +11,15 @@ import { Inventory } from "../../types";
 
 interface InventoryProps {
   currentInventory: Inventory | null | undefined;
+  showInventory: boolean;
+  setShowInventory: (showInventory: boolean) => void;
 }
 
-export const InventoryComponent = ({ currentInventory }: InventoryProps) => {
-  const [showInventory, setShowInventory] = useState<boolean>(false);
+export const InventoryComponent = ({
+  currentInventory,
+  showInventory,
+  setShowInventory,
+}: InventoryProps) => {
   const [inventoryItemsData, setInventoryItemsData] = useState<
     (string | null | undefined)[]
   >([
@@ -112,11 +117,11 @@ export const InventoryComponent = ({ currentInventory }: InventoryProps) => {
           </div>
         </div>
       )}
-      {showInventory && (
+      {/*       {showInventory && (
         <div className="inventory-character__container">
           <img src={debilek} alt="kys" />
         </div>
-      )}
+      )} */}
       {showPopup && (
         <ConfirmationPopup
           message="Are you sure you want to discard this item?"

@@ -18,7 +18,7 @@ export const SceneCharacterComponent = ({
           left: `${sceneCharacter.position.x}%`, //předělat na %
           width: `${sceneCharacter.size.width}%`, //předělat na %
           height: `${sceneCharacter.size.height}%`, //předělat na %
-          zIndex: 2,
+          zIndex: 1,
         }}
         className="scene__image scene-character"
       />
