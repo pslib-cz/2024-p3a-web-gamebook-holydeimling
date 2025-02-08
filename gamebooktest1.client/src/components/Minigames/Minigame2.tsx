@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import carPlayer from "../../assets/Mini/carPlayer.png";
 import arrowsIcon from "../../assets/arrowsIcon.png";
 import "./Minigame2.css";
+import roadTexture from "../../assets/Mini/road.jpg";
 
 interface ObstacleType {
   id: number;
@@ -25,16 +26,16 @@ interface Rect {
 
 type Minigame2Props = {
   currentScene: Scene;
+  showPauseMenu: boolean;
 };
 
-export const Minigame2 = ({ currentScene }: Minigame2Props) => {
+export const Minigame2 = ({ currentScene, showPauseMenu }: Minigame2Props) => {
   const GAME_WIDTH = window.innerWidth;
   const GAME_HEIGHT = window.innerHeight;
   const LANE_WIDTH = GAME_WIDTH / 3;
-  const CAR_SIZE = 60;
+  const CAR_SIZE = 70;
   const POINTS_TO_WIN = 7500;
 
-  // Move ALL hooks to the top level, before any conditionals
   const [gameStarted, setGameStarted] = useState(false);
   const [currentLane, setCurrentLane] = useState(1);
   const [rotation, setRotation] = useState<number>(0);
@@ -42,38 +43,46 @@ export const Minigame2 = ({ currentScene }: Minigame2Props) => {
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
   const [showMinigameDone, setShowMinigameDone] = useState<boolean>(false);
+  const [carY, setCarY] = useState<number>(GAME_HEIGHT - 300);
 
   const navigate = useNavigate();
   const pressedKeys = useRef<Set<string>>(new Set());
 
   const carX = LANE_WIDTH * (currentLane + 0.5) - CAR_SIZE / 2;
 
-  // Discrete lane movement
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (!gameStarted || gameOver || showMinigameDone) return;
+      if (!gameStarted || gameOver || showMinigameDone || showPauseMenu) return;
 
-      if (e.key === "ArrowLeft") {
-        setCurrentLane((prev) => Math.max(0, prev - 1));
-        setRotation(-15);
-        setTimeout(() => setRotation(0), 200);
-      } else if (e.key === "ArrowRight") {
-        setCurrentLane((prev) => Math.min(2, prev + 1));
-        setRotation(15);
-        setTimeout(() => setRotation(0), 200);
+      switch (e.key) {
+        case "ArrowLeft":
+          setCurrentLane((prev) => Math.max(0, prev - 1));
+          setRotation(-15);
+          setTimeout(() => setRotation(0), 200);
+          break;
+        case "ArrowRight":
+          setCurrentLane((prev) => Math.min(2, prev + 1));
+          setRotation(15);
+          setTimeout(() => setRotation(0), 200);
+          break;
+        case "ArrowUp":
+          setCarY((prev) => Math.max(0, prev - 10));
+          break;
+        case "ArrowDown":
+          setCarY((prev) => Math.min(GAME_HEIGHT - 300, prev + 10));
+          break;
       }
     },
-    [gameStarted, gameOver, showMinigameDone]
+    [gameStarted, gameOver, showMinigameDone, showPauseMenu, GAME_HEIGHT]
   );
 
-  // Event listeners
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
   const handleMobileMove = (direction: "left" | "right") => {
-    if (!gameStarted || gameOver || showMinigameDone) return;
+    if (!gameStarted || gameOver || showMinigameDone || showPauseMenu) return;
 
     const newLane =
       direction === "left"
@@ -109,20 +118,19 @@ export const Minigame2 = ({ currentScene }: Minigame2Props) => {
     }, 100);
 
     return () => clearInterval(mobileGameLoop);
-  }, [gameStarted, gameOver, showMinigameDone, currentLane]);
+  }, [gameStarted, gameOver, showMinigameDone, currentLane, showPauseMenu]);
 
-  // Generate obstacles
   useEffect(() => {
-    if (gameOver || showMinigameDone || !gameStarted) return;
+    if (gameOver || showMinigameDone || !gameStarted || showPauseMenu) return;
 
     const obstacleInterval = setInterval(() => {
       const lane = Math.floor(Math.random() * 3);
       const newObstacle: ObstacleType = {
         id: Date.now(),
-        x: LANE_WIDTH * (lane + 0.5) - 40, // Center in lane
+        x: (GAME_WIDTH / 3) * lane + GAME_WIDTH / 6 - 40,
         y: -100,
         width: 80,
-        height: 160,
+        height: 190,
         image: carEnemyImage,
       };
 
@@ -130,9 +138,8 @@ export const Minigame2 = ({ currentScene }: Minigame2Props) => {
     }, 1000);
 
     return () => clearInterval(obstacleInterval);
-  }, [gameOver, showMinigameDone, gameStarted]);
+  }, [gameOver, showMinigameDone, gameStarted, showPauseMenu]);
 
-  // Collision detection
   const checkCollision = (rect1: Rect, rect2: Rect): boolean => {
     return (
       rect1.x < rect2.x + rect2.width &&
@@ -142,9 +149,8 @@ export const Minigame2 = ({ currentScene }: Minigame2Props) => {
     );
   };
 
-  // Game loop
   useEffect(() => {
-    if (gameOver || showMinigameDone || !gameStarted) return;
+    if (gameOver || showMinigameDone || !gameStarted || showPauseMenu) return;
 
     const gameLoop = setInterval(() => {
       setObstacles((prev) =>
@@ -152,7 +158,7 @@ export const Minigame2 = ({ currentScene }: Minigame2Props) => {
           .filter((obs) => {
             const carRect: Rect = {
               x: carX,
-              y: GAME_HEIGHT - 150,
+              y: carY,
               width: CAR_SIZE,
               height: CAR_SIZE * 2,
               image: carPlayer,
@@ -178,16 +184,22 @@ export const Minigame2 = ({ currentScene }: Minigame2Props) => {
     }, 10);
 
     return () => clearInterval(gameLoop);
-  }, [carX, gameOver, showMinigameDone, gameStarted]);
-
-  // Rest of the code remains the same...
-  // [Keep the restartGame, useEffect for score, and rendering parts unchanged]
+  }, [
+    carX,
+    carY,
+    gameOver,
+    showMinigameDone,
+    gameStarted,
+    showPauseMenu,
+    GAME_HEIGHT,
+  ]);
 
   const restartGame = () => {
     setRotation(0);
     setObstacles([]);
     setGameOver(false);
     setScore(0);
+    setCarY(GAME_HEIGHT - 300);
   };
 
   useEffect(() => {
@@ -199,27 +211,26 @@ export const Minigame2 = ({ currentScene }: Minigame2Props) => {
   const handleNextScene = () => {
     navigate(`/scene/${currentScene.sceneId + 1}`);
   };
+
   return (
     <div className="minigame2__container">
       {!gameStarted ? (
         <div className="start-screen">
           <div className="instructions-container">
-            <h2>Highway Challenge</h2>
+            <h2>Vyhýbání se autům</h2>
             <div className="instructions-content">
               <div className="controls-section">
-                <h3>Controls:</h3>
+                <h3>Ovládání:</h3>
                 <img src={arrowsIcon} alt="Arrow keys" className="arrows-img" />
-                <div className="mobile-controls-preview">
-                  <button className="control-btn demo">←</button>
-                  <button className="control-btn demo">→</button>
-                </div>
+                <p>Použij šipky pro pohyb a vyhýbání se</p>
               </div>
               <div className="objective-section">
-                <h3>Objective:</h3>
+                <h3>Cíl:</h3>
                 <ul>
-                  <li>Avoid incoming cars</li>
-                  <li>Reach {POINTS_TO_WIN} points to win</li>
-                  <li>Use left/right arrows to change lanes</li>
+                  <li>Vyhíbej se autům</li>
+                  <li>Musíš nasbírat {POINTS_TO_WIN} bodů pro výhru</li>
+                  <li>Změna jízdního pruhu pomocí šipek vlevo a vpravo</li>
+                  <li>Pohyb nahoru/dolů pomocí šipek ↑↓</li>
                 </ul>
               </div>
             </div>
@@ -227,76 +238,57 @@ export const Minigame2 = ({ currentScene }: Minigame2Props) => {
               className="start-button"
               onClick={() => setGameStarted(true)}
             >
-              Start Game
+              Zahájit minihru
             </button>
           </div>
         </div>
       ) : (
         <>
-          {" "}
           <div
-            className="game-container"
+            className="minigame2-game-container"
             style={{
-              position: "relative",
               width: GAME_WIDTH,
               height: GAME_HEIGHT,
-              margin: "auto",
-              backgroundColor: "#333",
-              overflow: "hidden",
+              backgroundImage: `url(${roadTexture})`,
             }}
           >
-            {/* Road lanes */}
+            <div style={{ left: LANE_WIDTH - 5 }} className="minigame2-lane" />
+            <div style={{ left: LANE_WIDTH + 5 }} className="minigame2-lane" />
             <div
-              style={{
-                position: "absolute",
-                left: LANE_WIDTH,
-                width: 2,
-                height: "100%",
-                backgroundColor: "white",
-              }}
+              style={{ left: LANE_WIDTH * 2 - 5 }}
+              className="minigame2-lane"
             />
             <div
-              style={{
-                position: "absolute",
-                left: LANE_WIDTH * 2,
-                width: 2,
-                height: "100%",
-                backgroundColor: "white",
-              }}
+              style={{ left: LANE_WIDTH * 2 + 5 }}
+              className="minigame2-lane"
             />
 
-            {/* Car - now positioned at bottom */}
             <div
               style={{
-                position: "absolute",
                 left: carX,
-                top: GAME_HEIGHT - 150,
+                top: carY,
                 width: CAR_SIZE,
-                height: CAR_SIZE * 2,
+                height: CAR_SIZE * 2 + 30,
                 backgroundImage: `url(${carPlayer})`,
-                backgroundSize: "cover",
                 transform: `rotate(${rotation}deg)`,
-                transition: "transform 0.3s, left 0.3s",
               }}
+              className="minigame2-car-player"
             />
 
-            {/* Obstacles */}
             {obstacles.map((obs) => (
               <div
                 key={obs.id}
                 style={{
-                  position: "absolute",
                   left: obs.x,
                   top: obs.y,
                   width: obs.width,
                   height: obs.height,
                   backgroundImage: `url(${obs.image})`,
-                  backgroundSize: "cover",
                 }}
+                className="minigame2-car-enemy"
               />
             ))}
 
-            {/* Fixed mobile controls */}
             <div className="mobile-controls">
               <button
                 className="control-btn left"
@@ -314,60 +306,28 @@ export const Minigame2 = ({ currentScene }: Minigame2Props) => {
               </button>
             </div>
 
-            {/* Game Over Screen */}
             {gameOver && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  textAlign: "center",
-                  color: "white",
-                }}
-              >
-                <h2>Game Over!</h2>
-                <p>Score: {score}</p>
-                <button
-                  onClick={restartGame}
-                  style={{ padding: "10px 20px", fontSize: "1.2rem" }}
-                >
-                  Play Again
+              <div className="game-over-screen">
+                <h2>Naboural jsi!</h2>
+                <p>
+                  Dosažené skóre: <strong>{score}</strong>
+                </p>
+                <button onClick={restartGame} className="start-button">
+                  Zkusit znovu
                 </button>
               </div>
             )}
 
-            {/* Score Display */}
             {!gameOver && (
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 20,
-                  left: 20,
-                  color: "white",
-                  fontSize: "1.5rem",
-                }}
-              >
-                Score: {score}
+              <div className="score-display">
+                Skóre: <strong>{score}</strong>
               </div>
             )}
           </div>
           {showMinigameDone && (
-            <div
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                textAlign: "center",
-                color: "white",
-              }}
-            >
+            <div className="minigame-complete-screen">
               <h2>Vyhrál jsi :)</h2>
-              <button
-                onClick={handleNextScene}
-                style={{ padding: "10px 20px", fontSize: "1.2rem" }}
-              >
+              <button onClick={handleNextScene} className="start-button">
                 Pokračovat
               </button>
             </div>

@@ -1,6 +1,12 @@
-import { useEffect, useState } from "react";
+import { ComponentElement, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Inventory, Quest, Scene, SceneCharacter } from "../types";
+import {
+  DialogAnswer,
+  Inventory,
+  Quest,
+  Scene,
+  SceneCharacter,
+} from "../types";
 import "./Scene.css";
 import { User, useUser } from "../UserContext";
 import { InventoryComponent } from "../components/Inventory/Inventory";
@@ -41,6 +47,11 @@ export const ScenePage = () => {
 
   const [showGameOutro, setShowGameOutro] = useState(false);
   const [showGameNoUserAlert, setShowGameNoUserAlert] = useState(false);
+  const [showGameOver, setShowGameOver] = useState(false);
+  const [showPauseMenu, setShowPauseMenu] = useState(false);
+
+  const [showDoneDialog, setShowDoneDialog] = useState(false);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   // Save the inventory to the user object whenever it changes
   useEffect(() => {
@@ -62,7 +73,7 @@ export const ScenePage = () => {
   useEffect(() => {
     const newSceneId = parseInt(id || "1");
 
-    if (currentScene) {
+    /*     if (currentScene) {
       const prevSceneId = currentScene.sceneId;
       const allPossibleIdsFromCurrentScene = currentScene.sceneDialogs
         ?.map((dialog) =>
@@ -85,13 +96,17 @@ export const ScenePage = () => {
         navigate(`/scene/${lastValidSceneId}`); // Redirect to the last valid scene
         return; // Exit the effect to prevent further execution
       }
-    }
+    } */
 
     // If currentScene is null, we are fetching the first scene
     if (!currentScene || currentScene.sceneId !== newSceneId) {
       setSceneId(newSceneId);
       fetchScene(newSceneId, setCurrentScene, setShowGameOutro);
       console.log("Scene id is correct", newSceneId);
+    }
+
+    if (currentScene?.gameOver) {
+      setShowGameOver(true);
     }
   }, [id, currentScene]); // Add currentScene to dependencies
   // ... existing code ...
@@ -174,8 +189,6 @@ export const ScenePage = () => {
     }
   };
 
-  const [showPauseMenu, setShowPauseMenu] = useState(false);
-
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -200,8 +213,6 @@ export const ScenePage = () => {
     navigate("/");
   };
 
-  const [showGameOver, setShowGameOver] = useState(false);
-
   const [showWrongOrientationDevice, setShowWrongOrientationDevice] =
     useState(false);
 
@@ -220,27 +231,65 @@ export const ScenePage = () => {
     };
   }, []);
 
-  const [showDoneDialog, setShowDoneDialog] = useState(false);
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const minigames = [
+    { id: 1, component: Minigame1 },
+    { id: 2, component: Minigame2 },
+    { id: 3, component: Minigame3 },
+    { id: 4, component: Minigame4 },
+  ];
 
+  const handleDialogAnswerClick = (data: {
+    dialogAnswer: DialogAnswer;
+    currentScene: Scene;
+  }) => {
+    if (currentScene?.gameOver) {
+      setShowGameOver(true);
+    } else {
+      if (data.dialogAnswer.nextSceneId) {
+        if (currentScene?.isCheckpoint) {
+          saveDataOnCheckpoint(
+            user,
+            setUser,
+            sceneId,
+            user?.gameState.inventoryState,
+            currentQuests
+          );
+        }
+        navigate(`/scene/${data.dialogAnswer.nextSceneId}`);
+        setDialogIndex(0);
+        setShowDoneDialog(false);
+        setIsTypingComplete(false);
+      } else if (data.dialogAnswer.nextDialogId) {
+        // Find the index of the next dialog within the current scene
+        setShowDoneDialog(false);
+        setIsTypingComplete(false);
+        const nextDialogIndex = data.currentScene.sceneDialogs.findIndex(
+          (dialog) => dialog.dialogId === data.dialogAnswer.nextDialogId
+        );
+        if (nextDialogIndex !== -1) {
+          // Update the dialogIndex to render the next dialog
+          setDialogIndex(nextDialogIndex);
+        }
+      }
+    }
+  };
   return (
     <>
       {showGameNoUserAlert && (
         <GameNoUserAlert setShowGameNoUserAlert={setShowGameNoUserAlert} />
       )}
       {showGameOutro && <GameOutro />}
-      {showMiniGame && currentScene?.minigameId === 1 && (
-        <Minigame1 currentScene={currentScene} />
-      )}
-      {showMiniGame && currentScene?.minigameId === 2 && (
-        <Minigame2 currentScene={currentScene} />
-      )}
-      {showMiniGame && currentScene?.minigameId === 3 && (
-        <Minigame3 currentScene={currentScene} />
-      )}
-      {showMiniGame && currentScene?.minigameId === 4 && (
-        <Minigame4 currentScene={currentScene} />
-      )}
+      {showMiniGame &&
+        minigames.map(
+          (minigame) =>
+            currentScene?.minigameId === minigame.id && (
+              <minigame.component
+                key={minigame.id}
+                currentScene={currentScene}
+                showPauseMenu={showPauseMenu}
+              />
+            )
+        )}
       {showWrongOrientationDevice && <WrongOrientationScreen />}
       {showGameOver && (
         <GameOverScreen
@@ -354,6 +403,7 @@ export const ScenePage = () => {
                         setShowDoneDialog(false);
                         setIsTypingComplete(false);
                       }}
+                      className="dialog-system__button"
                     >
                       Continue
                     </button>

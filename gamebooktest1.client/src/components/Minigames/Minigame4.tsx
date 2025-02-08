@@ -23,7 +23,12 @@ interface Enemy {
   spawnTime: number;
 }
 
-export const Minigame4 = ({ currentScene }: { currentScene: Scene }) => {
+type Minigame4Props = {
+  currentScene: Scene;
+  showPauseMenu: boolean;
+};
+
+export const Minigame4 = ({ currentScene, showPauseMenu }: Minigame4Props) => {
   const navigate = useNavigate();
   const [gameStarted, setGameStarted] = useState(false);
   const [enemies, setEnemies] = useState<Enemy[]>([]);
@@ -60,7 +65,7 @@ export const Minigame4 = ({ currentScene }: { currentScene: Scene }) => {
   };
 
   const handleEnemyClick = (enemyId: number, isHeadshot: boolean) => {
-    if (gameOver || !enemies.length) return;
+    if (gameOver || !enemies.length || showPauseMenu) return;
 
     setEnemies((prev) => {
       const updated = prev
@@ -95,7 +100,7 @@ export const Minigame4 = ({ currentScene }: { currentScene: Scene }) => {
   };
 
   useEffect(() => {
-    if (!gameStarted || gameOver) return;
+    if (!gameStarted || gameOver || showPauseMenu) return;
 
     const checkEnemyTimeout = () => {
       if (enemies.length > 0) {
@@ -108,7 +113,7 @@ export const Minigame4 = ({ currentScene }: { currentScene: Scene }) => {
 
     const interval = setInterval(checkEnemyTimeout, 50);
     return () => clearInterval(interval);
-  }, [gameStarted, gameOver, enemies]);
+  }, [gameStarted, gameOver, enemies, showPauseMenu]);
 
   useEffect(() => {
     if (score >= GAME_CONFIG.TOTAL_ENEMIES_NEEDED) {

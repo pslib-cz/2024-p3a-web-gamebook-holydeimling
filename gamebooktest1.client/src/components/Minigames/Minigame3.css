@@ -4,6 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
   }
   
   .game-info {
@@ -196,4 +197,36 @@
     .mobile-controls {
       display: none;
     }
+  }
+
+  .minigame3-game{
+    position: relative;
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  .minigame3-truck{
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 1;
+  }
+
+  .minigame3-player{
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transition: left 0.1s, top 0.1s;  
+  }
+
+  .minigames3-carrying-barrel{
+    position: absolute;
+    top: 30%;
+    background-size: contain;
+  }
+
+  .minigame3-barrel{
+    position: absolute;
+    background-size: contain;
   }

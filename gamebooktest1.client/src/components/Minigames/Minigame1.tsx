@@ -21,9 +21,13 @@ interface Position {
 
 type MinigameTruckProps = {
   currentScene: Scene;
+  showPauseMenu: boolean;
 };
 
-export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
+export const Minigame1 = ({
+  currentScene,
+  showPauseMenu,
+}: MinigameTruckProps) => {
   const GAME_WIDTH = window.innerWidth;
   const GAME_HEIGHT = window.innerHeight;
   const PLAYER_SIZE = 250;
@@ -66,10 +70,10 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
   // Player movement
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (gameOver || showMinigameDone || !gameStarted) return;
+      if (gameOver || showMinigameDone || !gameStarted || showPauseMenu) return;
       pressedKeys.current.add(e.key);
     },
-    [gameOver, showMinigameDone, gameStarted]
+    [gameOver, showMinigameDone, gameStarted, showPauseMenu]
   );
 
   const handleKeyUp = useCallback((e: KeyboardEvent) => {
@@ -78,7 +82,7 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
 
   useEffect(() => {
     const movePlayer = () => {
-      if (gameOver || showMinigameDone || !gameStarted) return;
+      if (gameOver || showMinigameDone || !gameStarted || showPauseMenu) return;
 
       setPlayerPos((prev) => {
         const newPos = { ...prev };
@@ -127,14 +131,22 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [gameOver, showMinigameDone, handleKeyDown, handleKeyUp, gameStarted]);
+  }, [
+    gameOver,
+    showMinigameDone,
+    handleKeyDown,
+    handleKeyUp,
+    gameStarted,
+    showPauseMenu,
+  ]);
   // Generate packages
   useEffect(() => {
     if (
       gameOver ||
       showMinigameDone ||
       packages.length >= MAX_PACKAGES ||
-      !gameStarted
+      !gameStarted ||
+      showPauseMenu
     )
       return;
 
@@ -149,11 +161,11 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
 
     const packageInterval = setInterval(spawnPackage, 3000);
     return () => clearInterval(packageInterval);
-  }, [packages.length, gameOver, showMinigameDone, gameStarted]);
+  }, [packages.length, gameOver, showMinigameDone, gameStarted, showPauseMenu]);
 
   // Check collisions
   useEffect(() => {
-    if (gameOver || showMinigameDone || !gameStarted) return;
+    if (gameOver || showMinigameDone || !gameStarted || showPauseMenu) return;
 
     // Check package pickup
     if (!carryingPackage) {
@@ -186,11 +198,12 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
     gameOver,
     showMinigameDone,
     gameStarted,
+    showPauseMenu,
   ]);
 
   // Timer
   useEffect(() => {
-    if (gameOver || showMinigameDone || !gameStarted) return;
+    if (gameOver || showMinigameDone || !gameStarted || showPauseMenu) return;
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
@@ -204,7 +217,7 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [gameOver, showMinigameDone, gameStarted]);
+  }, [gameOver, showMinigameDone, gameStarted, showPauseMenu]);
 
   // Event listeners
   useEffect(() => {
@@ -231,23 +244,23 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
   };
 
   return (
-    <div className="minigame1__containe">
+    <div className="minigame1__container">
       {!gameStarted ? (
         <div className="start-screen">
           <div className="instructions-container">
-            <h2>Collect packages</h2>
+            <h2>Nakládání balíčků</h2>
             <div className="instructions-content">
               <div className="controls-section">
-                <h3>Controls:</h3>
+                <h3>Ovládání:</h3>
                 <img src={arrowsIcon} alt="Arrow keys" className="arrows-img" />
               </div>
               <div className="objective-section">
-                <h3>Objective:</h3>
+                <h3>Cíl:</h3>
                 <ul>
-                  <li>Pick up packages</li>
-                  <li>Load packages into car</li>
-                  <li>You need to load car with 10 packages in 1 minute </li>
-                  <li>Use left/right/up/down arrows to change lanes</li>
+                  <li>Sbírej balíčky</li>
+                  <li>Nalož balíčků do auta</li>
+                  <li>Musíš do auta naložit 10 balíčků během jedné minuty</li>
+                  <li>Pohyb pomocí šipek vlevo/vpravo/nahoru/dolů</li>
                 </ul>
               </div>
             </div>
@@ -255,22 +268,19 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
               className="start-button"
               onClick={() => setGameStarted(true)}
             >
-              Start Game
+              Zahájit minihru
             </button>
           </div>
         </div>
       ) : (
         <>
-          {" "}
           <div
             style={{
-              position: "relative",
               width: GAME_WIDTH,
               height: GAME_HEIGHT,
-              backgroundColor: "#33333",
-              overflow: "hidden",
               backgroundImage: `url(${roadTexture})`,
             }}
+            className="minigame1-game-window"
           >
             {/* Truck */}
             <div
@@ -289,30 +299,24 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
             {/* Player */}
             <div
               style={{
-                position: "absolute",
                 left: playerPos.x,
                 top: playerPos.y,
                 width: PLAYER_SIZE / 3.22,
                 height: PLAYER_SIZE,
                 backgroundImage: `url(${playerImage})`,
-                backgroundSize: "contain",
                 transform: `scaleX(${playerPos.x < GAME_WIDTH / 2 ? 1 : -1})`,
-                transition: "left 0.1s, top 0.1s",
-                zIndex: 1,
               }}
+              className="minigame1-player"
             >
               {/* Package indicator */}
               {carryingPackage && (
                 <div
                   style={{
-                    position: "absolute",
-                    top: 80,
-                    right: 0,
                     width: PACKAGE_SIZE,
                     height: PACKAGE_SIZE,
                     backgroundImage: `url(${packageImage})`,
-                    backgroundSize: "contain",
                   }}
+                  className="minigame1-carrying-package"
                 />
               )}
             </div>
@@ -322,63 +326,34 @@ export const Minigame1 = ({ currentScene }: MinigameTruckProps) => {
               <div
                 key={pkg.id}
                 style={{
-                  position: "absolute",
                   left: pkg.x,
                   top: pkg.y,
                   width: PACKAGE_SIZE,
                   height: PACKAGE_SIZE,
                   backgroundImage: `url(${packageImage})`,
-                  backgroundSize: "contain",
                 }}
+                className="minigame1-package"
               />
             ))}
 
             {/* Game Info */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: 10,
-                left: 10,
-                padding: "10px",
-                borderRadius: "5px",
-                display: "flex",
-                gap: "20px",
-                backgroundColor: "white",
-              }}
-            >
-              <div>Time: {timeLeft}s</div>
-              <div>Score: {score}</div>
+            <div className="minigame1-game-info">
+              <div>
+                Čas: <strong>{timeLeft}s</strong>
+              </div>
+              <div>
+                Celkové skóre: <strong>{score}</strong>
+              </div>
             </div>
 
             {/* Completion Screen */}
             {showMinigameDone && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  backgroundColor: "rgba(0,0,0,0.8)",
-                  padding: "2rem",
-                  borderRadius: "10px",
-                  color: "white",
-                  textAlign: "center",
-                  zIndex: 3,
-                }}
-              >
-                <h2>Time's Up!</h2>
-                <p>Final Score: {score}</p>
+              <div className="minigame1-done-screen">
+                <h2>Čas vypršel</h2>
+                <p>Celkové skóre {score}</p>
                 <button
                   onClick={score > 1000 ? handleNextScene : handleGameReset}
-                  style={{
-                    padding: "10px 20px",
-                    fontSize: "1rem",
-                    marginTop: "1rem",
-                    backgroundColor: "#4CAF50",
-                    border: "none",
-                    borderRadius: "5px",
-                    color: "white",
-                  }}
+                  className="start-button"
                 >
                   {score > 1000 ? "Pokračovat" : "Nepovedlo se, zkus to znovu"}
                 </button>

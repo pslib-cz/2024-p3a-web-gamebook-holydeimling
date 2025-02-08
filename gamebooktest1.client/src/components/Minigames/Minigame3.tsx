@@ -21,9 +21,13 @@ interface Position {
 
 type MinigameTruckProps = {
   currentScene: Scene;
+  showPauseMenu: boolean;
 };
 
-export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
+export const Minigame3 = ({
+  currentScene,
+  showPauseMenu,
+}: MinigameTruckProps) => {
   const GAME_WIDTH = window.innerWidth;
   const GAME_HEIGHT = window.innerHeight;
   const PLAYER_SIZE = 250;
@@ -55,23 +59,44 @@ export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
 
   // Initialize game elements
   useEffect(() => {
-    // Initialize packages
     const initialPackages = Array.from({ length: MAX_PACKAGES }, (_, i) => ({
       id: i,
       x: truckPos.x + TRUCK_SIZE / 2 - PACKAGE_SIZE / 2,
       y: truckPos.y + TRUCK_SIZE / 2 - PACKAGE_SIZE / 2,
     }));
-
     setPackages(initialPackages);
   }, []);
+
+  const checkCollision = (newPos: Position): boolean => {
+    const playerWidth = PLAYER_SIZE / 3.22;
+
+    // Player hitbox
+    const playerLeft = newPos.x;
+    const playerRight = newPos.x + playerWidth;
+    const playerTop = newPos.y;
+    const playerBottom = newPos.y + PLAYER_SIZE;
+
+    // Truck hitbox
+    const truckLeft = truckPos.x;
+    const truckRight = truckPos.x + TRUCK_SIZE / 2 + 15;
+    const truckTop = truckPos.y;
+    const truckBottom = truckPos.y + TRUCK_SIZE;
+
+    return (
+      playerRight > truckLeft &&
+      playerLeft < truckRight &&
+      playerBottom > truckTop &&
+      playerTop < truckBottom
+    );
+  };
 
   // Player movement
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (gameOver || showMinigameDone || !gameStarted) return;
+      if (gameOver || showMinigameDone || !gameStarted || showPauseMenu) return;
       pressedKeys.current.add(e.key);
     },
-    [gameOver, showMinigameDone, gameStarted]
+    [gameOver, showMinigameDone, gameStarted, showPauseMenu]
   );
 
   const handleKeyUp = useCallback((e: KeyboardEvent) => {
@@ -80,7 +105,7 @@ export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
 
   useEffect(() => {
     const movePlayer = () => {
-      if (gameOver || showMinigameDone || !gameStarted) return;
+      if (gameOver || showMinigameDone || !gameStarted || showPauseMenu) return;
 
       setPlayerPos((prev) => {
         const newPos = { ...prev };
@@ -102,6 +127,11 @@ export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
           );
         }
 
+        // Check collision before updating position
+        if (checkCollision(newPos)) {
+          return prev; // Return previous position if collision
+        }
+
         return newPos;
       });
     };
@@ -115,11 +145,18 @@ export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [gameOver, showMinigameDone, handleKeyDown, handleKeyUp, gameStarted]);
+  }, [
+    gameOver,
+    showMinigameDone,
+    handleKeyDown,
+    handleKeyUp,
+    gameStarted,
+    showPauseMenu,
+  ]);
 
   // Game logic
   useEffect(() => {
-    if (gameOver || showMinigameDone || !gameStarted) return;
+    if (gameOver || showMinigameDone || !gameStarted || showPauseMenu) return;
 
     // Pick up package from truck
     if (!carryingPackage) {
@@ -158,11 +195,12 @@ export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
     gameOver,
     showMinigameDone,
     gameStarted,
+    showPauseMenu,
   ]);
 
   // Timer
   useEffect(() => {
-    if (gameOver || showMinigameDone || !gameStarted) return;
+    if (gameOver || showMinigameDone || !gameStarted || showPauseMenu) return;
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
@@ -176,7 +214,7 @@ export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [gameOver, showMinigameDone, gameStarted]);
+  }, [gameOver, showMinigameDone, gameStarted, showPauseMenu]);
 
   const handleNextScene = () => {
     navigate(`/scene/${currentScene.sceneId + 1}`);
@@ -203,10 +241,10 @@ export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
       {!gameStarted ? (
         <div className="start-screen">
           <div className="instructions-container">
-            <h2>Highway Challenge</h2>
+            <h2>Zbavení se barelů</h2>
             <div className="instructions-content">
               <div className="controls-section">
-                <h3>Controls:</h3>
+                <h3>Ovládání:</h3>
                 <img src={arrowsIcon} alt="Arrow keys" className="arrows-img" />
                 <div className="mobile-controls-preview">
                   <button className="control-btn demo">←</button>
@@ -214,11 +252,12 @@ export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
                 </div>
               </div>
               <div className="objective-section">
-                <h3>Objective:</h3>
+                <h3>Cíl:</h3>
                 <ul>
-                  <li>Avoid incoming cars</li>
-                  <li>Reach {"kys"} points to win</li>
-                  <li>Use left/right arrows to change lanes</li>
+                  <li>Sbírej barely z auta</li>
+                  <li>Po sebrání vhoď barel do řeky</li>
+                  <li>Zahoď takto 10 barelů pro splnění </li>
+                  <li>Pohyb pomocí šipek vlevo/vpravo/nahoru/dolů</li>
                 </ul>
               </div>
             </div>
@@ -226,29 +265,24 @@ export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
               className="start-button"
               onClick={() => setGameStarted(true)}
             >
-              Start Game
+              Zahájit minihru
             </button>
           </div>
         </div>
       ) : (
         <div
           style={{
-            position: "relative",
             width: GAME_WIDTH,
             height: GAME_HEIGHT,
-            backgroundColor: "#333",
-            overflow: "hidden",
             backgroundImage: `url(${roadTexture})`,
           }}
+          className="minigame3-game"
         >
           {/* River area on the right */}
           <div
             className="river-area"
             style={{
-              position: "absolute",
-              right: 0,
               width: RIVER_WIDTH,
-              height: "100%",
             }}
           >
             <div className="water-overlay" />
@@ -257,44 +291,35 @@ export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
           {/* Truck */}
           <div
             style={{
-              position: "absolute",
               left: truckPos.x,
               top: truckPos.y,
               width: TRUCK_SIZE,
               height: TRUCK_SIZE,
               backgroundImage: `url(${truckImage})`,
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-              zIndex: 2,
             }}
+            className="minigame3-truck"
           />
 
           {/* Player */}
           <div
             style={{
-              position: "absolute",
               left: playerPos.x,
               top: playerPos.y,
               width: PLAYER_SIZE / 3.22,
               height: PLAYER_SIZE,
               backgroundImage: `url(${playerImage})`,
-              backgroundSize: "contain",
               transform: `scaleX(${playerPos.x < GAME_WIDTH / 2 ? 1 : -1})`,
-              transition: "left 0.1s, top 0.1s",
-              zIndex: 1,
             }}
+            className="minigame3-player"
           >
             {carryingPackage && (
               <div
                 style={{
-                  position: "absolute",
-                  top: 60,
-                  right: 55,
                   width: PACKAGE_SIZE,
                   height: PACKAGE_SIZE,
                   backgroundImage: `url(${barelImage})`,
-                  backgroundSize: "contain",
                 }}
+                className="minigames3-carrying-barrel"
               />
             )}
           </div>
@@ -304,31 +329,30 @@ export const Minigame3 = ({ currentScene }: MinigameTruckProps) => {
             <div
               key={pkg.id}
               style={{
-                position: "absolute",
                 left: pkg.x,
                 top: pkg.y,
                 width: PACKAGE_SIZE,
                 height: PACKAGE_SIZE,
                 backgroundImage: `url(${barelImage})`,
-                backgroundSize: "contain",
               }}
+              className="minigame3-barrel"
             />
           ))}
 
           {/* Game Info */}
           <div className="game-info">
-            <div>Time: {timeLeft}s</div>
-            <div>Score: {score}</div>
+            <div>Čas: {timeLeft}s</div>
+            <div>Celkové skóre: {score}</div>
             <div>
-              Packages Left: {packages.length + (carryingPackage ? 1 : 0)}
+              Zbývající balíčky: {packages.length + (carryingPackage ? 1 : 0)}
             </div>
           </div>
 
           {/* Completion Screen */}
           {showMinigameDone && (
             <div className="completion-screen">
-              <h2>{packages.length === 0 ? "Success!" : "Time's Up!"}</h2>
-              <p>Final Score: {score}</p>
+              <h2>{packages.length === 0 ? "Success!" : "Čas vypršel"}</h2>
+              <p>Celkové skóre {score}</p>
               <button
                 onClick={
                   packages.length === 0 ? handleNextScene : handleGameReset
