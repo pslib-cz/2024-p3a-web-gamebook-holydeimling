@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PfqzsG8oE5A66SGhTq/bNfgU2Zjrms3GOYC4xVdzxlg=",
+  "Hash": "X7fvQCGD1RDbPnvUuV4BtQk3yvyYaEctdJp5Bfjbcjc=",
   "Source": "GamebookTest1.Server",
   "BasePath": "_content/GamebookTest1.Server",
   "Mode": "Default",
@@ -531,6 +531,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\6c4c0ead-6fff-4eda-8bb2-8508dfa36f54.png"
+    },
+    {
+      "Identity": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6cd80def-da5b-4cad-86b5-bdedc0d046bc.png",
+      "SourceId": "GamebookTest1.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\",
+      "BasePath": "_content/GamebookTest1.Server",
+      "RelativePath": "uploads/6cd80def-da5b-4cad-86b5-bdedc0d046bc#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6vj3t8scs2",
+      "Integrity": "UqRzuuTDlN1xtKuLiKMgfvH7lrz8UnOOsp7RT25SCx4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\6cd80def-da5b-4cad-86b5-bdedc0d046bc.png"
     },
     {
       "Identity": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6e32737c-6e4d-46e8-93ad-443f13b8f90e.png",
@@ -1245,6 +1266,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\df0c4d55-820d-4daf-af20-5e891c9da93b.png"
+    },
+    {
+      "Identity": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\e12281ed-62f8-4a84-b99a-196b0d74d586.png",
+      "SourceId": "GamebookTest1.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\",
+      "BasePath": "_content/GamebookTest1.Server",
+      "RelativePath": "uploads/e12281ed-62f8-4a84-b99a-196b0d74d586#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rcsr255cof",
+      "Integrity": "S45mC4pIhqxLRQlCz5iJKh1EvSCydePnF4j+PCAZnl0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\e12281ed-62f8-4a84-b99a-196b0d74d586.png"
     },
     {
       "Identity": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\e5c5f053-e32e-40fe-ae8b-6b3475d73629.png",
@@ -3257,6 +3299,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-5O4/pLiXYYmp4KBM3H3pWDKpgyt/R2cY3sliuZNcc9c="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/6cd80def-da5b-4cad-86b5-bdedc0d046bc.6vj3t8scs2.png",
+      "AssetFile": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6cd80def-da5b-4cad-86b5-bdedc0d046bc.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2238525"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UqRzuuTDlN1xtKuLiKMgfvH7lrz8UnOOsp7RT25SCx4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 18:16:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6vj3t8scs2"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/6cd80def-da5b-4cad-86b5-bdedc0d046bc.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UqRzuuTDlN1xtKuLiKMgfvH7lrz8UnOOsp7RT25SCx4="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/6cd80def-da5b-4cad-86b5-bdedc0d046bc.png",
+      "AssetFile": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\6cd80def-da5b-4cad-86b5-bdedc0d046bc.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2238525"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UqRzuuTDlN1xtKuLiKMgfvH7lrz8UnOOsp7RT25SCx4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 18:16:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UqRzuuTDlN1xtKuLiKMgfvH7lrz8UnOOsp7RT25SCx4="
         }
       ]
     },
@@ -6045,6 +6169,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-zKbCIN+sybhqOIKEORLWXMKTjRdSCyp7j0CVVkVfMPY="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e12281ed-62f8-4a84-b99a-196b0d74d586.png",
+      "AssetFile": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\e12281ed-62f8-4a84-b99a-196b0d74d586.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "160692"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"S45mC4pIhqxLRQlCz5iJKh1EvSCydePnF4j+PCAZnl0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Feb 2025 19:35:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-S45mC4pIhqxLRQlCz5iJKh1EvSCydePnF4j+PCAZnl0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e12281ed-62f8-4a84-b99a-196b0d74d586.rcsr255cof.png",
+      "AssetFile": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\e12281ed-62f8-4a84-b99a-196b0d74d586.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "160692"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"S45mC4pIhqxLRQlCz5iJKh1EvSCydePnF4j+PCAZnl0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Feb 2025 19:35:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rcsr255cof"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/e12281ed-62f8-4a84-b99a-196b0d74d586.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-S45mC4pIhqxLRQlCz5iJKh1EvSCydePnF4j+PCAZnl0="
         }
       ]
     },
