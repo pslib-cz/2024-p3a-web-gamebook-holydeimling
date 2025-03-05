@@ -1,10 +1,10 @@
 import { NavLink, Outlet } from "react-router-dom";
-import "./AboutPage.css";
+import "./AboutStyles.css";
 
 export const AboutPage = () => {
   return (
     <>
-      <header className="about-page__header__container">
+      <header className="retro-nav">
         <nav>
           <ul>
             <li>

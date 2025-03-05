@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fqZnSHNCGyxnO9rvWxHR9Qpbev0sgPbmj4AyzjtijFY=",
+  "Hash": "QblPAENcDlKYa08ZTg118lRa/lFdD7tm4qyn6hZBa4I=",
   "Source": "GamebookTest1.Server",
   "BasePath": "_content/GamebookTest1.Server",
   "Mode": "Default",
@@ -1434,6 +1434,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\f6d4d8ae-affd-49b6-8b10-12a9b5cf2618.png"
+    },
+    {
+      "Identity": "C:\\Users\\marti\\Source\\Repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\fb3cea7b-2eb9-47a5-8550-c7d01774ec68.png",
+      "SourceId": "GamebookTest1.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\marti\\Source\\Repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\",
+      "BasePath": "_content/GamebookTest1.Server",
+      "RelativePath": "uploads/fb3cea7b-2eb9-47a5-8550-c7d01774ec68#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "tfyosntfxz",
+      "Integrity": "p1PUBcdfSIKnlJscbLZZ6TUG+twbWIHaxY9/J/oLNl4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\fb3cea7b-2eb9-47a5-8550-c7d01774ec68.png"
     },
     {
       "Identity": "C:\\Users\\marti\\Source\\Repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\fb9e3dba-2e0d-4675-b5fd-3d9443754140.png",
@@ -6909,6 +6930,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-8sGKqyT8lMoMxiOsuAYc0vf4jvqQHBrHmeg27TlR2s0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/fb3cea7b-2eb9-47a5-8550-c7d01774ec68.png",
+      "AssetFile": "C:\\Users\\marti\\Source\\Repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\fb3cea7b-2eb9-47a5-8550-c7d01774ec68.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "792794"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"p1PUBcdfSIKnlJscbLZZ6TUG+twbWIHaxY9/J/oLNl4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 05 Mar 2025 19:05:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-p1PUBcdfSIKnlJscbLZZ6TUG+twbWIHaxY9/J/oLNl4="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/fb3cea7b-2eb9-47a5-8550-c7d01774ec68.tfyosntfxz.png",
+      "AssetFile": "C:\\Users\\marti\\Source\\Repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\wwwroot\\uploads\\fb3cea7b-2eb9-47a5-8550-c7d01774ec68.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "792794"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"p1PUBcdfSIKnlJscbLZZ6TUG+twbWIHaxY9/J/oLNl4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 05 Mar 2025 19:05:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tfyosntfxz"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/fb3cea7b-2eb9-47a5-8550-c7d01774ec68.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-p1PUBcdfSIKnlJscbLZZ6TUG+twbWIHaxY9/J/oLNl4="
         }
       ]
     },

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Character } from "../../types";
 import { CharactersPageSection } from "../../components/CharactersPageSection";
-import "./StoryPage.css";
+import "./AboutStyles.css";
 
 export const MainCharactersPage = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -27,14 +27,18 @@ export const MainCharactersPage = () => {
   }, []);
 
   return (
-    <div className="story-page">
-      <h1>Důležité postavy a jejich příběhy</h1>
+    <div className="retro-container">
+      <h1 className="retro-title">Důležité postavy a jejich příběhy</h1>
       {characters.map((character, index) => (
-        <CharactersPageSection
-          key={character.characterId}
-          character={character}
-          className={index % 2 === 1 ? "row-reverse" : ""}
-        />
+        <div
+          className={`retro-character-card ${index % 2 === 1 ? "reverse" : ""}`}
+        >
+          <CharactersPageSection
+            key={character.characterId}
+            character={character}
+            className={index % 2 === 1 ? "row-reverse" : ""}
+          />
+        </div>
       ))}
     </div>
   );

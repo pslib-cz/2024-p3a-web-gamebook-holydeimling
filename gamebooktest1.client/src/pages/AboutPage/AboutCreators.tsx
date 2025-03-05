@@ -1,14 +1,26 @@
+import "./AboutStyles.css";
+
 export const AboutCreators = () => {
   return (
-    <div className="story-page">
-      <h1>Jsme 2 :)</h1>
-      <h2>Martin Holý</h2>
-      <p>frontend, backend, částečný příběh</p>
-      <a href="https://github.com/MartinHoly00">Github</a>
-      <br />
-      <h2>Harry Bambling</h2>
-      <p>data, částečný příběh, ui</p>
-      <a href="https://github.com/JsemHarry7">Github</a>
+    <div className="retro-container">
+      <h1 className="retro-title">Jsme 2 :)</h1>
+      <div className="retro-creator">
+        <h2 className="retro-subtitle">Martin Holý</h2>
+        <p className="retro-text">frontend, backend, částečný příběh</p>
+        <a
+          href="https://github.com/MartinHoly00"
+          className="retro-creator-link"
+        >
+          Github
+        </a>
+      </div>
+      <div className="retro-creator">
+        <h2 className="retro-subtitle">Harry Bambling</h2>
+        <p className="retro-text">data, částečný příběh, ui (moc ne)</p>
+        <a href="https://github.com/JsemHarry7" className="retro-creator-link">
+          Github
+        </a>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,161 @@
+/* General retro styling */
+.retro-container {
+  background-color: #e6e0cc;
+  color: #2b2b2b;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-shadow: 8px 8px 0 #888;
+  border: 2px solid #2b2b2b;
+}
+
+/* Header and Navigation */
+.retro-nav {
+  background-color: #2b2b2b;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 0 #888;
+}
+
+.retro-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.retro-nav a {
+  color: #e6e0cc;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.retro-nav a:hover,
+.retro-nav a.active {
+  border-color: #e6e0cc;
+  background-color: #444;
+}
+
+/* Typography */
+.retro-title {
+  font-size: 2.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  color: #2b2b2b;
+  text-shadow: 3px 3px 0 #888;
+  letter-spacing: 2px;
+}
+
+.retro-subtitle {
+  font-size: 1.8rem;
+  color: #444;
+  margin: 1.5rem 0;
+  text-shadow: 2px 2px 0 #aaa;
+}
+
+.retro-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+/* Character Cards */
+.retro-character-card {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background-color: #f5f2e6;
+  border: 2px solid #2b2b2b;
+  box-shadow: 6px 6px 0 #888;
+}
+
+.retro-character-card.reverse {
+  flex-direction: row-reverse;
+}
+
+.retro-character-image {
+  flex: 0 0 200px;
+  border: 3px solid #2b2b2b;
+  box-shadow: 4px 4px 0 #888;
+}
+
+.retro-character-content {
+  flex: 1;
+}
+
+/* Links */
+.retro-link {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background-color: #2b2b2b;
+  color: #e6e0cc;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 1rem 0;
+  box-shadow: 4px 4px 0 #888;
+  transition: all 0.2s ease;
+}
+
+.retro-link:hover {
+  background-color: #444;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #888;
+}
+
+/* Creator section */
+.retro-creator {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f5f2e6;
+  border: 2px solid #2b2b2b;
+  box-shadow: 4px 4px 0 #888;
+}
+
+.retro-creator-link {
+  display: inline-block;
+  color: #2b2b2b;
+  text-decoration: none;
+  border-bottom: 2px solid #2b2b2b;
+  margin-top: 0.5rem;
+  padding-bottom: 2px;
+}
+
+/* Controls section */
+.retro-controls {
+  background-color: #f5f2e6;
+  padding: 2rem;
+  border: 2px solid #2b2b2b;
+  box-shadow: 6px 6px 0 #888;
+  margin-bottom: 2rem;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .retro-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .retro-character-card,
+  .retro-character-card.reverse {
+    flex-direction: column;
+  }
+
+  .retro-character-image {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
