@@ -141,11 +141,22 @@
     }
   }
 
-  .minigame2-game-container{
+  .minigame2-game-container {
     position: relative;
     margin: auto;
     background: rgba(0, 0, 0, 0.8);
     overflow: hidden;
+    animation: moveBackground .5s linear infinite;
+    background-size: cover;
+  }
+  
+  @keyframes moveBackground {
+    0% {
+      background-position: 0 100%;
+    }
+    100% {
+      background-position: 0 0;
+    }
   }
 
   .minigame2-lane{
@@ -177,3 +188,4 @@
     background: rgba(0, 0, 0, 0.8);
     color: white;
   }
+  

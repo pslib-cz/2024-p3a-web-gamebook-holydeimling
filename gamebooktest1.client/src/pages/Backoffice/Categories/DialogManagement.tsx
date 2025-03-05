@@ -10,6 +10,7 @@ import {
   Form,
   Input,
   Select,
+  Image,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { Character, Dialog, DialogAnswer } from "../../../types";
@@ -151,8 +152,28 @@ const DialogManagement: React.FC = () => {
       title: "Character",
       dataIndex: ["character", "firstName"],
       key: "character",
-      render: (_, record) => record.character?.firstName || "No character",
+      render: (_, record) => (
+        <Space>
+          {
+            <>
+              {record.character.characterImages.map((image) => (
+                <Image
+                  key={image.imageId}
+                  src={image.filePath}
+                  alt={image.name}
+                  width={50}
+                  height={50}
+                  style={{ objectFit: "cover" }}
+                />
+              ))}
+              {`${record.character?.firstName} ${record.character?.lastName}` ||
+                "No character"}
+            </>
+          }
+        </Space>
+      ),
     },
+
     {
       title: "Text",
       dataIndex: "text",

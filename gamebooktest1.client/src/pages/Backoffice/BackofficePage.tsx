@@ -46,6 +46,10 @@ export const BackofficePage = () => {
     return null; // or a loading state
   }
 
+  const handleHomeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate("/");
+  };
   return (
     <div style={{ padding: "24px" }}>
       <Tabs
@@ -60,15 +64,7 @@ export const BackofficePage = () => {
               </>
             ),
             children: null,
-          },
-          {
-            key: "home",
-            label: (
-              <Link to="/">
-                <HomeOutlined />
-              </Link>
-            ),
-            children: null,
+            disabled: true,
           },
           {
             key: "users",
@@ -129,6 +125,15 @@ export const BackofficePage = () => {
             key: "scenes",
             label: "Scenes",
             children: <SceneManagement />,
+          },
+          {
+            key: "home",
+            label: (
+              <Link to="/" onClick={(e) => handleHomeClick(e)}>
+                <HomeOutlined />
+              </Link>
+            ),
+            children: null,
           },
         ]}
       />
