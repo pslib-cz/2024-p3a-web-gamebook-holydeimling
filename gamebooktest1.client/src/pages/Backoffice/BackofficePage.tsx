@@ -59,6 +59,7 @@ export const BackofficePage = () => {
                 <Typography.Text>{user?.email}</Typography.Text>
               </>
             ),
+            children: null,
           },
           {
             key: "home",
