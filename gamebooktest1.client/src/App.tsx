@@ -7,11 +7,7 @@ import { RegisterPage } from "./pages/RegisterPage";
 import { ImageUpload } from "./pages/ImageUpload";
 import { FileUpload } from "./pages/FileUpload";
 import { ScenePage } from "./pages/Scene";
-import { BackofficePage } from "./pages/BackofficePage";
-import {
-  BackofficeCategoryPage,
-  BackofficeCategoryRouter,
-} from "./pages/BackofficeCategoryPage"; // Import the category page
+import { BackofficePage } from "./pages/Backoffice/BackofficePage";
 import { Toaster } from "sonner";
 import { UserProvider } from "./UserContext";
 import { AboutPage } from "./pages/AboutPage/AboutPage";
@@ -53,18 +49,6 @@ function App() {
     {
       path: "/backoffice",
       element: <BackofficePage />,
-      children: [
-        {
-          path: ":category", // Dynamically load the category
-          element: <BackofficeCategoryPage />,
-          children: [
-            {
-              path: ":id", // Dynamically load the ID
-              element: <BackofficeCategoryRouter />,
-            },
-          ],
-        },
-      ],
     },
     {
       path: "/about",

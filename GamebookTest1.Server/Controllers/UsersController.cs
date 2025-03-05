@@ -299,6 +299,29 @@ namespace GamebookTest1.Server.Controllers
             }
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _context.Users.Remove(user);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "User deleted successfully" });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An error occurred while deleting the user");
+            }
+        }
+
         // Password hashing utility methods
         private string HashPassword(string password)
         {
