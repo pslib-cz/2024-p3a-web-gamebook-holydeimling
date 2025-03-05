@@ -1,3 +1,4 @@
+import "./BackofficePage.css";
 import { Tabs } from "antd";
 import UsersManagement from "./Categories/UsersManagement";
 import DialogManagement from "./Categories/DialogManagement";
@@ -11,13 +12,63 @@ import InventoryManagement from "./Categories/InventoryManagement";
 import QuestManagement from "./Categories/QuestManagement";
 import GameStateManagement from "./Categories/GameStateManagement";
 import SceneManagement from "./Categories/SceneManagement";
+import { HomeOutlined } from "@ant-design/icons";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../../UserContext";
+import { useEffect } from "react";
+import { toast } from "sonner";
+import {
+  Table,
+  Button,
+  message,
+  Popconfirm,
+  Space,
+  Typography,
+  Modal,
+  Form,
+  Input,
+  Select,
+} from "antd";
 
 export const BackofficePage = () => {
+  const { user } = useUser();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Double-check user permissions
+    if (!user || user.userRole !== "Admin") {
+      toast.error("You don't have permission to access this page");
+      navigate("/", { replace: true });
+    }
+  }, [user, navigate]);
+
+  if (!user || user.userRole !== "Admin") {
+    return null; // or a loading state
+  }
+
   return (
     <div style={{ padding: "24px" }}>
       <Tabs
         defaultActiveKey="users"
         items={[
+          {
+            key: "userInfo",
+            label: (
+              <>
+                <Typography.Title level={5}>{user?.userName}</Typography.Title>
+                <Typography.Text>{user?.email}</Typography.Text>
+              </>
+            ),
+          },
+          {
+            key: "home",
+            label: (
+              <Link to="/">
+                <HomeOutlined />
+              </Link>
+            ),
+            children: null,
+          },
           {
             key: "users",
             label: "Users",

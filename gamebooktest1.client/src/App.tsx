@@ -15,6 +15,7 @@ import { StoryPage } from "./pages/AboutPage/StoryPage";
 import { MainCharactersPage } from "./pages/AboutPage/MainCharactersPage";
 import { AboutCreators } from "./pages/AboutPage/AboutCreators";
 import { ControlsPage } from "./pages/AboutPage/Controls";
+import { AdminRouteGuard } from "./components/AdminRouteGuard";
 
 function App() {
   const router = createBrowserRouter([
@@ -48,7 +49,11 @@ function App() {
     },
     {
       path: "/backoffice",
-      element: <BackofficePage />,
+      element: (
+        <AdminRouteGuard>
+          <BackofficePage />
+        </AdminRouteGuard>
+      ),
     },
     {
       path: "/about",

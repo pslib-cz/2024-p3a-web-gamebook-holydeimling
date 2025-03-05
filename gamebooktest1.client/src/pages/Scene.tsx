@@ -22,11 +22,9 @@ import { WrongOrientationScreen } from "../components/WrongOrientationScreen";
 import { Minigame1 } from "../components/Minigames/Minigame1";
 import { Minigame2 } from "../components/Minigames/Minigame2";
 import { Minigame3 } from "../components/Minigames/Minigame3";
-import Typewriter from "typewriter-effect";
 import { Minigame4 } from "../components/Minigames/Minigame4";
 import { GameOutro } from "../components/GameOutro";
 import { GameNoUserAlert } from "../components/GameNoUserAlert";
-import { DialogSystemButton } from "../components/DialogSystemButton";
 import { DialogSystem } from "../components/DialogSystem";
 
 export const ScenePage = () => {
@@ -51,9 +49,6 @@ export const ScenePage = () => {
   const [showGameNoUserAlert, setShowGameNoUserAlert] = useState(false);
   const [showGameOver, setShowGameOver] = useState(false);
   const [showPauseMenu, setShowPauseMenu] = useState(false);
-
-  const [showDoneDialog, setShowDoneDialog] = useState(false);
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   // Save the inventory to the user object whenever it changes
   useEffect(() => {
@@ -308,7 +303,7 @@ export const ScenePage = () => {
             handleExitToMainMenu={HandleToMainMenu}
           />
         )}
-      {!showGameOutro && (
+      {!showGameOutro && !showWrongOrientationDevice && (
         <>
           <InventoryComponent
             currentInventory={user?.gameState.inventoryState}
@@ -358,7 +353,6 @@ export const ScenePage = () => {
             }
           )}
         {/* dialogs*/}
-        {/* ... scene items and characters */}
         {currentScene?.sceneDialogs &&
           currentScene.sceneDialogs.length > 0 &&
           dialogIndex < currentScene.sceneDialogs.length && (
@@ -369,120 +363,6 @@ export const ScenePage = () => {
               onAnswerClick={handleDialogAnswerClick}
             />
           )}
-        {/*         {currentScene?.sceneDialogs?.length !== undefined &&
-          currentScene.sceneDialogs.length > 0 && (
-            <div className="dialog-system">
-              <div className="dialog-system__character__container">
-                <img
-                  src={`/${currentScene.sceneDialogs[dialogIndex].character.characterImages[0].filePath}`}
-                  alt=""
-                  className="dialog-system__character"
-                />
-              </div>
-              <h3>
-                {currentScene.sceneDialogs[dialogIndex].character.firstName}{" "}
-                {currentScene.sceneDialogs[dialogIndex].character.nickname}{" "}
-                {currentScene.sceneDialogs[dialogIndex].character.lastName}
-              </h3>
-              {!showDoneDialog && (
-                <>
-                  <div style={{ position: "absolute", top: "0", right: "0" }}>
-                    <DialogSystemButton
-                      text="Skip Dialog"
-                      onClick={() => {
-                        setShowDoneDialog(true);
-                        setIsTypingComplete(true);
-                      }}
-                    />
-                  </div>
-                  <Typewriter
-                    key={currentScene.sceneDialogs[dialogIndex].dialogId}
-                    options={{ delay: 50, skipAddStyles: true }}
-                    onInit={(typewriter) => {
-                      typewriter
-                        .typeString(currentScene.sceneDialogs[dialogIndex].text)
-                        .start()
-                        .pauseFor(500)
-                        .callFunction(() => {
-                          setIsTypingComplete(true);
-                          setShowDoneDialog(true);
-                        });
-                    }}
-                  />
-                </>
-              )}
-              {showDoneDialog && (
-                <>
-                  <p>{currentScene.sceneDialogs[dialogIndex].text}</p>
-                  {currentScene.sceneDialogs[dialogIndex].dialogAnswers
-                    .length <= 0 ? (
-                    <DialogSystemButton
-                      onClick={() => {
-                        handleContinueClick();
-                        setShowDoneDialog(false);
-                        setIsTypingComplete(false);
-                      }}
-                      text="Pokračovat"
-                    />
-                  ) : (
-                    <div>
-                      {currentScene.sceneDialogs[dialogIndex].dialogAnswers.map(
-                        (dialogAnswer) => (
-                          <DialogSystemButton
-                            onClick={() => {
-                              if (currentScene?.gameOver) {
-                                setShowGameOver(true);
-                              } else {
-                                if (dialogAnswer.nextSceneId) {
-                                  if (currentScene?.isCheckpoint) {
-                                    saveDataOnCheckpoint(
-                                      user,
-                                      setUser,
-                                      sceneId,
-                                      user?.gameState.inventoryState,
-                                      currentQuests
-                                    );
-                                  }
-                                  navigate(
-                                    `/scene/${dialogAnswer.nextSceneId}`
-                                  );
-                                  setDialogIndex(0);
-                                  setShowDoneDialog(false);
-                                  setIsTypingComplete(false);
-                                } else if (dialogAnswer.nextDialogId) {
-                                  // Find the index of the next dialog within the current scene
-                                  setShowDoneDialog(false);
-                                  setIsTypingComplete(false);
-                                  const nextDialogIndex =
-                                    currentScene.sceneDialogs.findIndex(
-                                      (dialog) =>
-                                        dialog.dialogId ===
-                                        dialogAnswer.nextDialogId
-                                    );
-                                  if (nextDialogIndex !== -1) {
-                                    // Update the dialogIndex to render the next dialog
-                                    setDialogIndex(nextDialogIndex);
-                                  }
-                                } else {
-                                  setShowDoneDialog(false);
-                                  setIsTypingComplete(false);
-                                  navigate(
-                                    `/scene/${dialogAnswer.nextSceneId}`
-                                  );
-                                }
-                              }
-                            }}
-                            text={dialogAnswer.answerText}
-                          />
-                        )
-                      )}
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
-          )} */}
-
         <div
           style={{
             backgroundImage: currentScene
