@@ -385,7 +385,6 @@ C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Ser
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\System.Composition.TypedParts.dll
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
-C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\System.Formats.Asn1.dll
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\System.IO.Pipelines.dll
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
@@ -573,7 +572,6 @@ C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Ser
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.GamebookTest1.Server.props
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\scopedcss\bundle\GamebookTest1.Server.styles.css
-C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\GamebookTest1.Server.csproj.CopyComplete
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\GamebookTest1.Server.genruntimeconfig.cache
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\ref\GamebookTest1.Server.dll
 C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\GamebookTest1.Server.staticwebassets.runtime.json
@@ -1245,3 +1243,8 @@ C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Ser
 C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets\msbuild.GamebookTest1.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 C:\Users\marti\Source\Repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\bin\Debug\net8.0\GamebookTest1.Server.staticwebassets.endpoints.json
+C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets\msbuild.GamebookTest1.Server.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\harry\source\repos\2024-p3a-web-gamebook-holydeimling\GamebookTest1.Server\obj\Debug\net8.0\Gamebook.64846721.Up2Date
