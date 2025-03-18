@@ -6,8 +6,6 @@ import {
   Popconfirm,
   Space,
   Typography,
-  Modal,
-  Form,
   Select,
   Image,
   Row,
@@ -15,23 +13,16 @@ import {
   Card,
   InputNumber,
   Collapse,
-  Tag,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { GameState, Quest, Item } from "../../../types";
+import { GameState, Quest } from "../../../types";
 
 const { Panel } = Collapse;
 
 const GameStateManagement: React.FC = () => {
   const [gameStates, setGameStates] = useState<GameState[]>([]);
   const [quests, setQuests] = useState<Quest[]>([]);
-  const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [editingGameState, setEditingGameState] = useState<GameState | null>(
-    null
-  );
-  const [form] = Form.useForm();
 
   const fetchGameStates = async () => {
     try {
@@ -59,22 +50,10 @@ const GameStateManagement: React.FC = () => {
     }
   };
 
-  const fetchItems = async () => {
-    try {
-      const response = await fetch("/api/Item");
-      if (!response.ok) throw new Error("Failed to fetch items");
-      const data = await response.json();
-      setItems(data);
-    } catch (error) {
-      message.error("Failed to load items");
-      console.error(error);
-    }
-  };
 
   useEffect(() => {
     fetchGameStates();
     fetchQuests();
-    fetchItems();
   }, []);
 
   const handleAddQuest = async (gameStateId: number, questId: number) => {

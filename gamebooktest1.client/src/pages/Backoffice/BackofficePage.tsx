@@ -17,18 +17,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../UserContext";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import {
-  Table,
-  Button,
-  message,
-  Popconfirm,
-  Space,
-  Typography,
-  Modal,
-  Form,
-  Input,
-  Select,
-} from "antd";
+import { Typography } from "antd";
 
 export const BackofficePage = () => {
   const { user } = useUser();

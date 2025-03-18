@@ -1,5 +1,4 @@
 import { useDrop, DropTargetMonitor } from "react-dnd";
-import React from "react";
 import "./DiscardArea.css";
 
 const ItemTypes = {

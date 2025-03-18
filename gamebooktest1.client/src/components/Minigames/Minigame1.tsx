@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import packageImage from "../../assets/Mini/cartonBox.png"; //upravit cesty jakmile obrazek
 import { Scene } from "../../types";
 import { useNavigate } from "react-router-dom";

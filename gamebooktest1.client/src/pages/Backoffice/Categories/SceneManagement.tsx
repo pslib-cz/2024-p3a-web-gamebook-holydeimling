@@ -14,25 +14,17 @@ import {
   Row,
   Col,
   Card,
-  Collapse,
   Switch,
   InputNumber,
   Tabs,
   Tag,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import {
-  Scene,
-  SceneCharacter,
-  SceneItem,
-  Dialog,
-  Image as ImageType,
-} from "../../../types";
+import { Scene, Image as ImageType } from "../../../types";
 import SceneCharacterSection from "./SceneCharacterSection";
 import SceneItemSection from "./SceneItemSection";
 import DialogSection from "./DialogSection";
 
-const { Panel } = Collapse;
 const { TabPane } = Tabs;
 
 const SceneManagement: React.FC = () => {

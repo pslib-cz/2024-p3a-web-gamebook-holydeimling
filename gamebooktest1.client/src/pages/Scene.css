@@ -1,7 +1,3 @@
-.scene{
-  
-}
-
 .scene-background__image{
   position: fixed;
   top: 0;
@@ -19,10 +15,6 @@
 
 .scene-item-hover:hover {
   filter: drop-shadow(0 0 5px red);
-}
-
-.scene-character{
-
 }
 
 .scene__image{

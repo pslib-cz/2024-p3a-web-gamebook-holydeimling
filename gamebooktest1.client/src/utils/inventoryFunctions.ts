@@ -31,11 +31,6 @@ export const addItemToInventory = (data: {
   }
 };
 
-const saveInventoryToDatabase = async (
-  inventory: Inventory,
-  userId: number
-) => {};
-
 const findFirstEmptySlot = (inventory: Inventory): number | null => {
   for (const key in inventory) {
     if (inventory[key as keyof Inventory] === null) {

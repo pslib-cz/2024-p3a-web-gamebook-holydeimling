@@ -1,34 +1,21 @@
 import React from "react";
-import {
-  Card,
-  Row,
-  Col,
-  Image,
-  Typography,
-  Space,
-  Button,
-  Select,
-  Tooltip,
-} from "antd";
+import { Card, Row, Col, Image, Typography, Button, Tooltip } from "antd";
 import { SceneItem } from "../../../types";
 
 interface Props {
   sceneItems: SceneItem[];
   editable?: boolean;
-  onChange?: (items: number[]) => void;
 }
 
 const SceneItemSection: React.FC<Props> = ({
   sceneItems,
   editable = false,
-  onChange,
 }) => {
   return (
     <>
       <Row gutter={[16, 16]}>
         {sceneItems.length > 0 ? (
           <>
-            {" "}
             {sceneItems.map((sceneItem) => (
               <Col span={8} key={sceneItem.sceneItemId}>
                 <Card

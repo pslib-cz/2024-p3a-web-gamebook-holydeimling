@@ -1,17 +1,15 @@
 import React from "react";
-import { Card, Row, Col, Image, Typography, Space, Button, Select } from "antd";
+import { Card, Row, Col, Image, Typography, Button } from "antd";
 import { SceneCharacter } from "../../../types";
 
 interface Props {
   sceneCharacters: SceneCharacter[];
   editable?: boolean;
-  onChange?: (characters: number[]) => void;
 }
 
 const SceneCharacterSection: React.FC<Props> = ({
   sceneCharacters,
   editable = false,
-  onChange,
 }) => {
   return (
     <Row gutter={[16, 16]}>

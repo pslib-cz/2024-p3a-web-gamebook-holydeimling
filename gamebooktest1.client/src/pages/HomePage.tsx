@@ -161,6 +161,10 @@ export const HomePage = () => {
       setDataToRender(homeScreenButtonsData);
     }
   }, [user]);
+  
+  useEffect(() => {
+    console.log(loading);
+  }, [loading]);
 
   return (
     <main className="homepage__container">

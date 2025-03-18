@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import carEnemyImage from "../../assets/Mini/carEnemy.png";
 import { Scene } from "../../types";
 import { useNavigate } from "react-router-dom";
@@ -34,7 +34,7 @@ export const Minigame2 = ({ currentScene, showPauseMenu }: Minigame2Props) => {
   const GAME_HEIGHT = window.innerHeight;
   const LANE_WIDTH = GAME_WIDTH / 3;
   const CAR_SIZE = 70;
-  const POINTS_TO_WIN = 7500;
+  const POINTS_TO_WIN = 3500;
 
   const [gameStarted, setGameStarted] = useState(false);
   const [currentLane, setCurrentLane] = useState(1);

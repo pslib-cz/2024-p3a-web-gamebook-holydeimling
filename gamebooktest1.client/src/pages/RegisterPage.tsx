@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeScreenButton } from "../components/Home/HomeScreenButton";
 import { HomeScreenForm } from "../components/Home/HomeScreenForm";
@@ -59,6 +59,10 @@ export const RegisterPage = () => {
       }
     }
   };
+
+  useEffect(() => {
+      console.log(error);
+    }, [error]);
 
   return (
     <main className="homepage__container">

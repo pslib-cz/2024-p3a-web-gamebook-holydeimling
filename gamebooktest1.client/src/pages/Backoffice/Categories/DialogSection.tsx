@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  Card,
-  Row,
-  Col,
-  Image,
-  Typography,
-  Space,
-  Button,
-  Collapse,
-  List,
-} from "antd";
+import { Card, Image, Typography, Space, Button, Collapse, List } from "antd";
 import { Dialog } from "../../../types";
 
 const { Panel } = Collapse;
@@ -17,13 +7,11 @@ const { Panel } = Collapse;
 interface Props {
   dialogs: Dialog[];
   editable?: boolean;
-  onChange?: (dialogs: number[]) => void;
 }
 
 const DialogSection: React.FC<Props> = ({
   dialogs,
   editable = false,
-  onChange,
 }) => {
   return (
     <Collapse>

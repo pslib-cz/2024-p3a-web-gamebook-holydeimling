@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HomeScreenButton } from "../components/Home/HomeScreenButton";
 import { HomeScreenForm } from "../components/Home/HomeScreenForm";
@@ -6,7 +6,7 @@ import { HomeScreenLogo } from "../components/Home/HomeScreenLogo";
 import "./LoginPage.css";
 import axios from "axios";
 import { User, useUser } from "../UserContext";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import { Radio } from "../components/Radio";
 
 export const LoginPage = () => {
@@ -57,6 +57,10 @@ export const LoginPage = () => {
       }
     }
   };
+
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
 
   return (
     <main className="homepage__container">

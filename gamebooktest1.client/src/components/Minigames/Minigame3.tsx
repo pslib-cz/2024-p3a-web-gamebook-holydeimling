@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import barelImage from "../../assets/Mini/barel.png";
 import { Scene } from "../../types";
 import { useNavigate } from "react-router-dom";
