@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F33E4FC5-1988-4E94-A82D-2AB6C507B6D2}|gamebooktest1.client\\gamebooktest1.client.esproj|c:\\users\\harry deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.client\\gamebooktest1.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{F33E4FC5-1988-4E94-A82D-2AB6C507B6D2}|gamebooktest1.client\\gamebooktest1.client.esproj|solutionrelative:gamebooktest1.client\\gamebooktest1.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\harry deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\harry deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F33E4FC5-1988-4E94-A82D-2AB6C507B6D2}|gamebooktest1.client\\gamebooktest1.client.esproj|c:\\users\\harry deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.client\\gamebooktest1.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F33E4FC5-1988-4E94-A82D-2AB6C507B6D2}|gamebooktest1.client\\gamebooktest1.client.esproj|solutionrelative:gamebooktest1.client\\gamebooktest1.client.esproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\harry deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\models\\scenecharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\harry deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\harry deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|solutionrelative:gamebooktest1.server\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{83A0E589-75DC-4CFF-BC8A-D78E8DAB4E0F}|GamebookTest1.Server\\GamebookTest1.Server.csproj|c:\\users\\harry deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.server\\controllers\\itemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -160,24 +160,24 @@
         },
         {
           "DockedWidth": 165,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\appsettings.json",
               "RelativeDocumentMoniker": "GamebookTest1.Server\\appsettings.json",
-              "ToolTip": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\appsettings.json*",
-              "RelativeToolTip": "GamebookTest1.Server\\appsettings.json*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAmAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\appsettings.json",
+              "RelativeToolTip": "GamebookTest1.Server\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-03-18T19:05:08.93Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Dockerfile",
               "DocumentMoniker": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Dockerfile",
               "RelativeDocumentMoniker": "GamebookTest1.Server\\Dockerfile",
@@ -190,7 +190,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "gamebooktest1.client.esproj",
               "DocumentMoniker": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\gamebooktest1.client\\gamebooktest1.client.esproj",
               "RelativeDocumentMoniker": "gamebooktest1.client\\gamebooktest1.client.esproj",
@@ -227,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "SceneCharacter.cs",
               "DocumentMoniker": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Models\\SceneCharacter.cs",
               "RelativeDocumentMoniker": "GamebookTest1.Server\\Models\\SceneCharacter.cs",
@@ -235,8 +235,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Models\\SceneCharacter.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T23:41:41.03Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T23:41:41.03Z"
             },
             {
               "$type": "Document",
@@ -348,7 +347,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "GamebookTest1.Server\\Data\\AppDbContext.cs",
@@ -356,8 +355,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Data\\AppDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T23:41:33.138Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T23:41:33.138Z"
             },
             {
               "$type": "Document",
@@ -481,7 +479,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "DialogAnswerController.cs",
               "DocumentMoniker": "C:\\Users\\Harry Deimling\\source\\repos\\2024-p3a-web-gamebook-holydeimling\\GamebookTest1.Server\\Controllers\\DialogAnswerController.cs",
               "RelativeDocumentMoniker": "GamebookTest1.Server\\Controllers\\DialogAnswerController.cs",
@@ -489,8 +487,7 @@
               "RelativeToolTip": "GamebookTest1.Server\\Controllers\\DialogAnswerController.cs",
               "ViewState": "AgIAAHEAAAAAAAAAAAAswH4AAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-14T23:23:08.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-14T23:23:08.108Z"
             },
             {
               "$type": "Document",
