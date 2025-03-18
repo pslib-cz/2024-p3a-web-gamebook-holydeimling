@@ -21,7 +21,7 @@ jobs:
       - name: Sestavení a nahrání kontejnerového obrazu
         uses: docker/build-push-action@v6
         with:
-          context: ./GamebookTest1.sln
+          context: .
           file: ./GamebookTest1.Server/Dockerfile
           push: true
           tags: registry.pslib.cloud/sandbox/app-40:latest
