@@ -21,8 +21,8 @@ jobs:
       - name: Sestavení a nahrání kontejnerového obrazu
         uses: docker/build-push-action@v6
         with:
-          context: ./2024-p3a-web-gamebook-holydeimling/GamebookTest1.sln
-          file: ./2024-p3a-web-gamebook-holydeimling/GamebookTest1.Server/Dockerfile
+          context: ./GamebookTest1.sln
+          file: ./GamebookTest1.Server/Dockerfile
           push: true
           tags: registry.pslib.cloud/sandbox/app-40:latest
           cache-from: type=gha
