@@ -7,6 +7,7 @@ const { Panel } = Collapse;
 interface Props {
   dialogs: Dialog[];
   editable?: boolean;
+  onChange?: (dialogs: number[]) => void;
 }
 
 const DialogSection: React.FC<Props> = ({

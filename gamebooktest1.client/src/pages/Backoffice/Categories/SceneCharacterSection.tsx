@@ -5,6 +5,7 @@ import { SceneCharacter } from "../../../types";
 interface Props {
   sceneCharacters: SceneCharacter[];
   editable?: boolean;
+  onChange?: (characters: number[]) => void;
 }
 
 const SceneCharacterSection: React.FC<Props> = ({

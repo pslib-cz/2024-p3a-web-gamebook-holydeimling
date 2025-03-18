@@ -5,6 +5,7 @@ import { SceneItem } from "../../../types";
 interface Props {
   sceneItems: SceneItem[];
   editable?: boolean;
+  onChange?: (items: number[]) => void;
 }
 
 const SceneItemSection: React.FC<Props> = ({
@@ -16,6 +17,7 @@ const SceneItemSection: React.FC<Props> = ({
       <Row gutter={[16, 16]}>
         {sceneItems.length > 0 ? (
           <>
+            {" "}
             {sceneItems.map((sceneItem) => (
               <Col span={8} key={sceneItem.sceneItemId}>
                 <Card

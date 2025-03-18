@@ -6,7 +6,6 @@ import { DroppableInventorySlot } from "./DroppableInventorySlot";
 import "./InventoryItem.css";
 import { DiscardArea } from "./DiscardArea";
 import { ConfirmationPopup } from "../ConfirmationPopup";
-import debilek from "../../assets/testMainCharacter.png";
 import { Inventory } from "../../types";
 
 interface InventoryProps {
@@ -117,11 +116,6 @@ export const InventoryComponent = ({
           </div>
         </div>
       )}
-      {/*       {showInventory && (
-        <div className="inventory-character__container">
-          <img src={debilek} alt="kys" />
-        </div>
-      )} */}
       {showPopup && (
         <ConfirmationPopup
           message="Are you sure you want to discard this item?"
