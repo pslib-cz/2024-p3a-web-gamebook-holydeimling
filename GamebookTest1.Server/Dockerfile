@@ -11,8 +11,9 @@ EXPOSE 8081
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
-RUN apt update && apt install nodejs npm -y
+RUN apt-get update && apt-get install -y nodejs npm --fix-missing
 WORKDIR /src
+COPY ["gamebooktest1.client/nuget.config", "gamebooktest1.client/"]
 COPY ["GamebookTest1.Server/GamebookTest1.Server.csproj", "GamebookTest1.Server/"]
 COPY ["gamebooktest1.client/gamebooktest1.client.esproj", "gamebooktest1.client/"]
 RUN dotnet restore "./GamebookTest1.Server/GamebookTest1.Server.csproj"
