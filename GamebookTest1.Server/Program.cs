@@ -10,8 +10,36 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+// Add a custom check to ensure the database directory exists
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (!string.IsNullOrEmpty(connectionString))
+{
+    var dataSource = connectionString.Split(';')
+        .FirstOrDefault(s => s.Trim().StartsWith("Data Source=", StringComparison.OrdinalIgnoreCase))
+        ?.Substring("Data Source=".Length).Trim();
+    
+    if (!string.IsNullOrEmpty(dataSource))
+    {
+        var dbDirectory = Path.GetDirectoryName(dataSource);
+        if (!string.IsNullOrEmpty(dbDirectory) && !Directory.Exists(dbDirectory))
+        {
+            try
+            {
+                Directory.CreateDirectory(dbDirectory);
+                Console.WriteLine($"Created database directory: {dbDirectory}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Warning: Failed to create database directory: {ex.Message}");
+                // Continue execution - the application may still work if the directory already exists
+            }
+        }
+    }
+}
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseSqlite(connectionString)
 );
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -52,11 +80,19 @@ using (var scope = app.Services.CreateScope())
         var dbContext = services.GetRequiredService<AppDbContext>();
         // This will create the database if it doesn't exist and apply any pending migrations
         dbContext.Database.EnsureCreated();
+        Console.WriteLine("Database created or verified successfully");
     }
     catch (Exception ex)
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
         logger.LogError(ex, "An error occurred while creating/migrating the database.");
+        Console.WriteLine($"Database error: {ex.Message}");
+        
+        // If there's an inner exception, log that too
+        if (ex.InnerException != null)
+        {
+            Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+        }
     }
 }
 
@@ -81,4 +117,17 @@ app.MapControllers();
 // Add a simple health check endpoint
 app.MapGet("/health", () => "Application is running!");
 
+// Add a database check endpoint
+app.MapGet("/dbstatus", (AppDbContext dbContext) => {
+    try {
+        // Try to access the database
+        var canConnect = dbContext.Database.CanConnect();
+        return $"Database connection: {(canConnect ? "Successful" : "Failed")}";
+    }
+    catch (Exception ex) {
+        return $"Database error: {ex.Message}";
+    }
+});
+
+Console.WriteLine($"Application starting. Environment: {app.Environment.EnvironmentName}");
 app.Run();

@@ -39,10 +39,13 @@ RUN dotnet publish "./GamebookTest1.Server.csproj" -c $BUILD_CONFIGURATION -o /a
 RUN mkdir -p /app/publish/wwwroot
 COPY --from=build /src/gamebooktest1.client/dist/* /app/publish/wwwroot/
 
+# Copy the database if it exists (optional)
+RUN if [ -f "/src/data/gamebook.db" ]; then mkdir -p /app/publish/data && cp /src/data/gamebook.db /app/publish/data/; fi
+
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-# Ensure the data directory exists for the SQLite database
-RUN mkdir -p /data
+# Create app-specific data directory that the non-root user can access
+RUN mkdir -p /app/data && chmod 755 /app/data
 ENTRYPOINT ["dotnet", "GamebookTest1.Server.dll"]
