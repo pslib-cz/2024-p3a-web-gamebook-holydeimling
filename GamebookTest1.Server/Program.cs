@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Microsoft.Data.Sqlite;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -129,8 +130,17 @@ if (isFileSystemReadOnly)
 {
     // Use in-memory database
     Console.WriteLine("Configuring in-memory SQLite database");
+    
+    // Create a persistent connection for the in-memory database
+    var connection = new SqliteConnection("Data Source=:memory:");
+    connection.Open();
+    
+    // Configure the context to use this persistent connection
     builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseSqlite("Data Source=:memory:"));
+        options.UseSqlite(connection));
+        
+    // Store the connection in a singleton service so it stays alive for the app lifetime
+    builder.Services.AddSingleton(connection);
 }
 else
 {
@@ -187,10 +197,8 @@ using (var scope = app.Services.CreateScope())
             dbContext.Database.EnsureCreated();
             Console.WriteLine("In-memory database created successfully");
             
-            // Here you could seed the database with initial data
-            // This is important since in-memory DB starts fresh each time
-            Console.WriteLine("Seeding in-memory database with initial data...");
-            // SeedDatabase(dbContext);
+            // Seed the database immediately
+            SeedInMemoryDatabase(dbContext);
         }
         else
         {
@@ -312,6 +320,32 @@ app.MapWhen(ctx => !ctx.Request.Path.StartsWithSegments("/api") &&
                     await context.Response.SendFileAsync(Path.Combine(app.Environment.ContentRootPath, "wwwroot", "index.html"));
                 });
             });
+
+// Add this method to seed the database with essential data
+private static void SeedInMemoryDatabase(AppDbContext context)
+{
+    // Add a sample background image
+    var image = new Image
+    {
+        Name = "Sample Background",
+        FilePath = "/images/sample-background.jpg"
+    };
+    context.Images.Add(image);
+    
+    // Add a sample scene
+    var scene = new Scene
+    {
+        SceneName = "Initial Scene",
+        BackgroundImage = image,
+        IsCheckpoint = true,
+        GameOver = false
+    };
+    context.Scenes.Add(scene);
+    
+    context.SaveChanges();
+    
+    Console.WriteLine("In-memory database seeded with initial data");
+}
 
 Console.WriteLine($"Application starting. Environment: {app.Environment.EnvironmentName}");
 app.Run();
