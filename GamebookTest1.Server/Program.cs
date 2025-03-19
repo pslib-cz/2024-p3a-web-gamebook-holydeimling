@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using GamebookTest1.Server.Data;
+using GamebookTest1.Server.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
