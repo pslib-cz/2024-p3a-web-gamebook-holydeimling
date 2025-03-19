@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.Data.Sqlite;
+using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -333,13 +334,17 @@ static void SeedInMemoryDatabase(AppDbContext context)
     };
     context.Images.Add(image);
     
-    // Add a sample scene
+    // Add a sample scene with all required properties initialized
     var scene = new Scene
     {
         SceneName = "Initial Scene",
         BackgroundImage = image,
         IsCheckpoint = true,
-        GameOver = false
+        GameOver = false,
+        // Initialize these required collections as empty lists
+        SceneDialogs = new List<Dialog>(),
+        SceneCharacters = new List<SceneCharacter>(),
+        SceneItems = new List<SceneItem>()
     };
     context.Scenes.Add(scene);
     
