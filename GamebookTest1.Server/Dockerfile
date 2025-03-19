@@ -4,8 +4,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 # We'll temporarily be root to create directories
 WORKDIR /app
-# Create data directory with proper permissions before switching to app user
-RUN mkdir -p /app/data && chown -R 1000:1000 /app/data
+# Note: We no longer need to create the data directory since we're using in-memory DB in read-only environments
 USER $APP_UID
 EXPOSE 8080
 EXPOSE 8081
@@ -38,15 +37,12 @@ FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./GamebookTest1.Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# Create needed directories with proper permissions
+# Create wwwroot directory and copy the React build output
 RUN mkdir -p /app/publish/wwwroot
-RUN mkdir -p /app/publish/data && chown -R 1000:1000 /app/publish/data
-
-# Copy the React build output to the wwwroot directory
 COPY --from=build /src/gamebooktest1.client/dist/* /app/publish/wwwroot/
 
-# Copy the database if it exists (optional)
-RUN if [ -f "/src/data/gamebook.db" ]; then cp /src/data/gamebook.db /app/publish/data/ && chown 1000:1000 /app/publish/data/gamebook.db; fi
+# Copy index.html to wwwroot directory to support client-side routing
+RUN cp /app/publish/wwwroot/index.html /app/publish/wwwroot/
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final

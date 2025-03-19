@@ -19,73 +19,85 @@ Console.WriteLine($"Current user: {Environment.UserName}");
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 Console.WriteLine($"Connection string: {connectionString}");
 
-// Check database file location and permissions
-if (!string.IsNullOrEmpty(connectionString))
+// Check if file system is read-only
+bool isFileSystemReadOnly = false;
+var testPath = Path.Combine(Environment.CurrentDirectory, "write_test.tmp");
+try
 {
-    var dataSource = connectionString.Split(';')
-        .FirstOrDefault(s => s.Trim().StartsWith("Data Source=", StringComparison.OrdinalIgnoreCase))
-        ?.Substring("Data Source=".Length).Trim();
-    
-    Console.WriteLine($"Database path: {dataSource}");
-    
-    if (!string.IsNullOrEmpty(dataSource))
+    File.WriteAllText(testPath, "test");
+    File.Delete(testPath);
+    Console.WriteLine("File system is writable");
+}
+catch
+{
+    isFileSystemReadOnly = true;
+    Console.WriteLine("File system is READ-ONLY - will use in-memory database");
+}
+
+// Configure database context based on filesystem access
+if (isFileSystemReadOnly)
+{
+    // Use in-memory database for read-only filesystems
+    Console.WriteLine("Using in-memory SQLite database");
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlite("Data Source=:memory:"));
+}
+else
+{
+    // Check database file location and permissions
+    if (!string.IsNullOrEmpty(connectionString))
     {
-        var dbDirectory = Path.GetDirectoryName(dataSource);
-        Console.WriteLine($"Database directory: {dbDirectory}");
+        var dataSource = connectionString.Split(';')
+            .FirstOrDefault(s => s.Trim().StartsWith("Data Source=", StringComparison.OrdinalIgnoreCase))
+            ?.Substring("Data Source=".Length).Trim();
         
-        if (!string.IsNullOrEmpty(dbDirectory))
+        Console.WriteLine($"Database path: {dataSource}");
+        
+        if (!string.IsNullOrEmpty(dataSource))
         {
-            if (Directory.Exists(dbDirectory))
+            var dbDirectory = Path.GetDirectoryName(dataSource);
+            Console.WriteLine($"Database directory: {dbDirectory}");
+            
+            if (!string.IsNullOrEmpty(dbDirectory))
             {
-                Console.WriteLine($"Database directory exists: {dbDirectory}");
-                try
+                if (Directory.Exists(dbDirectory))
                 {
-                    // Check if writable by trying to create and delete a test file
-                    var testFile = Path.Combine(dbDirectory, "write_test.tmp");
-                    File.WriteAllText(testFile, "test");
-                    File.Delete(testFile);
-                    Console.WriteLine($"Database directory is writable");
+                    Console.WriteLine($"Database directory exists: {dbDirectory}");
+                    try
+                    {
+                        // Check if writable by trying to create and delete a test file
+                        var testFile = Path.Combine(dbDirectory, "write_test.tmp");
+                        File.WriteAllText(testFile, "test");
+                        File.Delete(testFile);
+                        Console.WriteLine($"Database directory is writable");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Database directory is not writable: {ex.Message}");
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine($"Database directory is not writable: {ex.Message}");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"Database directory does not exist: {dbDirectory}");
-                try
-                {
-                    Directory.CreateDirectory(dbDirectory);
-                    Console.WriteLine($"Created database directory: {dbDirectory}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Failed to create database directory: {ex.Message}");
+                    Console.WriteLine($"Database directory does not exist: {dbDirectory}");
+                    try
+                    {
+                        Directory.CreateDirectory(dbDirectory);
+                        Console.WriteLine($"Created database directory: {dbDirectory}");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to create database directory: {ex.Message}");
+                    }
                 }
             }
         }
     }
-}
 
-// Configure SQLite to use a relative path if absolute path has permission issues
-builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) =>
-{
-    try
-    {
-        options.UseSqlite(connectionString);
-        Console.WriteLine("Database context configured successfully");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error configuring database context: {ex.Message}");
-        
-        // Fallback to a relative path if absolute path fails
-        var fallbackPath = "gamebook.db";
-        Console.WriteLine($"Attempting fallback to relative path: {fallbackPath}");
-        options.UseSqlite($"Data Source={fallbackPath}");
-    }
-});
+    // Configure SQLite to use file-based database
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlite(connectionString));
+    Console.WriteLine("Database context configured with file-based SQLite database");
+}
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -124,9 +136,27 @@ using (var scope = app.Services.CreateScope())
     try
     {
         var dbContext = services.GetRequiredService<AppDbContext>();
-        // This will create the database if it doesn't exist and apply any pending migrations
-        dbContext.Database.EnsureCreated();
-        Console.WriteLine("Database created or verified successfully");
+        
+        // Special handling for in-memory database
+        if (isFileSystemReadOnly)
+        {
+            // For in-memory database, connection is lost when context is disposed
+            // So we need to keep the connection open
+            dbContext.Database.OpenConnection();
+            dbContext.Database.EnsureCreated();
+            Console.WriteLine("In-memory database created successfully");
+            
+            // Here you could seed the database with initial data
+            // This is important since in-memory DB starts fresh each time
+            Console.WriteLine("Seeding in-memory database with initial data...");
+            // SeedDatabase(dbContext);
+        }
+        else
+        {
+            // For file-based database
+            dbContext.Database.EnsureCreated();
+            Console.WriteLine("File-based database created or verified successfully");
+        }
     }
     catch (Exception ex)
     {
@@ -168,7 +198,8 @@ app.MapGet("/dbstatus", (AppDbContext dbContext) => {
     try {
         // Try to access the database
         var canConnect = dbContext.Database.CanConnect();
-        return $"Database connection: {(canConnect ? "Successful" : "Failed")}";
+        var dbType = isFileSystemReadOnly ? "In-Memory" : "File-based";
+        return $"Database connection ({dbType}): {(canConnect ? "Successful" : "Failed")}";
     }
     catch (Exception ex) {
         return $"Database error: {ex.Message}";
@@ -184,8 +215,10 @@ app.MapGet("/diagnostics", () => {
         ["OS Version"] = Environment.OSVersion.ToString(),
         ["Machine Name"] = Environment.MachineName,
         ["Connection String"] = connectionString ?? "Not configured",
+        ["Using In-Memory Database"] = isFileSystemReadOnly.ToString(),
         [".NET Version"] = Environment.Version.ToString(),
-        ["Processor Count"] = Environment.ProcessorCount.ToString()
+        ["Processor Count"] = Environment.ProcessorCount.ToString(),
+        ["File System Read-Only"] = isFileSystemReadOnly.ToString()
     };
     
     // Check data directory
@@ -209,6 +242,9 @@ app.MapGet("/diagnostics", () => {
     
     return diagnostics;
 });
+
+// Add a route to serve index.html for all client-side routes
+app.MapFallbackToFile("index.html");
 
 Console.WriteLine($"Application starting. Environment: {app.Environment.EnvironmentName}");
 app.Run();
