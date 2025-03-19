@@ -17,89 +17,127 @@ Console.WriteLine($"Current user: {Environment.UserName}");
 
 // Diagnostic information about the connection string
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-Console.WriteLine($"Connection string: {connectionString}");
+Console.WriteLine($"Initial connection string: {connectionString}");
 
-// Check database path existence
-if (!string.IsNullOrEmpty(connectionString))
+// Try to find a working database path
+string TryFindWorkingDatabasePath()
 {
-    var dataSource = connectionString.Split(';')
-        .FirstOrDefault(s => s.Trim().StartsWith("Data Source=", StringComparison.OrdinalIgnoreCase))
-        ?.Substring("Data Source=".Length).Trim();
-    
-    if (!string.IsNullOrEmpty(dataSource))
+    // First try the default connection
+    var conn = connectionString;
+    if (IsDatabasePathUsable(conn))
     {
-        Console.WriteLine($"Database path: {dataSource}");
-        
-        var dbDirectory = Path.GetDirectoryName(dataSource);
-        if (!string.IsNullOrEmpty(dbDirectory))
+        Console.WriteLine($"Using primary database path: {conn}");
+        return conn;
+    }
+
+    // Try fallback options in order
+    for (int i = 1; i <= 3; i++)
+    {
+        var fallbackConn = builder.Configuration.GetConnectionString($"FallbackConnection{i}");
+        if (!string.IsNullOrEmpty(fallbackConn) && IsDatabasePathUsable(fallbackConn))
         {
-            if (Directory.Exists(dbDirectory))
+            Console.WriteLine($"Using fallback database path {i}: {fallbackConn}");
+            return fallbackConn;
+        }
+    }
+
+    // If all else fails, use in-memory
+    Console.WriteLine("All database paths failed, using in-memory database");
+    return "Data Source=:memory:";
+}
+
+bool IsDatabasePathUsable(string connString)
+{
+    if (string.IsNullOrEmpty(connString))
+        return false;
+
+    // In-memory database is always usable
+    if (connString.Contains(":memory:"))
+        return true;
+
+    try
+    {
+        var dataSource = connString.Split(';')
+            .FirstOrDefault(s => s.Trim().StartsWith("Data Source=", StringComparison.OrdinalIgnoreCase))
+            ?.Substring("Data Source=".Length).Trim();
+
+        if (string.IsNullOrEmpty(dataSource))
+            return false;
+
+        Console.WriteLine($"Testing database path: {dataSource}");
+
+        // Get directory of the database file
+        var dbDirectory = Path.GetDirectoryName(dataSource);
+        if (string.IsNullOrEmpty(dbDirectory))
+        {
+            // This could be a relative path in current directory
+            dbDirectory = Environment.CurrentDirectory;
+            dataSource = Path.Combine(dbDirectory, dataSource);
+        }
+
+        // If directory doesn't exist, try to create it
+        if (!Directory.Exists(dbDirectory))
+        {
+            Console.WriteLine($"Database directory does not exist: {dbDirectory}");
+            try 
             {
-                Console.WriteLine($"Database directory exists: {dbDirectory}");
-                try
-                {
-                    var testFile = Path.Combine(dbDirectory, "test_file");
-                    File.WriteAllText(testFile, "test");
-                    File.Delete(testFile);
-                    Console.WriteLine($"Database directory is writable");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Database directory is not writable: {ex.Message}");
-                    Console.WriteLine($"Will try to use fallback connection string");
-                    connectionString = builder.Configuration.GetConnectionString("FallbackConnection");
-                    Console.WriteLine($"Fallback connection string: {connectionString}");
-                }
+                Directory.CreateDirectory(dbDirectory);
+                Console.WriteLine($"Created database directory: {dbDirectory}");
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine($"Database directory does not exist: {dbDirectory}");
-                try
-                {
-                    Directory.CreateDirectory(dbDirectory);
-                    Console.WriteLine($"Created database directory: {dbDirectory}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Failed to create database directory: {ex.Message}");
-                    Console.WriteLine($"Will try to use fallback connection string");
-                    connectionString = builder.Configuration.GetConnectionString("FallbackConnection");
-                    Console.WriteLine($"Fallback connection string: {connectionString}");
-                }
+                Console.WriteLine($"Failed to create directory: {ex.Message}");
+                return false;
             }
         }
+
+        // Check if directory is writable
+        try
+        {
+            var testFile = Path.Combine(dbDirectory, $"test_{Guid.NewGuid()}.tmp");
+            File.WriteAllText(testFile, "test");
+            File.Delete(testFile);
+            Console.WriteLine($"Database directory is writable: {dbDirectory}");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database directory is not writable: {ex.Message}");
+            return false;
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error checking database path: {ex.Message}");
+        return false;
     }
 }
 
-// Check if file system is read-only
-bool isFileSystemReadOnly = false;
-var testPath = Path.Combine(Environment.CurrentDirectory, "write_test.tmp");
-try
-{
-    File.WriteAllText(testPath, "test");
-    File.Delete(testPath);
-    Console.WriteLine("File system is writable");
-}
-catch
-{
-    isFileSystemReadOnly = true;
-    Console.WriteLine("File system is READ-ONLY - will use in-memory database");
-}
+// Find a working database connection
+connectionString = TryFindWorkingDatabasePath();
+Console.WriteLine($"Final connection string: {connectionString}");
 
-// Configure database context based on filesystem access
+// Check if file system is read-only (only use in-memory if we actually found a memory connection string)
+bool isFileSystemReadOnly = connectionString.Contains(":memory:");
 if (isFileSystemReadOnly)
 {
-    // Use in-memory database for read-only filesystems
-    Console.WriteLine("Using in-memory SQLite database");
+    Console.WriteLine("Using in-memory database");
+}
+
+// Configure database context based on in-memory flag
+if (isFileSystemReadOnly)
+{
+    // Use in-memory database
+    Console.WriteLine("Configuring in-memory SQLite database");
     builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlite("Data Source=:memory:"));
 }
 else
 {
     // Configure SQLite to use file-based database
+    Console.WriteLine($"Configuring file-based SQLite database: {connectionString}");
     builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlite(connectionString));
-    Console.WriteLine("Database context configured with file-based SQLite database");
 }
 
 builder.Services.AddEndpointsApiExplorer();
@@ -215,6 +253,7 @@ app.MapGet("/diagnostics", () => {
     {
         ["Current Directory"] = Environment.CurrentDirectory,
         ["User"] = Environment.UserName,
+        ["User ID"] = Environment.GetEnvironmentVariable("APP_UID") ?? "unknown",
         ["OS Version"] = Environment.OSVersion.ToString(),
         ["Machine Name"] = Environment.MachineName,
         ["Connection String"] = connectionString ?? "Not configured",
@@ -232,15 +271,30 @@ app.MapGet("/diagnostics", () => {
     {
         try
         {
+            var files = Directory.GetFiles(dataDir);
+            diagnostics["Data Directory Files"] = string.Join(", ", files);
+            
             var testFile = Path.Combine(dataDir, "write_test.tmp");
-            File.WriteAllText(testFile, "test");
-            File.Delete(testFile);
-            diagnostics["Data Directory Writable"] = "Yes";
+            try {
+                File.WriteAllText(testFile, "test");
+                File.Delete(testFile);
+                diagnostics["Data Directory Writable"] = "Yes";
+            } catch (Exception ex) {
+                diagnostics["Data Directory Writable"] = $"No - {ex.Message}";
+            }
         }
         catch (Exception ex)
         {
-            diagnostics["Data Directory Writable"] = $"No - {ex.Message}";
+            diagnostics["Data Directory Access Error"] = ex.Message;
         }
+    }
+    
+    // Add current directory files
+    try {
+        var currentDirFiles = Directory.GetFiles(Environment.CurrentDirectory);
+        diagnostics["Current Directory Files"] = string.Join(", ", currentDirFiles);
+    } catch (Exception ex) {
+        diagnostics["Current Directory Files Error"] = ex.Message;
     }
     
     return diagnostics;

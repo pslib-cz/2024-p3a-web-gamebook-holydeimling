@@ -2,10 +2,9 @@
 
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-# Create app and data directories with proper permissions
+# We'll temporarily be root to create directories
 WORKDIR /app
-# Create data directory and ensure it has correct permissions
-RUN mkdir -p /app/data && chmod 777 /app/data
+# Note: We no longer need to create the data directory since we're using in-memory DB in read-only environments
 USER $APP_UID
 EXPOSE 8080
 EXPOSE 8081
@@ -46,6 +45,4 @@ COPY --from=build /src/gamebooktest1.client/dist/ /app/publish/wwwroot/
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-# Ensure data directory exists with proper permissions in the final image
-RUN mkdir -p /app/data && chmod 777 /app/data
 ENTRYPOINT ["dotnet", "GamebookTest1.Server.dll"]
