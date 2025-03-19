@@ -19,6 +19,58 @@ Console.WriteLine($"Current user: {Environment.UserName}");
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 Console.WriteLine($"Connection string: {connectionString}");
 
+// Check database path existence
+if (!string.IsNullOrEmpty(connectionString))
+{
+    var dataSource = connectionString.Split(';')
+        .FirstOrDefault(s => s.Trim().StartsWith("Data Source=", StringComparison.OrdinalIgnoreCase))
+        ?.Substring("Data Source=".Length).Trim();
+    
+    if (!string.IsNullOrEmpty(dataSource))
+    {
+        Console.WriteLine($"Database path: {dataSource}");
+        
+        var dbDirectory = Path.GetDirectoryName(dataSource);
+        if (!string.IsNullOrEmpty(dbDirectory))
+        {
+            if (Directory.Exists(dbDirectory))
+            {
+                Console.WriteLine($"Database directory exists: {dbDirectory}");
+                try
+                {
+                    var testFile = Path.Combine(dbDirectory, "test_file");
+                    File.WriteAllText(testFile, "test");
+                    File.Delete(testFile);
+                    Console.WriteLine($"Database directory is writable");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Database directory is not writable: {ex.Message}");
+                    Console.WriteLine($"Will try to use fallback connection string");
+                    connectionString = builder.Configuration.GetConnectionString("FallbackConnection");
+                    Console.WriteLine($"Fallback connection string: {connectionString}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Database directory does not exist: {dbDirectory}");
+                try
+                {
+                    Directory.CreateDirectory(dbDirectory);
+                    Console.WriteLine($"Created database directory: {dbDirectory}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Failed to create database directory: {ex.Message}");
+                    Console.WriteLine($"Will try to use fallback connection string");
+                    connectionString = builder.Configuration.GetConnectionString("FallbackConnection");
+                    Console.WriteLine($"Fallback connection string: {connectionString}");
+                }
+            }
+        }
+    }
+}
+
 // Check if file system is read-only
 bool isFileSystemReadOnly = false;
 var testPath = Path.Combine(Environment.CurrentDirectory, "write_test.tmp");
@@ -44,55 +96,6 @@ if (isFileSystemReadOnly)
 }
 else
 {
-    // Check database file location and permissions
-    if (!string.IsNullOrEmpty(connectionString))
-    {
-        var dataSource = connectionString.Split(';')
-            .FirstOrDefault(s => s.Trim().StartsWith("Data Source=", StringComparison.OrdinalIgnoreCase))
-            ?.Substring("Data Source=".Length).Trim();
-        
-        Console.WriteLine($"Database path: {dataSource}");
-        
-        if (!string.IsNullOrEmpty(dataSource))
-        {
-            var dbDirectory = Path.GetDirectoryName(dataSource);
-            Console.WriteLine($"Database directory: {dbDirectory}");
-            
-            if (!string.IsNullOrEmpty(dbDirectory))
-            {
-                if (Directory.Exists(dbDirectory))
-                {
-                    Console.WriteLine($"Database directory exists: {dbDirectory}");
-                    try
-                    {
-                        // Check if writable by trying to create and delete a test file
-                        var testFile = Path.Combine(dbDirectory, "write_test.tmp");
-                        File.WriteAllText(testFile, "test");
-                        File.Delete(testFile);
-                        Console.WriteLine($"Database directory is writable");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Database directory is not writable: {ex.Message}");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine($"Database directory does not exist: {dbDirectory}");
-                    try
-                    {
-                        Directory.CreateDirectory(dbDirectory);
-                        Console.WriteLine($"Created database directory: {dbDirectory}");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Failed to create database directory: {ex.Message}");
-                    }
-                }
-            }
-        }
-    }
-
     // Configure SQLite to use file-based database
     builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlite(connectionString));
