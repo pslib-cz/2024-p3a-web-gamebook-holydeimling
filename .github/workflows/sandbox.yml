@@ -10,6 +10,16 @@ jobs:
     steps:
       - name: Naklonování repozitáře
         uses: actions/checkout@v4
+      - name: Ensure data directory exists
+        run: mkdir -p data
+      - name: Copy database file if it exists
+        run: |
+          if [ -f "data/gamebook.db" ]; then
+            echo "Using existing database file"
+          else
+            echo "Creating initial database structure"
+            # The database will be created by the application on startup
+          fi
       - name: Přihlášení se k Sandboxu
         uses: docker/login-action@v3
         with:

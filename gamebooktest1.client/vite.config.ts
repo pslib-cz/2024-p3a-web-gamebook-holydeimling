@@ -6,39 +6,51 @@ import path from "path";
 import child_process from "child_process";
 import { env } from "process";
 
-const baseFolder =
-    env.APPDATA !== undefined && env.APPDATA !== ""
-        ? `${env.APPDATA}/ASP.NET/https`
-        : `${env.HOME}/.aspnet/https`;
-
-const certificateName = "mdagamebook.client";
-const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
-const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
-
-if (!fs.existsSync(baseFolder)) {
-    fs.mkdirSync(baseFolder, { recursive: true });
-}
-
-if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
-    if (
-        0 !==
-        child_process.spawnSync(
-            "dotnet",
-            [
-                "dev-certs",
-                "https",
-                "--export-path",
-                certFilePath,
-                "--format",
-                "Pem",
-                "--no-password",
-            ],
-            { stdio: "inherit" }
-        ).status
-    ) {
-        throw new Error("Could not create certificate.");
+// Certificate setup for local development only
+const setupCertificates = () => {
+    if (process.env.NODE_ENV === 'production') {
+        return {};
     }
-}
+
+    const baseFolder =
+        env.APPDATA !== undefined && env.APPDATA !== ""
+            ? `${env.APPDATA}/ASP.NET/https`
+            : `${env.HOME}/.aspnet/https`;
+
+    const certificateName = "mdagamebook.client";
+    const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
+    const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
+
+    if (!fs.existsSync(baseFolder)) {
+        fs.mkdirSync(baseFolder, { recursive: true });
+    }
+
+    if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
+        if (
+            0 !==
+            child_process.spawnSync(
+                "dotnet",
+                [
+                    "dev-certs",
+                    "https",
+                    "--export-path",
+                    certFilePath,
+                    "--format",
+                    "Pem",
+                    "--no-password",
+                ],
+                { stdio: "inherit" }
+            ).status
+        ) {
+            throw new Error("Could not create certificate.");
+        }
+    }
+
+    return {
+        key: fs.readFileSync(keyFilePath),
+        cert: fs.readFileSync(certFilePath),
+    };
+};
 
 const target =
     env.REACT_APP_API_URL || env.ASPNETCORE_HTTPS_PORT
@@ -54,6 +66,11 @@ export default defineConfig({
         alias: {
             "@": fileURLToPath(new URL("./src", import.meta.url)),
         },
+    },
+    build: {
+        // Ensure the build output works when served from the root path
+        outDir: 'dist',
+        emptyOutDir: true,
     },
     server: {
         proxy: {
@@ -93,10 +110,7 @@ export default defineConfig({
                 secure: false,
             },
         },
-        https: {
-            key: fs.readFileSync(keyFilePath),
-            cert: fs.readFileSync(certFilePath),
-        },
+        https: setupCertificates(),
         host: true,
     },
 });

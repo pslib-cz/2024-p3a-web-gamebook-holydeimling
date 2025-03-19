@@ -16,8 +16,17 @@ WORKDIR /src
 COPY ["gamebooktest1.client/nuget.config", "gamebooktest1.client/"]
 COPY ["GamebookTest1.Server/GamebookTest1.Server.csproj", "GamebookTest1.Server/"]
 COPY ["gamebooktest1.client/gamebooktest1.client.esproj", "gamebooktest1.client/"]
+COPY ["gamebooktest1.client/package.json", "gamebooktest1.client/"]
+COPY ["gamebooktest1.client/package-lock.json", "gamebooktest1.client/"]
 RUN dotnet restore "./GamebookTest1.Server/GamebookTest1.Server.csproj"
 COPY . .
+
+# Build the React client
+WORKDIR "/src/gamebooktest1.client"
+RUN npm ci
+RUN npm run build
+
+# Build the server
 WORKDIR "/src/GamebookTest1.Server"
 RUN dotnet build "./GamebookTest1.Server.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
@@ -26,8 +35,14 @@ FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./GamebookTest1.Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
+# Copy the React build output to the wwwroot directory
+RUN mkdir -p /app/publish/wwwroot
+COPY --from=build /src/gamebooktest1.client/dist/* /app/publish/wwwroot/
+
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+# Ensure the data directory exists for the SQLite database
+RUN mkdir -p /data
 ENTRYPOINT ["dotnet", "GamebookTest1.Server.dll"]
