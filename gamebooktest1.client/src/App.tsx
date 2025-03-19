@@ -15,54 +15,66 @@ import { ControlsPage } from "./pages/AboutPage/Controls";
 import { AdminRouteGuard } from "./components/AdminRouteGuard";
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <HomePage />,
-    },
-    {
-      path: "/login",
-      element: <LoginPage />,
-    },
-    {
-      path: "/register",
-      element: <RegisterPage />,
-    },
-    {
-      path: "/scene/:id", // Add dynamic parameter for scene ID
-      element: <ScenePage />,
-    },
-    {
-      path: "/backoffice",
-      element: (
-        <AdminRouteGuard>
-          <BackofficePage />
-        </AdminRouteGuard>
-      ),
-    },
-    {
-      path: "/about",
-      element: <AboutPage />,
-      children: [
-        {
-          path: "/about/story",
-          element: <StoryPage />,
-        },
-        {
-          path: "/about/characters",
-          element: <MainCharactersPage />,
-        },
-        {
-          path: "/about/creators",
-          element: <AboutCreators />,
-        },
-        {
-          path: "/about/controls",
-          element: <ControlsPage />,
-        },
-      ],
-    },
-  ]);
+  // Define the basename based on the deployment environment
+  // This ensures routing works in both development and production
+  const basename = "/";
+
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
+      },
+      {
+        path: "/scene/:id", // Add dynamic parameter for scene ID
+        element: <ScenePage />,
+      },
+      {
+        path: "/backoffice",
+        element: (
+          <AdminRouteGuard>
+            <BackofficePage />
+          </AdminRouteGuard>
+        ),
+      },
+      {
+        path: "/about",
+        element: <AboutPage />,
+        children: [
+          {
+            path: "/about/story",
+            element: <StoryPage />,
+          },
+          {
+            path: "/about/characters",
+            element: <MainCharactersPage />,
+          },
+          {
+            path: "/about/creators",
+            element: <AboutCreators />,
+          },
+          {
+            path: "/about/controls",
+            element: <ControlsPage />,
+          },
+        ],
+      },
+      // Add a catch-all route to handle 404s gracefully
+      {
+        path: "*",
+        element: <HomePage />
+      }
+    ],
+    { basename }
+  );
 
   return (
     <UserProvider>

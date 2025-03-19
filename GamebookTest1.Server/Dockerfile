@@ -39,10 +39,7 @@ RUN dotnet publish "./GamebookTest1.Server.csproj" -c $BUILD_CONFIGURATION -o /a
 
 # Create wwwroot directory and copy the React build output
 RUN mkdir -p /app/publish/wwwroot
-COPY --from=build /src/gamebooktest1.client/dist/* /app/publish/wwwroot/
-
-# Copy index.html to wwwroot directory to support client-side routing
-RUN cp /app/publish/wwwroot/index.html /app/publish/wwwroot/
+COPY --from=build /src/gamebooktest1.client/dist/ /app/publish/wwwroot/
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final

@@ -243,8 +243,18 @@ app.MapGet("/diagnostics", () => {
     return diagnostics;
 });
 
-// Add a route to serve index.html for all client-side routes
-app.MapFallbackToFile("index.html");
+// Ensure routing works correctly for the SPA - Must be after controller mappings
+// This will serve index.html for any non-API/non-file routes to support client-side routing
+app.MapWhen(ctx => !ctx.Request.Path.StartsWithSegments("/api") && 
+                  !ctx.Request.Path.StartsWithSegments("/swagger") && 
+                  !ctx.Request.Path.Value.Contains('.'),
+            appBuilder => {
+                appBuilder.UseStaticFiles();
+                appBuilder.Run(async context => {
+                    context.Response.ContentType = "text/html";
+                    await context.Response.SendFileAsync(Path.Combine(app.Environment.ContentRootPath, "wwwroot", "index.html"));
+                });
+            });
 
 Console.WriteLine($"Application starting. Environment: {app.Environment.EnvironmentName}");
 app.Run();

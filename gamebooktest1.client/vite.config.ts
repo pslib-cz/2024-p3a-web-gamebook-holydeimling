@@ -71,6 +71,17 @@ export default defineConfig({
         // Ensure the build output works when served from the root path
         outDir: 'dist',
         emptyOutDir: true,
+        // Use relative paths for assets to ensure they work correctly in any deployment
+        assetsDir: 'assets',
+        // Generate a proper index.html with correct asset paths
+        rollupOptions: {
+            output: {
+                // Important to ensure assets have consistent paths
+                assetFileNames: 'assets/[name].[hash][extname]',
+                chunkFileNames: 'assets/[name].[hash].js',
+                entryFileNames: 'assets/[name].[hash].js',
+            }
+        }
     },
     server: {
         proxy: {
