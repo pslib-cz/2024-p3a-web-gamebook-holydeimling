@@ -322,7 +322,7 @@ app.MapWhen(ctx => !ctx.Request.Path.StartsWithSegments("/api") &&
             });
 
 // Add this method to seed the database with essential data
-private static void SeedInMemoryDatabase(AppDbContext context)
+static void SeedInMemoryDatabase(AppDbContext context)
 {
     // Add a sample background image
     var image = new Image
