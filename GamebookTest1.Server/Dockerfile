@@ -2,8 +2,11 @@
 
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
+# We'll temporarily be root to create directories
 WORKDIR /app
+# Create data directory with proper permissions before switching to app user
+RUN mkdir -p /app/data && chown -R 1000:1000 /app/data
+USER $APP_UID
 EXPOSE 8080
 EXPOSE 8081
 
@@ -35,17 +38,18 @@ FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./GamebookTest1.Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# Copy the React build output to the wwwroot directory
+# Create needed directories with proper permissions
 RUN mkdir -p /app/publish/wwwroot
+RUN mkdir -p /app/publish/data && chown -R 1000:1000 /app/publish/data
+
+# Copy the React build output to the wwwroot directory
 COPY --from=build /src/gamebooktest1.client/dist/* /app/publish/wwwroot/
 
 # Copy the database if it exists (optional)
-RUN if [ -f "/src/data/gamebook.db" ]; then mkdir -p /app/publish/data && cp /src/data/gamebook.db /app/publish/data/; fi
+RUN if [ -f "/src/data/gamebook.db" ]; then cp /src/data/gamebook.db /app/publish/data/ && chown 1000:1000 /app/publish/data/gamebook.db; fi
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-# Create app-specific data directory that the non-root user can access
-RUN mkdir -p /app/data && chmod 755 /app/data
 ENTRYPOINT ["dotnet", "GamebookTest1.Server.dll"]

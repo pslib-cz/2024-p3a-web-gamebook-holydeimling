@@ -11,36 +11,82 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-// Add a custom check to ensure the database directory exists
+// Print current directory and user information for diagnosis
+Console.WriteLine($"Current directory: {Environment.CurrentDirectory}");
+Console.WriteLine($"Current user: {Environment.UserName}");
+
+// Diagnostic information about the connection string
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine($"Connection string: {connectionString}");
+
+// Check database file location and permissions
 if (!string.IsNullOrEmpty(connectionString))
 {
     var dataSource = connectionString.Split(';')
         .FirstOrDefault(s => s.Trim().StartsWith("Data Source=", StringComparison.OrdinalIgnoreCase))
         ?.Substring("Data Source=".Length).Trim();
     
+    Console.WriteLine($"Database path: {dataSource}");
+    
     if (!string.IsNullOrEmpty(dataSource))
     {
         var dbDirectory = Path.GetDirectoryName(dataSource);
-        if (!string.IsNullOrEmpty(dbDirectory) && !Directory.Exists(dbDirectory))
+        Console.WriteLine($"Database directory: {dbDirectory}");
+        
+        if (!string.IsNullOrEmpty(dbDirectory))
         {
-            try
+            if (Directory.Exists(dbDirectory))
             {
-                Directory.CreateDirectory(dbDirectory);
-                Console.WriteLine($"Created database directory: {dbDirectory}");
+                Console.WriteLine($"Database directory exists: {dbDirectory}");
+                try
+                {
+                    // Check if writable by trying to create and delete a test file
+                    var testFile = Path.Combine(dbDirectory, "write_test.tmp");
+                    File.WriteAllText(testFile, "test");
+                    File.Delete(testFile);
+                    Console.WriteLine($"Database directory is writable");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Database directory is not writable: {ex.Message}");
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine($"Warning: Failed to create database directory: {ex.Message}");
-                // Continue execution - the application may still work if the directory already exists
+                Console.WriteLine($"Database directory does not exist: {dbDirectory}");
+                try
+                {
+                    Directory.CreateDirectory(dbDirectory);
+                    Console.WriteLine($"Created database directory: {dbDirectory}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Failed to create database directory: {ex.Message}");
+                }
             }
         }
     }
 }
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(connectionString)
-);
+// Configure SQLite to use a relative path if absolute path has permission issues
+builder.Services.AddDbContext<AppDbContext>((serviceProvider, options) =>
+{
+    try
+    {
+        options.UseSqlite(connectionString);
+        Console.WriteLine("Database context configured successfully");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error configuring database context: {ex.Message}");
+        
+        // Fallback to a relative path if absolute path fails
+        var fallbackPath = "gamebook.db";
+        Console.WriteLine($"Attempting fallback to relative path: {fallbackPath}");
+        options.UseSqlite($"Data Source={fallbackPath}");
+    }
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -127,6 +173,41 @@ app.MapGet("/dbstatus", (AppDbContext dbContext) => {
     catch (Exception ex) {
         return $"Database error: {ex.Message}";
     }
+});
+
+// Add detailed diagnostics endpoint
+app.MapGet("/diagnostics", () => {
+    var diagnostics = new Dictionary<string, string>
+    {
+        ["Current Directory"] = Environment.CurrentDirectory,
+        ["User"] = Environment.UserName,
+        ["OS Version"] = Environment.OSVersion.ToString(),
+        ["Machine Name"] = Environment.MachineName,
+        ["Connection String"] = connectionString ?? "Not configured",
+        [".NET Version"] = Environment.Version.ToString(),
+        ["Processor Count"] = Environment.ProcessorCount.ToString()
+    };
+    
+    // Check data directory
+    var dataDir = "/app/data";
+    diagnostics["Data Directory Exists"] = Directory.Exists(dataDir).ToString();
+    
+    if (Directory.Exists(dataDir))
+    {
+        try
+        {
+            var testFile = Path.Combine(dataDir, "write_test.tmp");
+            File.WriteAllText(testFile, "test");
+            File.Delete(testFile);
+            diagnostics["Data Directory Writable"] = "Yes";
+        }
+        catch (Exception ex)
+        {
+            diagnostics["Data Directory Writable"] = $"No - {ex.Message}";
+        }
+    }
+    
+    return diagnostics;
 });
 
 Console.WriteLine($"Application starting. Environment: {app.Environment.EnvironmentName}");
